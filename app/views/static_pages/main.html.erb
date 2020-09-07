@@ -1,1 +1,10 @@
 <div>Mousehunt Collector</div>
+<ul>
+<% @users.each do |user| %>
+  <li>
+  <h6><%= user.name %></h6> 
+  </li>
+<% end %>
+
+</ul>
+

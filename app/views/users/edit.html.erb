@@ -1,0 +1,16 @@
+<h2>Update Info Page</h2>
+
+<form id="user_edit_form" action="/users/1" method="POST">
+  <input type="hidden" value=<%= form_authenticity_token %> name="authenticity_token">
+  <input type="hidden" value="PATCH" name="_method">
+  <p>
+  <label for="user_name" >Name: </label>
+  <input type="text" id="user_name" name="user[name]" value="<%= @user.name %>" %>
+  </p>
+  <p>
+  <label for="user_email">Email: </label>
+  <input type="text" id="user_email" name="user[email]" value="<%= @user.email %>" disabled>
+  </p>
+  <input type="submit" value="Submit">
+</form>
+

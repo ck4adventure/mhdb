@@ -1,52 +1,31 @@
 require 'rails_helper'
 
-RSpec.describe "Users", type: :request do
-  describe '#show' do
-    it 'retrieves a User object from the database'
-    it 'renders the show template'
+RSpec.describe "Users Requests", type: :request do
+  it 'creates a new User and redirects to the show page' do
+    get "/users/new"
+    expect(response).to render_template(:new)
+
+    post "/users", :params => { :user => { name:"Larry", email: "larry@test.com" } }
+    expect(response).to redirect_to user_path(assigns(:user))
+    follow_redirect!
+
+    expect(response).to render_template(:show)
+
   end
 
-  describe '#new' do
-    it 'creates a blank User object'
-    it 'renders the new template'
+  it 'edits an existing User and redirects to the show page' do
+    realname_larry = User.create!(name: "Curly", email: "larry@test.com")
+    get edit_user_path(realname_larry)
+    expect(response).to render_template(:edit)
+
+    patch user_path(realname_larry.id), :params => { :user => { name:"Larry", email: "larry@test.com" } }
+    expect(response).to redirect_to user_path(realname_larry.id)
   end
 
-  describe '#create' do
-    it 'creates a User object from the params given'
-    
-    context 'when valid params are given' do
-      it 'renders the show template'
-    end
-  
-    context 'when invalid params are given' do
-      it 'renders flash errors'
-      it 'returns status code 422'
-    end
+  it 'destroys an existing User and redirects to the index page' do
+    realname_larry = User.create!(name: "Curly", email: "larry@test.com")
+    id = realname_larry.id
+    delete user_path(realname_larry)
+    expect(response).to redirect_to root_path
   end
-
-  describe '#edit' do
-    it 'gets the User object by id'
-    it 'renders the edit template'
-  end
-
-  describe '#update' do
-    it 'finds the User object in the db'
-
-    context 'when valid params are given' do
-      it 'updates the User object from the params given'
-      it 'renders the show template'
-    end
-  
-    context 'when invalid params are given' do
-      it 'renders flash errors'
-      it 'returns status code 422'
-    end
-  end
-
-  describe '#destroy' do
-    it 'finds the User by id'
-    it 'destroys the User object'
-    it 'redirects to the root page'
-  end
-
 end
