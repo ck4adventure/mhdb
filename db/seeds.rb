@@ -7,3 +7,13 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 larry = User.create!(name: "Larry", email: "larry@test.com")
+
+titles = [
+  "Novice",
+  "Recruit",
+  "Apprentice"
+]
+
+titles.each do |title|
+  Rank.create!(title: title)
+end
