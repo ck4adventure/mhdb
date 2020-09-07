@@ -5,6 +5,7 @@ Feature: An app has a User
 
   Scenario: User can sign up
     Given I am currently logged out
+    And there is a 'Sign up' button in the header
     When I click the 'Sign Up' button in the header
     Then I should be taken to the sign up form
     And it should have the content 'Sign Up to start tracking your stuff'
