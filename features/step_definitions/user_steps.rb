@@ -2,16 +2,16 @@ Given('I am currently logged out') do
   visit ('/')
 end
 
-Given('there is a {string} button in the header') do |string|
-  page.find_button(string)
+Given('there is a {string} link in the header') do |string|
+  find_link(string)
 end
 
-When('I click the {string} button in the header') do |string|
-  page.click_link_or_button('Sign up')
+When('I click the {string} link in the header') do |string|
+  click_link(string)
 end
 
 Then('I should be taken to the sign up form') do
-  
+  pending # Write code here that turns the phrase above into concrete actions
 end
 
 Then('it should have the content {string}') do |string|

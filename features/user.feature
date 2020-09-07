@@ -5,8 +5,8 @@ Feature: An app has a User
 
   Scenario: User can sign up
     Given I am currently logged out
-    And there is a 'Sign up' button in the header
-    When I click the 'Sign Up' button in the header
+    And there is a 'Sign up' link in the header
+    When I click the 'Sign Up' link in the header
     Then I should be taken to the sign up form
     And it should have the content 'Sign Up to start tracking your stuff'
     And it should have a form input for 'name'
@@ -40,7 +40,7 @@ Feature: An app has a User
 
   Scenario: User can sign in
     Given I am currently logged out
-    When I click the 'Sign in' button in the header
+    When I click the 'Sign in' link in the header
     Then I should be taken to the 'Sign in' form
     And it should have the content 'Sign in to start tracking your stuff'
     And it should have a form input for 'email'
