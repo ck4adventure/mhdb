@@ -21,7 +21,8 @@ RSpec.describe Rank, type: :model do
     end
 
     it 'does not allow a duplicate' do
-      let new_rank = Rank.new(title: rank.title)
+      rank.save!
+      new_rank = Rank.new(title: rank.title)
       expect(new_rank.valid?).to be false
     end
   end

@@ -60,5 +60,11 @@ RSpec.describe User, type: :model do
         expect(u2.session_token).to be
       end
     end
+
+    describe '#reset_session_token' do
+      it 'creates a new session token'
+      it 'saves it to the user'
+      it 'returns the value'
+    end
   end
 end
