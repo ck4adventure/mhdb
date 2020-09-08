@@ -20,7 +20,7 @@ require 'rails_helper'
 RSpec.describe User, type: :model do
   describe 'model properties' do
     describe 'it has a required name and email' do
-      let(:user) { User.new(name: "Larry", email: "test@test.com") }
+      let(:user) { User.new(name: "Larry", email: "testy", rank_id: 1) }
       it 'is valid when given valid information' do
         expect(user.valid?).to be true
       end
@@ -29,6 +29,7 @@ RSpec.describe User, type: :model do
         user.name = ""
         expect(user.valid?).to be false
       end
+      
       it 'is not valid when a duplicate email is given' do
         user.save!
         u2 = User.new(name: "Copycat", email: user.email)

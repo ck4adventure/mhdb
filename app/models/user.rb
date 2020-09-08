@@ -19,7 +19,7 @@ class User < ApplicationRecord
   validates :name, :email, :rank_id, :session_token, presence: true
   validates :email, :session_token, uniqueness: true
   after_initialize :ensure_session_token, :set_default_rank
-
+  before_save :set_default_rank
   belongs_to :rank
 
   def ensure_session_token
