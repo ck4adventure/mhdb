@@ -8,6 +8,7 @@
 #  session_token :string           not null
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
+#  rank_id       :integer          default(1), not null
 #
 # Indexes
 #
@@ -33,6 +34,10 @@ RSpec.describe User, type: :model do
         u2 = User.new(name: "Copycat", email: user.email)
         expect(u2.valid?).to be false
       end
+    end
+
+    describe 'it has a rank_id' do
+      it 'sets a default rank if none given'
     end
   end 
 
