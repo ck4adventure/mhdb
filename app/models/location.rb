@@ -16,4 +16,6 @@
 class Location < ApplicationRecord
   validates :name, :rank_id, presence: true
   validates :name, uniqueness: true
+
+  belongs_to :rank
 end
