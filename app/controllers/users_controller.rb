@@ -1,13 +1,13 @@
 class UsersController < ApplicationController
-  before_action :require_no_user!, only: [:new, :create]
-  before_action :require_user!, except: [:new, :create]
+  before_action :require_signed_out!, only: [:new, :create]
+  before_action :require_signed_in!, except: [:new, :create]
   def show
     @user = User.find(params[:id])
     render :show
   end
 
   def new
-    @user = User.new()
+    @user = User.new(name: "", email: "")
     render :new
   end
 

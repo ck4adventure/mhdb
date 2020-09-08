@@ -11,21 +11,21 @@
 
   <body>
     <div id="header" class="header">
-      <div class="header__left"></div>
+      <div class="header__left">
+        <p>Mousehunt Collector</p>
+      </div>
       <div class="header__right">
-        <div>
         <% if current_user %>
-          <%= current_user.name %>
-          <form action="<%= session_url %>" method="post">
+          <p>Welcome, <%= current_user.name %><p>
+          <form action="<%= session_path %>" method="post">
             <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
             <input type="hidden" name="_method" value="delete">
             <input type="submit" value="Logout">
           </form>
         <% else %>
-          <a href="<%= new_session_url %>">Sign in</a>
-          <a href="<%= new_user_url %>">Sign up</a>
+          <%= link_to  "Sign in", new_session_url%>
+          <%= link_to  "Sign up", new_user_path %>
         <% end %>
-        </div>
       </div>
     </div>
     <%= yield %>

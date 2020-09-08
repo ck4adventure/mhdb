@@ -1,5 +1,6 @@
-class SessionController < ApplicationController
-  before_action :require_no_user, only: %i(create new)
+class SessionsController < ApplicationController
+  before_action :require_signed_out!, only: %i(create new)
+  before_action :require_signed_in!, only: :destroy
 
   def create
     user = User.find_by(email: params[:user][:email])
@@ -14,6 +15,7 @@ class SessionController < ApplicationController
   end
 
   def new
+    @user = User.new()
     render :new
   end
 

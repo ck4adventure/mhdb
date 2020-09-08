@@ -1,6 +1,6 @@
 <h2>Sign in to track your stuff!</h2>
 
-<form id="sign_in_form" action="<%= new_session_path %>" method="POST">
+<form id="sign_in_form" action="<%= session_path %>" method="POST">
   <input type="hidden" value=<%= form_authenticity_token %> name="authenticity_token">
   <p>
   <label for="user_email">Email: </label>

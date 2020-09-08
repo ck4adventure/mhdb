@@ -11,8 +11,7 @@
 #                                       PUT    /users/:id(.:format)                                                                     users#update
 #                                       DELETE /users/:id(.:format)                                                                     users#destroy
 #                           new_session GET    /session/new(.:format)                                                                   sessions#new
-#                               session GET    /session(.:format)                                                                       sessions#show
-#                                       DELETE /session(.:format)                                                                       sessions#destroy
+#                               session DELETE /session(.:format)                                                                       sessions#destroy
 #                                       POST   /session(.:format)                                                                       sessions#create
 
 
@@ -21,5 +20,5 @@ Rails.application.routes.draw do
   root 'static_pages#main'
 
   resources :users
-  resource :session, only: [:show, :new, :create, :destroy]
+  resource :session, only: [:new, :create, :destroy]
 end
