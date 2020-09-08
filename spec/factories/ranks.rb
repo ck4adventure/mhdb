@@ -13,6 +13,6 @@
 #
 FactoryBot.define do
   factory :rank do
-    
+    title { "Genius Tester" }
   end
 end
