@@ -23,6 +23,14 @@
 #                                       PATCH  /locations/:id(.:format)                                                                 locations#update
 #                                       PUT    /locations/:id(.:format)                                                                 locations#update
 #                                       DELETE /locations/:id(.:format)                                                                 locations#destroy
+#                                  mice GET    /mouses(.:format)                                                                        mouses#index
+#                                       POST   /mouses(.:format)                                                                        mouses#create
+#                             new_mouse GET    /mouses/new(.:format)                                                                    mouses#new
+#                            edit_mouse GET    /mouses/:id/edit(.:format)                                                               mouses#edit
+#                                 mouse GET    /mouses/:id(.:format)                                                                    mouses#show
+#                                       PATCH  /mouses/:id(.:format)                                                                    mouses#update
+#                                       PUT    /mouses/:id(.:format)                                                                    mouses#update
+#                                       DELETE /mouses/:id(.:format)                                                                    mouses#destroy
 #         rails_postmark_inbound_emails POST   /rails/action_mailbox/postmark/inbound_emails(.:format)                                  action_mailbox/ingresses/postmark/inbound_emails#create
 #            rails_relay_inbound_emails POST   /rails/action_mailbox/relay/inbound_emails(.:format)                                     action_mailbox/ingresses/relay/inbound_emails#create
 #         rails_sendgrid_inbound_emails POST   /rails/action_mailbox/sendgrid/inbound_emails(.:format)                                  action_mailbox/ingresses/sendgrid/inbound_emails#create
@@ -52,4 +60,5 @@ Rails.application.routes.draw do
   resource :session, only: [:new, :create, :destroy]
   resources :ranks, only: [:show, :index]
   resources :locations
+  resources :mouses, as: 'mice' 
 end
