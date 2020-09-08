@@ -1,15 +1,7 @@
 
 <div class="main">
   <h3>Welcome to the Main Page</h3>
-  <p>Currently there are Users and there are Ranks</p>
-  <h4>All the current users on the DB:</h4>
-  <ul>
-    <% @users.each do |user| %>
-      <li> <%= link_to  user.name, user_path(user) %> </li>
-    <% end %>
-  </ul>
-
-  <h3>Index Pages to View</h3>
+  <p>Currently available: Ranks and their Locations</p>
   <%= link_to  "Ranks Index", ranks_url %><br>
   <%= link_to  "Locations Index", locations_url %>
 </div>
