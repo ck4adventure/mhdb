@@ -11,7 +11,7 @@
   <%= collection_select(:location, :rank_id, Rank.all, :id, :title ) %>
   <br>
 
-  <input type="submit" value="Add this Location">
+  <input type="submit" value="Update this Location">
 </form>
 
 <%= link_to  "Go back", location_path(@location) %>
