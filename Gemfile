@@ -60,7 +60,7 @@ group :test do
   # cucumber for end to end testing
   gem 'cucumber-rails', require: false
   # database cleaner to keep it squeakin
-  gem 'database_cleaner'
+  gem 'database_cleaner-active_record'
   gem 'rails-controller-testing'
 end
 

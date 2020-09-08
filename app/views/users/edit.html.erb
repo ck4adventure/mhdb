@@ -1,5 +1,5 @@
 <h2>Update Info Page</h2>
-
+<%= render 'shared/errors' %>
 <form id="user_edit_form" action="<%= user_path(@user) %>" method="POST">
   <input type="hidden" value=<%= form_authenticity_token %> name="authenticity_token">
   <input type="hidden" value="PATCH" name="_method">

@@ -14,5 +14,8 @@
 class Rank < ApplicationRecord
   validates :title, presence: true, uniqueness: true
 
-  has_many :user
+  has_many :users
+  has_many :locations,
+    foreign_key: :rank_id,
+    class_name: :Location
 end

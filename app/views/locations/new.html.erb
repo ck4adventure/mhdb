@@ -1,0 +1,17 @@
+<h2>Add a Location</h2>
+
+<%= render 'shared/errors' %>
+
+<form id="location_add_form" action="/locations" method="POST">
+  <input type="hidden" value=<%= form_authenticity_token %> name="authenticity_token">
+  <label for="location_name">Name: </label>
+  <input type="text" id="location_name" name="location[name]" value="">
+  <br>
+  <label>Unlocked at Rank: </label>
+  <%= collection_select(:location, :rank_id, Rank.all, :id, :title ) %>
+  <br>
+
+  <input type="submit" value="Add this Location">
+</form>
+
+<%= link_to  "Go back", locations_path %>

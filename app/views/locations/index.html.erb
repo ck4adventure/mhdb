@@ -1,0 +1,24 @@
+<h2>Locations Page</h2>
+
+<%= link_to  "Add a Location", new_location_path %>
+<br>
+<br>
+<div class="locations_table_container">
+<table id="locations_list">
+  <thead>
+    <tr>
+      <th>Name</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+    <% @locations.each do |loc| %>
+      <tr><td> <%= link_to  loc.name, location_path(loc) %></td></tr>
+    <% end %>
+    
+  </tbody>
+</table>
+</div>
+<br>
+<br>
+<%= link_to  "Back to Main", root_path %>

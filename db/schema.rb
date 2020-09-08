@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_08_041225) do
+ActiveRecord::Schema.define(version: 2020_09_08_171252) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "locations", force: :cascade do |t|
+    t.string "name", null: false
+    t.integer "rank_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["name"], name: "index_locations_on_name", unique: true
+    t.index ["rank_id"], name: "index_locations_on_rank_id"
+  end
 
   create_table "ranks", force: :cascade do |t|
     t.string "title", null: false

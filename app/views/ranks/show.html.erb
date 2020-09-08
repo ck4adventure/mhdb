@@ -1,6 +1,14 @@
 <h2><%= @rank.title %> </h2>
 
-More information coming soon...
+
+<% if @rank.locations.length > 0 %>
+  At this rank, the following location(s) become available: <br>  
+  <%= render  partial: "avail_locs" %>
+<% else %>
+  <p>There are no locations added to the database yet for this rank. (coming soon)</p>
+<% end %>
+
+
 <br>
 <br>
 <%= link_to  "Back to ranks", ranks_path %>

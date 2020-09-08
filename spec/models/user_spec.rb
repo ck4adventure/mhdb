@@ -18,9 +18,14 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
+  before(:all) do
+    @rank = Rank.create!(title: "Test me once")
+    @rank2 = Rank.create!(title: "Test me twice")
+  end
+  
   describe 'model properties' do
-    describe 'it has a required name and email' do
-      let(:user) { User.new(name: "Larry", email: "test@test.com") }
+    context 'it has a required name and email' do
+      let(:user) { User.new(name: "Larry", email: "testy", rank_id: 1) }
       it 'is valid when given valid information' do
         expect(user.valid?).to be true
       end
@@ -29,6 +34,7 @@ RSpec.describe User, type: :model do
         user.name = ""
         expect(user.valid?).to be false
       end
+      
       it 'is not valid when a duplicate email is given' do
         user.save!
         u2 = User.new(name: "Copycat", email: user.email)
@@ -52,9 +58,13 @@ RSpec.describe User, type: :model do
     end
   end
 
+  describe 'model associations' do
+    it 'has many locations through rank'
+  end
+
   describe 'model methods' do
     describe '#ensure_session_token' do
-      let(:user) { User.new(name: "Larry", email: "test@test.com") }
+      let(:user) { User.new(name: "Larry", email: "test@test.com", rank_id: 1) }
       it 'retrieves a session_token if one already exists' do
         new_token = "12345678910"
         user.session_token = new_token
@@ -70,6 +80,18 @@ RSpec.describe User, type: :model do
       it 'creates a new session token'
       it 'saves it to the user'
       it 'returns the value'
+    end
+
+    describe '#ensure_default_rank' do
+      
+      it 'retrieves the rank if one exists' do
+        user = User.new(name: "Larry", email: "test@test.com", rank_id: 2)
+        expect(user.rank_id).to eq 2
+      end
+      it 'sets a default rank of 1 if none given' do
+        u2 = User.new(name: "Larry", email: "test@test.com")
+        expect(u2.rank_id).to eq 1
+      end
     end
   end
 end
