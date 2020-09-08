@@ -15,6 +15,7 @@
 #
 FactoryBot.define do
   factory :location do
-    
+    name { Faker::Movies::Hobbit.location }
+    rank_id { 1 }
   end
 end

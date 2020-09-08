@@ -14,8 +14,10 @@
 #  index_locations_on_rank_id  (rank_id)
 #
 class Location < ApplicationRecord
-  validates :name, :rank_id, presence: true
+  validates :name, presence: true
   validates :name, uniqueness: true
 
-  belongs_to :rank
+  belongs_to :rank,
+    foreign_key: :rank_id,
+    class_name: :Rank
 end

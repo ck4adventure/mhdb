@@ -21,9 +21,8 @@ class User < ApplicationRecord
   after_initialize :ensure_session_token, :ensure_default_rank
   
   belongs_to :rank
-  has_many :rank_locations,
-    through: :rank,
-    source: :Location
+  has_many :locations,
+    through: :rank
 
   def ensure_session_token
     self.session_token ||= SecureRandom.urlsafe_base64(16)

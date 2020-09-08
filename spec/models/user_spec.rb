@@ -58,6 +58,10 @@ RSpec.describe User, type: :model do
     end
   end
 
+  describe 'model associations' do
+    it 'has many locations through rank'
+  end
+
   describe 'model methods' do
     describe '#ensure_session_token' do
       let(:user) { User.new(name: "Larry", email: "test@test.com", rank_id: 1) }

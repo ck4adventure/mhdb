@@ -42,4 +42,12 @@ RSpec.describe Location, type: :model do
       end
     end
   end 
+
+  describe 'model associations' do
+    it 'belongs to a rank' do
+      loc = Location.new(name: "Fairytown", rank_id: 2)
+      expect(loc.rank).to be
+      expect(loc.rank.title).to eq(Rank.find(2).title)
+    end
+  end
 end
