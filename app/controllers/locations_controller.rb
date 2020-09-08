@@ -1,4 +1,5 @@
 class LocationsController < ApplicationController
+  before_action :require_signed_in!, except: [:index, :show]
   def index
     @locations = Location.all
   end

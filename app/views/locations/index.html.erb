@@ -1,6 +1,10 @@
 <h2>Locations Page</h2>
+<% if current_user %>
+  <%= render  partial: "add_location_link" %>
+<% else %>
+  <p>Want to help add location info? Just make an account to unlock access.</p>
+<% end %>
 
-<%= link_to  "Add a Location", new_location_path %>
 <br>
 <br>
 <div class="locations_table_container">
