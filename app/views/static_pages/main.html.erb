@@ -1,1 +1,13 @@
-<div>Mousehunt Collector</div>
+
+
+<h3>Welcome to the Main Page</h3>
+<p>Currently there are Users and there are Ranks</p>
+<h4>All the current users on the DB:</h4>
+<ul>
+  <% @users.each do |user| %>
+    <li><%= user.name %>  <%= user.email %></li>
+  <% end %>
+</ul>
+
+<h3>Index Pages to View</h3>
+<%= link_to  "Ranks Index", ranks_url %>

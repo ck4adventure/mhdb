@@ -1,0 +1,16 @@
+<h2>Ranks Page</h2>
+
+<table>
+  <thead>
+    <th>
+      <td>Title</td>
+    </th>
+  </thead>
+  <tbody>
+    
+    <% @ranks.each do |rank| %>
+      <tr><td><%=  rank.title %></td></tr>
+    <% end %>
+    
+  </tbody>
+</table>

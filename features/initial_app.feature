@@ -6,7 +6,7 @@ Feature: Initial App
   So I can track which ones I have left to collect
   And I can easily know how to obtain them
 
-  Scenario: 
+  Scenario: There's an app for that
     Given there is an app
     When I visit 'mhcollector.com'
     Then I should see "Mousehunt Collector"

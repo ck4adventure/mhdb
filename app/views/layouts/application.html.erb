@@ -10,6 +10,32 @@
   </head>
 
   <body>
-    <%= yield %>
+    <div id="page-container">
+      <div id="content-wrap">
+        <div id="header" class="header">
+          <div class="header__left">
+            <p>Mousehunt Collector</p>
+          </div>
+          <div class="header__right">
+            <% if current_user %>
+              <p>Welcome, 
+              <%= link_to  current_user.name, user_path(current_user) %><p>
+              <form action="<%= session_path %>" method="post">
+                <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+                <input type="hidden" name="_method" value="delete">
+                <input type="submit" value="Logout">
+              </form>
+            <% else %>
+              <%= link_to  "Sign in", new_session_url%>
+              <%= link_to  "Sign up", new_user_path %>
+            <% end %>
+          </div>
+        </div>
+        <%= yield %>
+      </div>
+      <div id="footer" class="footer-content">
+        <%= link_to  "Back to Main", root_path %>
+      </div>
+    </div>
   </body>
 </html>
