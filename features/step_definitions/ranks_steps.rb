@@ -1,14 +1,14 @@
 
 Given('there are a set number of Ranks') do
-  pending
+  @ranks = Rank.all
 end
 
 When('I view the Ranks page') do
-  pending # Write code here that turns the phrase above into concrete actions
+  visit(ranks_path)
 end
 
 Then('I should see all of the available Ranks') do
-  pending # Write code here that turns the phrase above into concrete actions
+  find_field('ranks_list')
 end
 
 Then('they should be in order') do

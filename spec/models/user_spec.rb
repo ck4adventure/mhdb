@@ -2,35 +2,63 @@
 #
 # Table name: users
 #
-#  id         :bigint           not null, primary key
-#  email      :string           not null
-#  name       :string           not null
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id            :bigint           not null, primary key
+#  email         :string           not null
+#  name          :string           not null
+#  session_token :string           not null
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
 #
 # Indexes
 #
-#  index_users_on_email  (email) UNIQUE
+#  index_users_on_email          (email) UNIQUE
+#  index_users_on_session_token  (session_token) UNIQUE
 #
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  describe 'a User has a name and a unique email' do
-    let(:user) { User.new(name: "Larry", email: "test@test.com") }
-    it 'is valid when given valid information' do
-      expect(user.valid?).to be true
-    end
+  describe 'model properties' do
+    describe 'it has a required name and email' do
+      let(:user) { User.new(name: "Larry", email: "test@test.com") }
+      it 'is valid when given valid information' do
+        expect(user.valid?).to be true
+      end
 
-    it 'is not valid when no name is given' do
-      user.name = ""
-      expect(user.valid?).to be false
-    end
-
-    it 'is not valid when a duplicate email is given' do
-      pending
-      user.save!
-      u2 = User.new(name: "Copycat", email: user.email)
-      expect(u2.valid?).to be false
+      it 'is not valid when no name is given' do
+        user.name = ""
+        expect(user.valid?).to be false
+      end
+      it 'is not valid when a duplicate email is given' do
+        user.save!
+        u2 = User.new(name: "Copycat", email: user.email)
+        expect(u2.valid?).to be false
+      end
     end
   end 
+
+  describe 'a User has a session_token at all time' do
+    let(:user) { User.new(name: "Larry", email: "test@test.com") }
+    it 'is valid when a session_token is present' do
+      expect(user.valid?).to be true
+    end
+    it 'is invalid if no session_token is present' do
+      user.session_token = nil
+      expect(user.valid?).to be false
+    end
+  end
+
+  describe 'model methods' do
+    describe '#ensure_session_token' do
+      let(:user) { User.new(name: "Larry", email: "test@test.com") }
+      it 'retrieves a session_token if one already exists' do
+        new_token = "12345678910"
+        user.session_token = new_token
+        expect(user.ensure_session_token).to eq(new_token)
+      end
+      it 'creates a new session_token if none exists' do
+        u2 = User.new()
+        expect(u2.session_token).to be
+      end
+    end
+  end
 end
