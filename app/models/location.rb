@@ -15,7 +15,7 @@
 #
 class Location < ApplicationRecord
   validates :name, presence: true
-  validates :name, uniqueness: true
+  validates :name, uniqueness: { message: ": a location with this name already exists"}
 
   belongs_to :rank,
     foreign_key: :rank_id,

@@ -1,4 +1,7 @@
 <h2>Add a Location</h2>
+
+<%= render 'shared/errors' %>
+
 <form id="location_add_form" action="/locations" method="POST">
   <input type="hidden" value=<%= form_authenticity_token %> name="authenticity_token">
   <label for="location_name">Name: </label>

@@ -1,4 +1,7 @@
 <h2>Update Location Info</h2>
+
+<%= render 'shared/errors' %>
+
 <form id="location_edit_form" action="<%= location_path(@location) %>" method="POST">
   <input type="hidden" value=<%= form_authenticity_token %> name="authenticity_token">
   <input type="hidden" value="PATCH" name="_method">
