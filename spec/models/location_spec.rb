@@ -16,6 +16,10 @@
 require 'rails_helper'
 
 RSpec.describe Location, type: :model do
+  before(:all) do
+    @rank = Rank.create!(title: "Testy me once")
+    @rank2 = Rank.create!(title: "Testy me twice")
+  end
   describe 'model properties' do
     describe 'it has a required name and rank_id' do
       let(:loc) { Location.new(name: "Testing Grounds", rank_id: 1) }

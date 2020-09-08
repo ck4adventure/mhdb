@@ -26,9 +26,7 @@ RSpec.describe User, type: :model do
   describe 'model properties' do
     context 'it has a required name and email' do
       let(:user) { User.new(name: "Larry", email: "testy", rank_id: 1) }
-      puts @rank
       it 'is valid when given valid information' do
-        puts user
         expect(user.valid?).to be true
       end
 

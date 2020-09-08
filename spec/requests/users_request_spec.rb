@@ -1,6 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe "Users Requests", type: :request do
+  before(:all) do
+    @rank = Rank.create!(title: "Testi me once")
+    @rank2 = Rank.create!(title: "Testi me twice")
+  end
   it 'creates a new User and redirects to the show page' do
     get "/users/new"
     expect(response).to render_template(:new)
@@ -23,7 +27,7 @@ RSpec.describe "Users Requests", type: :request do
   end
 
   it 'destroys an existing User and redirects to the index page' do
-    testy = User.create!(name: "testy", email: "testy@test.com", rank_id: 3)
+    testy = User.create!(name: "testy", email: "testy@test.com", rank_id: 2)
     delete user_path(testy)
     expect(response).to redirect_to root_path
   end
