@@ -1,14 +1,13 @@
 <h2><%= @mouse.name %> </h2>
 <h4>Stats</h4>
-<p>Gold: <%= @mouse.gold %></p>
-<p>Points: <%= @mouse.points %></p>
+<p>Gold: <%= @mouse.gold %></p><p> Points: <%= @mouse.points %></p>
 
 <h4>Locations</h4>
 coming soon....
 <br>
 <br>
 <% if current_user %>
-  <%= link_to  "Edit this mouse", edit_location_path(@location) %>
+  <%= link_to  "Edit this mouse", edit_mouse_path(@mouse) %>
 <% else %>
   <p>Please sign in if you'd like to help update this mouse's info.</p>
 <% end %>

@@ -1,5 +1,5 @@
 <h2>Add a Mouse!</h2>
-<p>Please note, while updates are underway, make sure the location you are adding the mouse to exists first.</p>
+
 <%= render 'shared/errors' %>
 
 <form id="mouse_add_form" action="<%= mice_path %>" method="POST">
@@ -12,7 +12,7 @@
   <input type="number" id="mouse_points" name="mouse[points]" min="0" value="" placeholder="100">
 
 
-  <input type="submit" value="Update mouse info">
+  <input type="submit" value="Add it!">
 </form>
 
-<%= link_to  "Go back", mouse_path(@mouse) %>
+<%= link_to  "Go back", mice_path %>
