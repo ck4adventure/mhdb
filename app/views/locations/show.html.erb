@@ -4,7 +4,13 @@
 This location is unlocked once you are a <%= @location.rank.title %>.
 <br>
 <br>
-<%= link_to  "Edit this location", edit_location_path(@location) %>
+<% if current_user %>
+  <%= link_to  "Edit this location", edit_location_path(@location) %>
+<% else %>
+  <p>Please sign in if you'd like to help update this location</p>
+<% end %>
+
+
 <br>
 <br>
 <%= link_to  "Back to locations", locations_path %>
