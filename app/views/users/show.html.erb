@@ -1,6 +1,9 @@
 <h4>Howdy <%= @user.name %></h4>
 <div class="user-info-box">
-  <p>Your email is listed as: <%= @user.email %></p>
+  <p>Your current rank is: <%= @user.rank.title %>
 </div>
+<br />
+<br />
+<br />
 <%= link_to  "Update my info", edit_user_path(@user) %><br />
 <%= link_to  "Take me Home", root_path %>

@@ -13,4 +13,6 @@
 #
 class Rank < ApplicationRecord
   validates :title, presence: true, uniqueness: true
+
+  has_many :user
 end

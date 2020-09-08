@@ -1,16 +1,21 @@
 <h2>Ranks Page</h2>
 
+<div class="ranks_table_container">
 <table id="ranks_list">
   <thead>
-    <th>
-      <td>Title</td>
-    </th>
+    <tr>
+      <th>Title</th>
+    </tr>
   </thead>
   <tbody>
     
     <% @ranks.each do |rank| %>
-      <tr><td><%=  rank.title %></td></tr>
+      <tr><td> <%= link_to  rank.title, rank_path(rank) %></td></tr>
     <% end %>
     
   </tbody>
 </table>
+</div>
+<br>
+<br>
+<%= link_to  "Back to Main", root_path %>

@@ -5,6 +5,8 @@
   <input type="text" id="user_name" name="user[name]" value="">
   <label for="user_email">Email: </label>
   <input type="text" id="user_email" name="user[email]" value="">
+  <%= collection_select(:user, :rank_id, Rank.all, :id, :title ) %>
+
   <input type="submit">
 </form>
 
