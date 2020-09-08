@@ -14,7 +14,9 @@
  *= require_self
  */
 
- html, body, header, nav, h1, a,
+/* CSS Reset */
+
+html, body, header, nav, h1, a,
 ul, li, strong, main, button, i,
 section, img, div, h2, p, form,
 fieldset, label, input, textarea,
@@ -92,4 +94,51 @@ button {
 button,
 input[type="submit"] {
   cursor: pointer;
+}
+
+
+/* Page Styling */
+
+#page-container {
+  position: relative;
+  min-height: 100vh;
+}
+
+#content-wrap {
+  padding-bottom: 2.5rem;
+}
+
+#footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 2.5rem;
+  background-color: rgba(63, 88, 134, 0.5);
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+  height: 54px;
+  align-items: center;
+  margin: 8px 16px;
+}
+
+.header__left {
+  color: rgb(5, 10, 153);
+  font-size: 28px;
+}
+
+.header__right {
+  display: flex;
+  justify-content: space-between;
+}
+
+.header__right > a {
+  margin: 6px;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: center;
+  align-self: center;
 }
