@@ -5,7 +5,7 @@ RSpec.describe "Users Requests", type: :request do
     get "/users/new"
     expect(response).to render_template(:new)
 
-    post "/users", :params => { :user => { name:"Larry", email: "larry@test.com" } }
+    post "/users", :params => { :user => { name:"Testy", email: "testy@test.com" } }
     expect(response).to redirect_to user_path(assigns(:user))
     follow_redirect!
 
@@ -23,9 +23,8 @@ RSpec.describe "Users Requests", type: :request do
   end
 
   it 'destroys an existing User and redirects to the index page' do
-    realname_larry = User.create!(name: "Curly", email: "larry@test.com")
-    id = realname_larry.id
-    delete user_path(realname_larry)
+    testy = User.create!(name: "testy", email: "testy@test.com")
+    delete user_path(testy)
     expect(response).to redirect_to root_path
   end
 end

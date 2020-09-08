@@ -1,13 +1,14 @@
 // Place all the styles related to the StaticPages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
-#header {
 
-}
 
 .header {
   display: flex;
   justify-content: space-between;
+  height: 54px;
+  align-items: center;
+  margin: 8px 16px;
 }
 
 .header__left {
@@ -16,6 +17,15 @@
 
 .header__right {
   display: flex;
-  min-width: 250px;
-  justify-content: space-around;
+  justify-content: space-between;
+}
+
+.header__right > a {
+  margin: 6px;
+}
+
+footer {
+  height: 24px;
+  display: flex;
+  justify-content: center;
 }
