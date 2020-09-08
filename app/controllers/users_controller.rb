@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :require_signed_out!, only: [:new, :create]
-  before_action :require_signed_in!, except: [:new, :create]
+  before_action :require_signed_in!, only: [:edit, :update, :destroy]
   def show
     @user = User.find(params[:id])
     render :show
@@ -42,6 +42,6 @@ class UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:name, :email)
+    params.require(:user).permit(:name, :email, :rank_id)
   end
 end
