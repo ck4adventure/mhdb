@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :require_no_user!, only: [:new, :create]
+  before_action :require_user!, except: [:new, :create]
   def show
     @user = User.find(params[:id])
     render :show
@@ -12,9 +14,10 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save!
+      login_user!(@user)
       redirect_to user_path(@user)
     else
-      flash[:errors] = @user.errors.full_messages
+      flash.now[:errors] = @user.errors.full_messages
     end
   end
   
@@ -28,7 +31,7 @@ class UsersController < ApplicationController
     if @user.update!(user_params)
       redirect_to user_path(@user)
     else
-      flash[:errors] = @user.errors.full_messages
+      flash.now[:errors] = @user.errors.full_messages
     end
   end
 

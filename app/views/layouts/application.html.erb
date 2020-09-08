@@ -10,13 +10,24 @@
   </head>
 
   <body>
-    <header class="header">
+    <div id="header" class="header">
       <div class="header__left"></div>
       <div class="header__right">
-        <%= link_to  "Sign up", new_user_path %>
-        <%= link_to  "Sign in", new_session_path %>
+        <div>
+        <% if current_user %>
+          <%= current_user.name %>
+          <form action="<%= session_url %>" method="post">
+            <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+            <input type="hidden" name="_method" value="delete">
+            <input type="submit" value="Logout">
+          </form>
+        <% else %>
+          <a href="<%= new_session_url %>">Sign in</a>
+          <a href="<%= new_user_url %>">Sign up</a>
+        <% end %>
+        </div>
       </div>
-    </header>
+    </div>
     <%= yield %>
   </body>
 </html>
