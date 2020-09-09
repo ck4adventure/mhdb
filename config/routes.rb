@@ -23,6 +23,10 @@
 #                                       PATCH  /locations/:id(.:format)                                                                 locations#update
 #                                       PUT    /locations/:id(.:format)                                                                 locations#update
 #                                       DELETE /locations/:id(.:format)                                                                 locations#destroy
+#                       mouse_locations GET    /mouses/:mouse_id/mouse_locations(.:format)                                              mouse_locations#index
+#                                       POST   /mouses/:mouse_id/mouse_locations(.:format)                                              mouse_locations#create
+#                    new_mouse_location GET    /mouses/:mouse_id/mouse_locations/new(.:format)                                          mouse_locations#new
+#                        mouse_location DELETE /mouses/:mouse_id/mouse_locations/:id(.:format)                                          mouse_locations#destroy
 #                                  mice GET    /mouses(.:format)                                                                        mouses#index
 #                                       POST   /mouses(.:format)                                                                        mouses#create
 #                             new_mouse GET    /mouses/new(.:format)                                                                    mouses#new
@@ -31,9 +35,7 @@
 #                                       PATCH  /mouses/:id(.:format)                                                                    mouses#update
 #                                       PUT    /mouses/:id(.:format)                                                                    mouses#update
 #                                       DELETE /mouses/:id(.:format)                                                                    mouses#destroy
-#                       mouse_locations POST   /mouse_locations(.:format)                                                               mouse_locations#create
-#                        mouse_location DELETE /mouse_locations/:id(.:format)                                                           mouse_locations#destroy
-#         
+
 
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
@@ -43,6 +45,7 @@ Rails.application.routes.draw do
   resource :session, only: [:new, :create, :destroy]
   resources :ranks, only: [:show, :index]
   resources :locations
-  resources :mouses, as: 'mice' 
-  resources :mouse_locations, only: [:new, :create, :destroy]
+  resources :mouses, as: 'mice' do
+    resources :mouse_locations, as: 'locations', only: [:index, :new, :create, :destroy]
+  end
 end
