@@ -18,4 +18,7 @@ class Mouse < ApplicationRecord
   validates :name, uniqueness: true
   validates :gold, numericality: { only_integer: true, greater_than_or_equal_to: 10 }
   validates :points, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
+
+  has_many :mouse_locations
+  has_many :locations, through: :mouse_locations
 end
