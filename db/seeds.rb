@@ -30,8 +30,8 @@ titles = [
   "Fabled",
 ]
 
-titles.each do |title|
-  Rank.find_by_or_create!(title: title)
+titles.each do |titl|
+  Rank.find_or_create_by!(title: titl)
 end
 
-larry = User.find_by_or_create!(name: "Larry", email: "larry@test.com", rank_id: Rank.first)
+larry = User.find_or_create_by!(name: "Larry", email: "larry@test.com", rank_id: Rank.first)

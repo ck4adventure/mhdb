@@ -3,10 +3,6 @@ class MouseLocationsController < ApplicationController
     @ml = MouseLocation.find(params[:id])
   end
 
-  def new
-    
-  end
-
   def create
     @ml = MouseLocation.new(ml_params)
     if @ml.save
@@ -15,9 +11,7 @@ class MouseLocationsController < ApplicationController
       flash.now[:errors] = @ml.errors.full_messages
     end
   end
-  def edit
-    @ml = MouseLocation.find(params[:id])
-  end
+
 
   def update
     @ml = MouseLocation.find(params[:id])
