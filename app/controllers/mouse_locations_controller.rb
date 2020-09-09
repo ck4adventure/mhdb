@@ -1,24 +1,27 @@
 class MouseLocationsController < ApplicationController
 
   def new
+    @mouse = Mouse.find(params[:mouse_id])
+    @mouselocation = MouseLocation.new(mouse_id: params[:mouse_id])
   end
   
   def create
-    @ml = MouseLocation.new(ml_params)
-    if @ml.save
-      redirect_to mouse_path(@ml.mouse_id)
+    @mouselocation = MouseLocation.new(mouse_id: params[:mouse_id])
+    @mouselocation.update(ml_params)
+    if @mouselocation.save
+      redirect_to mouse_url(@mouselocation.mouse_id)
     else
-      flash.now[:errors] = @ml.errors.full_messages
+      flash.now[:errors] = @mouselocation.errors.full_messages
     end
   end
 
 
   def update
-    @ml = MouseLocation.find(params[:id])
-    if @ml.update(ml_params)
-      redirect_to mouse_path(@ml.mouse_id)
+    @mouselocation = MouseLocation.find(params[:id])
+    if @mouselocation.update(ml_params)
+      redirect_to mouse_path(@mouselocation.mouse_id)
     else
-      flash.now[:errors] = @ml.errors.full_messages
+      flash.now[:errors] = @mouselocation.errors.full_messages
       render :edit
     end
   end
@@ -31,6 +34,6 @@ class MouseLocationsController < ApplicationController
 
   private
   def ml_params
-    params.require(:ml).permit(:mouse_id, :location_id)
+    params.require(:mouselocation).permit(:location_id)
   end
 end
