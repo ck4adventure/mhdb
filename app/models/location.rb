@@ -23,6 +23,7 @@ class Location < ApplicationRecord
   
   has_many :mouse_locations
 
-  has_many :mouses, through: :mouse_locations
+  has_many :mice, through: :mouse_locations
+
   
 end

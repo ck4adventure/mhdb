@@ -6,7 +6,7 @@
       </tr>
     </thead>
     <tbody>
-      <% @mice.each do |mouse| %>
+      <% mice.each do |mouse| %>
         <tr>
           <td><%= link_to  mouse.name, mouse_path(mouse) %></td>
           <td><%= mouse.gold %></td>

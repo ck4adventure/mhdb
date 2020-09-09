@@ -1,9 +1,9 @@
 <h2><%= @mouse.name %> </h2>
 <h4>Stats</h4>
-<p>Gold: <%= @mouse.gold %></p><p> Points: <%= @mouse.points %></p>
+<p>Gold: <%= @mouse.gold %>      Points: <%= @mouse.points %></p>
 
 <h4>Locations</h4>
-coming soon....
+<%= render partial:"locations/locations_table", locals: { locations: @mouse.locations } %>
 <br>
 <br>
 <% if current_user %>
