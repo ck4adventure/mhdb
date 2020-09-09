@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_08_224037) do
+ActiveRecord::Schema.define(version: 2020_09_09_030638) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,6 +31,16 @@ ActiveRecord::Schema.define(version: 2020_09_08_224037) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["name"], name: "index_mice_on_name", unique: true
+  end
+
+  create_table "mouse_locations", force: :cascade do |t|
+    t.integer "mouse_id", null: false
+    t.integer "location_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["location_id"], name: "index_mouse_locations_on_location_id"
+    t.index ["mouse_id", "location_id"], name: "index_mouse_locations_on_mouse_id_and_location_id", unique: true
+    t.index ["mouse_id"], name: "index_mouse_locations_on_mouse_id"
   end
 
   create_table "ranks", force: :cascade do |t|
