@@ -54,11 +54,6 @@ RSpec.describe Mouse, type: :model do
         expect(mouse.valid?).to be false
       end
 
-      it 'is not valid when the amount of points is 0' do
-        mouse.points = 0
-        expect(mouse.valid?).to be false
-      end
-
       it 'is not valid when the amount of points is negative' do
         mouse.points = -2
         expect(mouse.valid?).to be false

@@ -15,4 +15,6 @@
 #  index_mouse_locations_on_mouse_id_and_location_id  (mouse_id,location_id) UNIQUE
 #
 class MouseLocation < ApplicationRecord
+  validates :location_id, :mouse_id, presence: true
+  validates :mouse_id, uniqueness: { scope: :location_id, message: "Mouse already saved to this location" }
 end

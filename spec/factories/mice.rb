@@ -15,6 +15,8 @@
 #
 FactoryBot.define do
   factory :mouse do
-    
+    name { Faker::Movies::Hobbit.character }
+    gold { Faker::Number.between(from: 10, to: 50000) }
+    points { Faker::Number.between(from: 0, to: 10) }
   end
 end

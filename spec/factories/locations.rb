@@ -16,6 +16,6 @@
 FactoryBot.define do
   factory :location do
     name { Faker::Movies::Hobbit.location }
-    rank_id { 1 }
+    rank_id { Faker::Number.between(from: 1, to: Rank.last.id) }
   end
 end
