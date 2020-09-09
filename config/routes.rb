@@ -44,6 +44,7 @@ Rails.application.routes.draw do
   resources :users
   resource :session, only: [:new, :create, :destroy]
   resources :ranks, only: [:show, :index]
+  resources :regions, only: [:show, :index]
   resources :locations
   resources :mouses, as: 'mice' do
     resources :mouse_locations, as: 'locations', only: [:index, :new, :create, :destroy]
