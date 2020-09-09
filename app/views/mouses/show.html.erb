@@ -1,17 +1,16 @@
 <h2><%= @mouse.name %> </h2>
 <h4>Stats</h4>
 <p>Gold: <%= @mouse.gold %>      Points: <%= @mouse.points %></p>
-
-<h4>Locations</h4>
-<%= render partial:"locations/locations_table", locals: { locations: @mouse.locations } %>
 <br>
 <br>
 <% if current_user %>
-  <%= link_to  "Edit this mouse", edit_mouse_path(@mouse) %>
+  <%= link_to  "Edit stats", edit_mouse_path(@mouse) %>
 <% else %>
   <p>Please sign in if you'd like to help update this mouse's info.</p>
 <% end %>
 
+<h4>Locations</h4>
+<%= render partial:"locations/locations_table", locals: { locations: @mouse.locations } %>
 
 <br>
 <br>

@@ -11,9 +11,10 @@
   <input type="number" id="mouse_gold" min="10" name="mouse[gold]" value="<%= @mouse.gold %>">  
   <label for="mouse_points">Points: </label>
   <input type="number" id="mouse_points" name="mouse[points]" min="0" value="<%= @mouse.points %>">
-
-
+  <br>
+  <br>
   <input type="submit" value="Update mouse info">
 </form>
-
+<br>
+<br>
 <%= link_to  "Go back", mouse_path(@mouse) %>

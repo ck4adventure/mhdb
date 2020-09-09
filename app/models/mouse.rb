@@ -20,5 +20,7 @@ class Mouse < ApplicationRecord
   validates :points, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
 
   has_many :mouse_locations
+  accepts_nested_attributes_for :mouse_locations, allow_destroy: true
+
   has_many :locations, through: :mouse_locations
 end

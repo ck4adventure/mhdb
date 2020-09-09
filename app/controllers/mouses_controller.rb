@@ -41,6 +41,9 @@ class MousesController < ApplicationController
 
   private
   def mouse_params
-    params.require(:mouse).permit(:name, :gold, :points)
+    params.require(:mouse).permit(
+      :name, 
+      :gold, 
+      :points, )
   end
 end
