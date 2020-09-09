@@ -1,5 +1,5 @@
 <h2>Sign in to use MH Collector!</h2>
-
+<%= render "shared/errors" %>
 <form id="sign_in_form" action="<%= session_path %>" method="POST">
   <input type="hidden" value=<%= form_authenticity_token %> name="authenticity_token">
   <p>
@@ -10,4 +10,5 @@
 </form>
 <br>
 <br>
+<%= link_to  "Actually, I need to sign up", new_user_path %>
 <%= link_to  "Nevermind, take me back", root_path %>

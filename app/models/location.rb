@@ -20,4 +20,10 @@ class Location < ApplicationRecord
   belongs_to :rank,
     foreign_key: :rank_id,
     class_name: :Rank
+  
+  has_many :mouse_locations
+
+  has_many :mice, through: :mouse_locations
+
+  
 end

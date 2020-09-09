@@ -1,0 +1,2 @@
+module MouseLocationsHelper
+end

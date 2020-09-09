@@ -2,6 +2,9 @@ Feature: An app has a User
   As a Collector
   I want to be able to track my own inventory
   So that I don't have to rely on the game info
+  A user has a name and a unique email, and belongs to a rank
+  A user has many locations through their rank
+  A user has many total_available locations through their rank and those below
 
   Scenario: User can sign up
     Given I am currently logged out

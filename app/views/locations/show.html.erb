@@ -1,8 +1,17 @@
-<h2><%= @location.name %> </h2>
+<h2><%= @location.name %></h2>
 
 <h4>Rank</h4>
 This location is unlocked once you are a <%= @location.rank.title %>.
 <br>
+<br>
+
+<h4>Mice</h4>
+<% if @location.mice %>
+  <%= render partial: "mouses/mice_table", locals: { mice: @location.mice } %>
+<% else %>
+  <p>There are no mice listed just yet.</p>
+<% end %>
+
 <br>
 <% if current_user %>
   <%= link_to  "Edit this location", edit_location_path(@location) %>

@@ -1,0 +1,14 @@
+<h2>All the Mice!</h2>
+
+<% if !!current_user %>
+  <%= link_to  "Add a Mouse", new_mouse_path %>
+<% else %>
+  <p>Want to help add some mice? Just make an account to unlock access.</p>
+<% end %>
+
+<br>
+<br>
+<%= render partial: "mice_table", locals: { mice: @mice } %>
+<br>
+<br>
+<%= link_to  "Back to Main", root_path %>
