@@ -9,7 +9,7 @@ class MouseLocationsController < ApplicationController
     @mouselocation = MouseLocation.new(mouse_id: params[:mouse_id])
     @mouselocation.update(ml_params)
     if @mouselocation.save
-      redirect_to mouse_url(@mouselocation.mouse_id)
+      redirect_to edit_mouse_path(@mouselocation.mouse_id)
     else
       flash.now[:errors] = @mouselocation.errors.full_messages
     end
