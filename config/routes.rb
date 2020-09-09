@@ -61,5 +61,5 @@ Rails.application.routes.draw do
   resources :ranks, only: [:show, :index]
   resources :locations
   resources :mouses, as: 'mice' 
-  resources :mouse_locations
+  resources :mouse_locations, except: [:index]
 end
