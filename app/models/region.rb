@@ -13,4 +13,7 @@
 #
 class Region < ApplicationRecord
   validates :name, presence: true, uniqueness: { message: "Region already added" }
+
+  has_many :locations
+
 end
