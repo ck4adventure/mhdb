@@ -1,7 +1,9 @@
 <h2><%= @location.name %></h2>
 
+<h4>Region</h4>
+It is found within <%= link_to  @location.region.name, region_path(@location.region) %>
 <h4>Rank</h4>
-This location is unlocked once you are a <%= @location.rank.title %>.
+This location is unlocked once you are a <%= link_to  @location.rank.title, rank_path(@location.rank) %>.
 <br>
 <br>
 
