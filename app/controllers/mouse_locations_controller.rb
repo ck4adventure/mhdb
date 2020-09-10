@@ -1,9 +1,4 @@
 class MouseLocationsController < ApplicationController
-
-  def new
-
-  end
-  
   def create
     if params[:location_id]
       ml = MouseLocation.new(location_id: params[:location_id])
@@ -27,17 +22,6 @@ class MouseLocationsController < ApplicationController
         redirect_to edit_mouse_path(ml.mouse_id)
         return
       end
-    end
-  end
-
-
-  def update
-    @mouselocation = MouseLocation.find(params[:id])
-    if @mouselocation.update(ml_params)
-      redirect_to mouse_path(@mouselocation.mouse_id)
-    else
-      flash.now[:errors] = @mouselocation.errors.full_messages
-      render :edit
     end
   end
 
