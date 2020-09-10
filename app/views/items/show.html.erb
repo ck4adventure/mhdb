@@ -1,0 +1,33 @@
+<h2><%= @item.name %> </h2>
+<h3>Stats</h3>
+<p>Type: <%= @item.itype.capitalize %><br>
+Limited Edition? <%= @item.le ? "Yep" : "Nope" %> </p>
+
+<h4>Obtaining</h4>
+<h5>Loot</h5>
+Available from the following mice:
+
+
+<h5>Purchased</h5>
+Available from the stores at these locations:
+
+
+<h5>Crafted</h5>
+Can be crafted from the following items:
+
+
+<h5>Received</h5>
+Can be received specially from:
+
+
+
+
+<br>
+<br>
+<% if current_user %>
+  <%= link_to  "Edit this item", edit_item_path(@item) %>
+<% else %>
+  <p>Please sign in if you'd like to help update this item's info.</p>
+<% end %>
+<br>
+<br>

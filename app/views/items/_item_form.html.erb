@@ -1,0 +1,9 @@
+<%= form_with model: item, data: { remote: false }, class: "item_form" do |f| %>
+  <%= f.label(:name) %>
+  <%= f.text_field(:name) %>
+  <%= f.label(:type) %>
+  <%= f.select(:itype, options_for_select(Item.itypes_array)) %>
+  <%= f.label(:le, "Limited Edition?") %>
+  <%= f.check_box(:le) %>
+  <%= f.submit %>
+<% end %>
