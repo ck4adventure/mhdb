@@ -26,8 +26,8 @@ RSpec.describe Region, type: :model do
       end
       it 'is invalid when given a duplicate name' do
         region.save
-        r2 = Region.new(name: region.name)
-        expect(region.valid?).to be false
+        r2 = build(:region, name: region.name)
+        expect(r2.valid?).to be false
       end
     end
   end

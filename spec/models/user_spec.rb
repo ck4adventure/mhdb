@@ -17,15 +17,10 @@
 #
 require 'rails_helper'
 
-RSpec.describe User, type: :model do
-  before(:all) do
-    @rank = Rank.create!(title: "Test me once")
-    @rank2 = Rank.create!(title: "Test me twice")
-  end
-  
+RSpec.describe User, type: :model do  
   describe 'model properties' do
     context 'it has a required name and email' do
-      let(:user) { User.new(name: "Larry", email: "testy", rank_id: 1) }
+      let(:user) { build(:user) }
       it 'is valid when given valid information' do
         expect(user.valid?).to be true
       end
@@ -37,18 +32,21 @@ RSpec.describe User, type: :model do
       
       it 'is not valid when a duplicate email is given' do
         user.save!
-        u2 = User.new(name: "Copycat", email: user.email)
+        u2 = build(:user, email: user.email)
         expect(u2.valid?).to be false
       end
     end
 
     describe 'it has a rank_id' do
-      it 'sets a default rank if none given'
+      it 'sets a default rank if none given' do
+        u = User.new()
+        expect(u.rank_id).to be 1
+      end
     end
   end 
 
   describe 'a User has a session_token at all time' do
-    let(:user) { User.new(name: "Larry", email: "test@test.com") }
+    let(:user) { build(:user) }
     it 'is valid when a session_token is present' do
       expect(user.valid?).to be true
     end

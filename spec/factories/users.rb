@@ -18,5 +18,7 @@
 FactoryBot.define do
   factory :user do
     name { Faker::Games::Witcher.character }
+    email { Faker::Internet.email }
+    rank
   end
 end
