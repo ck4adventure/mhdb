@@ -17,21 +17,22 @@
 @import "font-awesome-sprockets";
 @import "font-awesome";
 
+$color-main: rgb(59, 10, 150);
 
-a:link{
-  color:rgb(59, 10, 150);
+a:link {
+  color: $color-main;
 }
-a:visited{
-  color:rgb(59, 10, 150);
+a:visited {
+  color:$color-main;
 }
 a:hover{
-  color:rgb(114, 78, 181);
+  color:$color-main;
 }
 a:focus{
-  color:rgb(59, 10, 150);
+  color:$color-main;
 }
 a:active{
-  color:rgb(59, 10, 150);
+  color:$color-main;
 }
 
 
@@ -62,11 +63,11 @@ a:active{
   height: 52px;
   align-items: center;
   margin: 0px;
-  border-bottom: 3px solid rgb(59, 10, 150);
+  border-bottom: 3px solid $color-main;
 }
 
 .header__left {
-  color: rgb(59, 10, 150);
+  color: $color-main;
   font-size: 26px;
   margin-left: 8px;
 }
