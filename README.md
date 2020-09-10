@@ -1,5 +1,18 @@
 # README
 
+## Updates
+  - In progress Thurs, Sep 10 - Items created, starting stats table for weapons
+  - Wed progress: 
+    - Added mice and mice locations. 
+    - Nested routes avail to add a mice location from either the mouse or the location as long as both exist. 
+    - FactoryBot rules! 
+    - Also, there are now Regions too just to make pretty tables.
+  - Tues progress: 
+   - User's have ranks, added Locations. 
+   - Basic RSpecs for red/green/refactor later. 
+  - Monday's work: Add ranks and some basic styling
+  - Sunday's setup: I have an app, it has a user. Feature work in Cucumber, testing in RSpec.
+
 ## Getting Started
 * Ruby version
 Ruby: 2.6.6
