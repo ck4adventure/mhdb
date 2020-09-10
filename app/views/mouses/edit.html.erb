@@ -12,7 +12,7 @@
 <br><br>
 <form id="mouselocation_add_form" action="<%= mouse_locations_path(@mouse) %>" method="POST">
   <input type="hidden" value=<%= form_authenticity_token %> name="authenticity_token">
-  <% locs = @mouse.non_locations_options(@mouse.locations) %>
+  <% locs = non_locations_options(@mouse.locations) %>
   <%= select(:mouselocation, :location_id, options_for_select(locs) )%>
   <%= submit_tag("Add Location") %>
 </form>
