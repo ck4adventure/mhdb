@@ -2,20 +2,19 @@
 
 <%= render 'shared/errors' %>
 
-<form id="location_edit_form" action="<%= location_path(@location) %>" method="POST">
+<%= render  partial: "location_form", locals: { location: @location } %>
+<br>
+<br>
+<h4>Mice: </h4>
+<%= render  partial:"mice_for_location", locals: { location: @location.reload } %>
+<br>
+<br>
+<form id="mice_for_location_add_form" action="<%= location_mice_path(@location) %>" method="POST">
   <input type="hidden" value=<%= form_authenticity_token %> name="authenticity_token">
-  <input type="hidden" value="PATCH" name="_method">
-  <label for="location_name">Name: </label>
-  <input type="text" id="location_name" name="location[name]" value="<%= @location.name %>">
-  <br>
-  <label>Belongs to Region: </label>
-  <%= collection_select(:location, :region_id, Region.all, :id, :name ) %>
-  <br>
-  <label>Unlocked at Rank: </label>
-  <%= collection_select(:location, :rank_id, Rank.all, :id, :title ) %>
-  <br>
-
-  <input type="submit" value="Update this Location">
+  <% mice = unused_mice_options(@location.mice) %>
+  <%= select(:mouselocation, :mouse_id, options_for_select(mice) )%>
+  <%= submit_tag("Add Mouse") %>
 </form>
-
+<br>
+<br>
 <%= link_to  "Go back", location_path(@location) %>

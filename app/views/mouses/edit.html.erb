@@ -1,16 +1,16 @@
 <h2>Update Mouse Info</h2>
-<% @mouse.reload %>
+
 <%= render 'shared/errors' %>
 
 <%= render  partial: "mouse_form", locals: { mouse: @mouse } %>
-
-
 <br>
 <br>
 <h4>Locations:</h4>
-<%= render partial:"mice_locations_table", locals: { mouse: @mouse.reload } %>
-<br><br>
-<form id="mouselocation_add_form" action="<%= mouse_locations_path(@mouse) %>" method="POST">
+<%= render partial:"locations_for_mouse", locals: { mouse: @mouse.reload } %>
+<br>
+<br>
+
+<form id="locations_for_mouse_add_form" action="<%= mouse_locations_path(@mouse) %>" method="POST">
   <input type="hidden" value=<%= form_authenticity_token %> name="authenticity_token">
   <% locs = non_locations_options(@mouse.locations) %>
   <%= select(:mouselocation, :location_id, options_for_select(locs) )%>
