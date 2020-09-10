@@ -1,0 +1,16 @@
+<h2>All the Items!</h2>
+
+<% if !!current_user %>
+  <%= link_to  "Add an Item", new_item_path %>
+<% else %>
+  <p>Want to help add some stuff? Just make an account to unlock access.</p>
+<% end %>
+
+<br>
+<br>
+<% Item.itypes.keys.each do |itype| %>
+  <%= render partial: "items/tables/items_table", locals: { items: items_for_type(itype), itype: itype  } %>
+<% end %>
+<br>
+<br>
+<%= link_to  "Back to Main", root_path %>

@@ -2,7 +2,7 @@
   <%= f.label(:name) %>
   <%= f.text_field(:name) %>
   <%= f.label(:type) %>
-  <%= f.select(:itype, options_for_select(Item.itypes_array)) %>
+  <%= f.select(:itype, options_for_select(itypes_options)) %>
   <%= f.label(:le, "Limited Edition?") %>
   <%= f.check_box(:le) %>
   <%= f.submit %>

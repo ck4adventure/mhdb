@@ -1,0 +1,20 @@
+<div class="table_container">
+  <%= itype.capitalize %> Items
+  <table id="items_list">
+    <thead>
+      <tr>
+        <th>Name</th><th>LE?</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% items.each do |item| %>
+        <tr>
+          <td><%= link_to  item.name, item_path(item) %></td>
+          <td><%= item.le ? "LE" : "" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+<br>
+<br>
