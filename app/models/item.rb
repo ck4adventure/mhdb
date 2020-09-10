@@ -18,4 +18,9 @@ class Item < ApplicationRecord
   enum itype: { bait: 1, base: 2, charm: 3, collectible: 4, convertible: 5, crafting: 6, map_piece: 7, special: 8, weapon: 9, skin: 10 }
   validates :name, presence: true, uniqueness: true
   validates :itype, presence: true
+
+  def self.itypes_array
+    opts = Item.itypes.to_a
+    opts.map { |opt_pair| [opt_pair[0], opt_pair[0]] }
+  end
 end

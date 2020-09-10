@@ -1,0 +1,7 @@
+<h2>Edit an Item</h2>
+
+<%= render 'shared/errors' %>
+<%= render  partial: "item_form", locals: { item: @item } %>
+<br>
+<br>
+<%= link_to  "Go back to item", item_path(@item) %>
