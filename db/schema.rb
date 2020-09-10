@@ -10,10 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_10_164149) do
+ActiveRecord::Schema.define(version: 2020_09_10_232003) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "item_stats", force: :cascade do |t|
+    t.integer "item_id", null: false
+    t.integer "power_type"
+    t.integer "power", null: false
+    t.integer "p_bonus", null: false
+    t.integer "attr_bonus", null: false
+    t.integer "luck", null: false
+    t.integer "cheese_effect", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["item_id"], name: "index_item_stats_on_item_id", unique: true
+    t.index ["power_type"], name: "index_item_stats_on_power_type"
+  end
 
   create_table "items", force: :cascade do |t|
     t.string "name", null: false
