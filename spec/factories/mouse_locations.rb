@@ -16,6 +16,7 @@
 #
 FactoryBot.define do
   factory :mouse_location do
-    
+    mouse
+    location
   end
 end

@@ -7,22 +7,24 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  rank_id    :integer          not null
+#  region_id  :integer          not null
 #
 # Indexes
 #
-#  index_locations_on_name     (name) UNIQUE
-#  index_locations_on_rank_id  (rank_id)
+#  index_locations_on_name       (name) UNIQUE
+#  index_locations_on_rank_id    (rank_id)
+#  index_locations_on_region_id  (region_id)
 #
 class Location < ApplicationRecord
-  validates :name, presence: true
+  validates :name, :rank_id, :region_id, presence: true
   validates :name, uniqueness: { message: ": a location with this name already exists"}
 
-  belongs_to :rank,
-    foreign_key: :rank_id,
-    class_name: :Rank
-  
+  # direct assocs
+  belongs_to :rank
+  belongs_to :region
   has_many :mouse_locations
 
+  # throughs
   has_many :mice, through: :mouse_locations
 
   

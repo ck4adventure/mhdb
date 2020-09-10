@@ -17,6 +17,6 @@
 #
 FactoryBot.define do
   factory :user do
-    
+    name { Faker::Games::Witcher.character }
   end
 end

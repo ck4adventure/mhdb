@@ -18,10 +18,12 @@ ActiveRecord::Schema.define(version: 2020_09_09_030638) do
   create_table "locations", force: :cascade do |t|
     t.string "name", null: false
     t.integer "rank_id", null: false
+    t.integer "region_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["name"], name: "index_locations_on_name", unique: true
     t.index ["rank_id"], name: "index_locations_on_rank_id"
+    t.index ["region_id"], name: "index_locations_on_region_id"
   end
 
   create_table "mice", force: :cascade do |t|
@@ -48,6 +50,13 @@ ActiveRecord::Schema.define(version: 2020_09_09_030638) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["title"], name: "index_ranks_on_title", unique: true
+  end
+
+  create_table "regions", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["name"], name: "index_regions_on_name", unique: true
   end
 
   create_table "users", force: :cascade do |t|

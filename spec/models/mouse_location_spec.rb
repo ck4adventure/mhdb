@@ -19,7 +19,7 @@ require 'rails_helper'
 RSpec.describe MouseLocation, type: :model do
   describe 'model properties and validations' do
     describe 'there is a mouse id and a location id required' do
-      let(:mouseloc) { MouseLocation.new(mouse_id: 1, location_id: 1)}
+      let(:mouseloc) { build(:mouse_location) }
       it 'is valid when valid info is given' do
         expect(mouseloc.valid?).to be true
       end
@@ -37,17 +37,17 @@ RSpec.describe MouseLocation, type: :model do
 
 
     describe 'mice and locations can each have multiple entries' do
-      let(:mouseloc) { MouseLocation.create!(mouse_id: 1, location_id: 1)}
+      let(:mouseloc) { build(:mouse_location) }
       it 'allows a mouse to have multiple entries' do
-        ml2 = MouseLocation.new(mouse_id: 1, location_id: 2)
+        ml2 = build(:mouse_location, mouse_id: mouseloc.mouse_id)
         expect(ml2.valid?).to be true
       end
       it 'allows a location to have multiple entries' do
-        ml3 = MouseLocation.new(mouse_id: 2, location_id: 1)
+        ml3 = build(:mouse_location, location_id: mouseloc.location_id)
         expect(ml3.valid?).to be true
       end
       it 'is not valid if a duplicate mouse id is given for a location' do
-        ml4 = MouseLocation.new(mouse_id: 1, location_id: 1)
+        ml4 = build(:mouse_location, mouseloc.attributes)
         expect(ml4.valid?).to be true
       end
     end
