@@ -1,0 +1,22 @@
+<div class="locations_table_container">
+<table id="editable_locations_table">
+  <thead>
+    <tr>
+      <th>Name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% mouse.mouse_locations.each do |ml| %>
+      <tr>
+        <td>
+          <%= link_to  ml.location.name, location_path(ml.location) %>
+          <form action="<%= mouse_location_path(mouse, ml) %>" method="post">
+                  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+                  <input type="hidden" name="_method" value="delete">
+                  <input type="submit" value="Remove">
+          </form>
+      </td></tr>
+    <% end %>
+  </tbody>
+</table>
+</div>

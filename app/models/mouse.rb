@@ -25,9 +25,9 @@ class Mouse < ApplicationRecord
   has_many :locations, through: :mouse_locations
 
   def non_locations_options(locs)
-    all_locs = Location.all.pluck(:name, :id)
-    return all_locs if !locs
-    mlocs = locs.pluck(:id)
-    all_locs.reject! { |loc| mlocs.include?(loc[1]) }
+    # @all_locs = Location.all.pluck(:name, :id)
+    return Location.all.pluck(:name, :id)
+    # mlocs = locs.pluck(:id)
+    # all_locs.reject! { |loc| mlocs.include?(loc[1]) }
   end
 end

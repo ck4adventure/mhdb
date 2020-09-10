@@ -15,6 +15,12 @@
 #                                       POST   /session(.:format)                                                                       sessions#create
 #                                 ranks GET    /ranks(.:format)                                                                         ranks#index
 #                                  rank GET    /ranks/:id(.:format)                                                                     ranks#show
+#                               regions GET    /regions(.:format)                                                                       regions#index
+#                                region GET    /regions/:id(.:format)                                                                   regions#show
+#                         location_mice GET    /locations/:location_id/mouse_locations(.:format)                                        mouse_locations#index
+#                                       POST   /locations/:location_id/mouse_locations(.:format)                                        mouse_locations#create
+#                    new_location_mouse GET    /locations/:location_id/mouse_locations/new(.:format)                                    mouse_locations#new
+#                        location_mouse DELETE /locations/:location_id/mouse_locations/:id(.:format)                                    mouse_locations#destroy
 #                             locations GET    /locations(.:format)                                                                     locations#index
 #                                       POST   /locations(.:format)                                                                     locations#create
 #                          new_location GET    /locations/new(.:format)                                                                 locations#new
@@ -45,7 +51,9 @@ Rails.application.routes.draw do
   resource :session, only: [:new, :create, :destroy]
   resources :ranks, only: [:show, :index]
   resources :regions, only: [:show, :index]
-  resources :locations
+  resources :locations do
+    resources :mouse_locations, as: 'mice', only: [:index, :new, :create, :destroy]
+  end
   resources :mouses, as: 'mice' do
     resources :mouse_locations, as: 'locations', only: [:index, :new, :create, :destroy]
   end
