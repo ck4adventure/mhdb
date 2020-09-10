@@ -17,6 +17,7 @@ class MousesController < ApplicationController
       redirect_to mouse_path(@mouse)
     else
       flash.now[:errors] = @mouse.errors.full_messages
+      render :new
     end
   end
   def edit

@@ -1,0 +1,13 @@
+<form id="mouse_edit_form" action="<%= mouse_path(mouse) %>" method="POST">
+  <input type="hidden" value=<%= form_authenticity_token %> name="authenticity_token">
+  <input type="hidden" value="PATCH" name="_method">
+  <label for="mouse_name">Name: </label>
+  <input type="text" id="mouse_name" name="mouse[name]" value="<%= mouse.name %>">
+  <label for="mouse_gold">Gold: </label>
+  <input type="number" id="mouse_gold" min="10" name="mouse[gold]" value="<%= mouse.gold %>">  
+  <label for="mouse_points">Points: </label>
+  <input type="number" id="mouse_points" name="mouse[points]" min="0" value="<%= mouse.points %>">
+  <br>
+  <br>
+  <input type="submit" value="Update mouse info">
+</form>

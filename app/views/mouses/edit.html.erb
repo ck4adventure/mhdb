@@ -2,27 +2,20 @@
 
 <%= render 'shared/errors' %>
 
-<form id="mouse_edit_form" action="<%= mouse_path(@mouse) %>" method="POST">
-  <input type="hidden" value=<%= form_authenticity_token %> name="authenticity_token">
-  <input type="hidden" value="PATCH" name="_method">
-  <label for="mouse_name">Name: </label>
-  <input type="text" id="mouse_name" name="mouse[name]" value="<%= @mouse.name %>">
-  <label for="mouse_gold">Gold: </label>
-  <input type="number" id="mouse_gold" min="10" name="mouse[gold]" value="<%= @mouse.gold %>">  
-  <label for="mouse_points">Points: </label>
-  <input type="number" id="mouse_points" name="mouse[points]" min="0" value="<%= @mouse.points %>">
-  <br>
-  <br>
-  <input type="submit" value="Update mouse info">
-</form>
+<%= render  partial: "mouse_form", locals: { mouse: @mouse } %>
 <br>
 <br>
 <h4>Locations:</h4>
-<%= render partial:"locations/locations_table", locals: { locations: @mouse.locations } %>
-<br><br>
-<form id="mouselocation_add_form" action="<%= mouse_locations_path(@mouse) %>" method="POST">
+<%= render partial:"locations_for_mouse", locals: { mouse: @mouse.reload } %>
+<br>
+<br>
+
+<form id="locations_for_mouse_add_form" action="<%= mouse_locations_path(@mouse) %>" method="POST">
   <input type="hidden" value=<%= form_authenticity_token %> name="authenticity_token">
-  <%= select(:mouselocation, :location_id, options_for_select(@mouse.non_locations_options(@mouse.locations))) %>
+  <% locs = non_locations_options(@mouse.locations) %>
+  <%= select(:mouselocation, :location_id, options_for_select(locs) )%>
   <%= submit_tag("Add Location") %>
 </form>
+<br>
+<br>
 <%= link_to  "Go back", mouse_path(@mouse) %>

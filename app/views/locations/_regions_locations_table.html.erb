@@ -1,0 +1,27 @@
+<div class="regions_locations_table_container">
+<table id="regions_locations_table">
+  <thead>
+    <tr>
+      <th>Region</th><th>Name</th><th>at Rank</th>
+    </tr>
+  </thead>
+  <tbody>
+      <% Region.all.each do |region| %>
+        <tr>
+        <% if region.locations.count > 0 %>
+          <th rowspan=<%= region.locations.count %>><%= link_to  region.name, region_path(region) %></th>
+            <% region.locations.each do |loc| %>
+                <td><%= link_to loc.name, location_path(loc) %></td>
+                <td><%= link_to  loc.rank.title, rank_path(loc.rank) %></td>
+                </tr>
+            <% end %>
+        <% else %>
+            <th><%= link_to region.name, region_path(region) %></th>
+            <td>Coming soon...</td>
+            <td>Coming soon...</td>
+            </tr>
+        <% end %>
+      <% end %>
+  </tbody> 
+</table>
+</div>

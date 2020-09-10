@@ -7,7 +7,10 @@
   <label for="location_name">Name: </label>
   <input type="text" id="location_name" name="location[name]" value="">
   <br>
-  <label>Unlocked at Rank: </label>
+  <label>Belongs to Region: </label>
+  <%= collection_select(:location, :region_id, Region.all, :id, :name ) %>
+  <br>
+    <label>Unlocked at Rank: </label>
   <%= collection_select(:location, :rank_id, Rank.all, :id, :title ) %>
   <br>
 

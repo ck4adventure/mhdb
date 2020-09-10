@@ -17,6 +17,25 @@
 @import "font-awesome-sprockets";
 @import "font-awesome";
 
+$color-main: rgb(59, 10, 150);
+
+a:link {
+  color: $color-main;
+}
+a:visited {
+  color:$color-main;
+}
+a:hover{
+  color:$color-main;
+}
+a:focus{
+  color:$color-main;
+}
+a:active{
+  color:$color-main;
+}
+
+
 /* Page Styling */
 
 #page-container {
@@ -44,11 +63,11 @@
   height: 52px;
   align-items: center;
   margin: 0px;
-  border-bottom: 3px solid rgb(59, 10, 150);
+  border-bottom: 3px solid $color-main;
 }
 
 .header__left {
-  color: rgb(59, 10, 150);
+  color: $color-main;
   font-size: 26px;
   margin-left: 8px;
 }
@@ -83,3 +102,10 @@
   justify-content: center;
 }
 
+a {
+  display: inline;
+  text-decoration: none;
+  margin: 0;
+  padding: 0;
+  
+}

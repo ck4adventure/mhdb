@@ -1,14 +1,15 @@
 <h2>Locations Page</h2>
 
+
+<%= render partial: "regions_locations_table", locals: { locations: @locations } %>
+<br>
+<br>
+
 <% if !!current_user %>
   <%= link_to  "Add a Location", new_location_path %>
 <% else %>
   <p>Want to help add location info? Just make an account to unlock access.</p>
 <% end %>
-
-<br>
-<br>
-<%= render partial: "locations_table", locals: { locations: @locations } %>
 <br>
 <br>
 <%= link_to  "Back to Main", root_path %>
