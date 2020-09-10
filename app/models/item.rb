@@ -19,8 +19,8 @@ class Item < ApplicationRecord
   validates :name, presence: true, uniqueness: true
   validates :itype, presence: true
 
-  def self.itypes_array
-    opts = Item.itypes.to_a
-    opts.map { |opt_pair| [opt_pair[0], opt_pair[0]] }
-  end
+
+
+  
+
 end
