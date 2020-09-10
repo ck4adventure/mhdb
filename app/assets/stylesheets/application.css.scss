@@ -17,20 +17,21 @@
 @import "font-awesome-sprockets";
 @import "font-awesome";
 
+
 a:link{
-  color:blue;
+  color:rgb(59, 10, 150);
 }
 a:visited{
-  color:purple;
+  color:rgb(59, 10, 150);
 }
 a:hover{
-  color:orange;
+  color:rgb(114, 78, 181);
 }
 a:focus{
-  color:green;
+  color:rgb(59, 10, 150);
 }
 a:active{
-  color:red;
+  color:rgb(59, 10, 150);
 }
 
 
@@ -100,3 +101,10 @@ a:active{
   justify-content: center;
 }
 
+a {
+  display: inline;
+  text-decoration: none;
+  margin: 0;
+  padding: 0;
+  
+}

@@ -7,14 +7,20 @@
   </thead>
   <tbody>
       <% Region.all.each do |region| %>
-      <tr>
-        <th rowspan=<%= region.locations.count %>><%= link_to  region.name, region_path(region) %></th>
-          <% region.locations.each do |loc| %>
-              <td><%= link_to loc.name, location_path(loc) %></td>
-              <td><%= link_to  loc.rank.title, rank_path(loc.rank) %></td>
-              </tr>
-          <% end %>
-        </tr>
+        <tr>
+        <% if region.locations.count > 0 %>
+          <th rowspan=<%= region.locations.count %>><%= link_to  region.name, region_path(region) %></th>
+            <% region.locations.each do |loc| %>
+                <td><%= link_to loc.name, location_path(loc) %></td>
+                <td><%= link_to  loc.rank.title, rank_path(loc.rank) %></td>
+                </tr>
+            <% end %>
+        <% else %>
+            <th><%= link_to region.name, region_path(region) %></th>
+            <td>Coming soon...</td>
+            <td>Coming soon...</td>
+            </tr>
+        <% end %>
       <% end %>
   </tbody> 
 </table>

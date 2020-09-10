@@ -3,4 +3,8 @@ class RegionsController < ApplicationController
     @regions = Region.all
     @locations = Location.all
   end
+
+  def show
+    @region = Region.find(params[:id])
+  end
 end
