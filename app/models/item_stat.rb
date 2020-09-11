@@ -25,11 +25,18 @@ class ItemStat < ApplicationRecord
   validates :item_id, presence: true, uniqueness: true
   validates :attr_bonus, :luck, :p_bonus, :power, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
   validates :power_type, presence: true, if: :weapon_item?
+
   validates :cheese_effect, presence: true
 
+  before_save :ensure_no_power_type
+  before_create :ensure_no_power_type
   belongs_to :item
 
   def weapon_item?
     self.item.weapon?
+  end
+
+  def ensure_no_power_type
+    self.power_type = nil unless weapon_item?   
   end
 end
