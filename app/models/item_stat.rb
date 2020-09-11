@@ -24,19 +24,33 @@ class ItemStat < ApplicationRecord
                         stale: -1, no_effect: 0, fresh: 1, very_fresh: 2, extremely_fresh: 3, insanely_fresh: 4, ultimately_fresh: 5, uber_fresh: 6, }
   validates :item_id, presence: true, uniqueness: true
   validates :attr_bonus, :luck, :p_bonus, :power, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
-  validates :power_type, presence: true, if: :weapon_item?
-
   validates :cheese_effect, presence: true
+  
+  validates :power_type, presence: true, if: :weapon_item?
+  validate :must_be_trap_item
 
   before_save :ensure_no_power_type
   before_create :ensure_no_power_type
+  before_update :ensure_no_power_type
+
   belongs_to :item
 
   def weapon_item?
     self.item.weapon?
   end
 
+  def non_weapon_item?
+    !self.item.weapon?
+  end
+
   def ensure_no_power_type
     self.power_type = nil unless weapon_item?   
+  end
+
+  def must_be_trap_item
+    traps = ["base", "weapon", "charm"]
+    unless traps.include?(self.item.itype)
+      errors.add(:itype, "is not of type 'base', 'weapon', or 'charm'")
+    end
   end
 end
