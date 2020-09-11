@@ -8,10 +8,12 @@ class ItemsController < ApplicationController
 
   def new
     @item = Item.new
+    @item.build_item_stat
   end
 
   def create
     @item = Item.new(item_params)
+    
     if @item.save
       redirect_to item_path(@item)
     else
@@ -22,6 +24,7 @@ class ItemsController < ApplicationController
 
   def edit
     @item = Item.find(params[:id])
+    @item.build_item_stat unless @item.item_stat
   end
 
   def update
@@ -42,6 +45,7 @@ class ItemsController < ApplicationController
 
   private
   def item_params
-    params.require(:item).permit(:name, :itype, :le)
+    params.require(:item).permit(:name, :itype, :le, 
+      item_stat_attributes: [:power, :p_bonus, :attr_bonus, :luck, :cheese_effect, :power_type] )
   end
 end
