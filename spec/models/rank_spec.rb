@@ -19,15 +19,16 @@ RSpec.describe Rank, type: :model do
     it 'is valid with a valid, unique title' do
       expect(rank.valid?).to be true
     end
+  end
 
-    it 'does not allow a duplicate' do
-      rank.save!
-      new_rank = Rank.new(title: rank.title)
-      expect(new_rank.valid?).to be false
-    end
+  describe 'model shouldas' do
+    subject { build(:rank) }
+    it { should validate_presence_of(:title) }
   end
 
   describe 'model associations' do
-    it 'has many locations available to it'
+    subject { build(:rank) }
+    it { should have_many(:users) }
+    it { should have_many(:locations) }
   end
 end

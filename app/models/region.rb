@@ -12,7 +12,7 @@
 #  index_regions_on_name  (name) UNIQUE
 #
 class Region < ApplicationRecord
-  validates :name, presence: true, uniqueness: { message: "Region already added" }
+  validates :name, presence: true, uniqueness: true
 
   has_many :locations
 
