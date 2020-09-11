@@ -25,6 +25,7 @@ class ItemStat < ApplicationRecord
   validates :item_id, presence: true, uniqueness: true
   validates :attr_bonus, :luck, :p_bonus, :power, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
   validates :power_type, presence: true, if: :weapon_item?
+  validates :cheese_effect, presence: true
 
   belongs_to :item
 

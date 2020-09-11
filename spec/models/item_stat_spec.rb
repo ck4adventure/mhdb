@@ -22,10 +22,17 @@ require 'rails_helper'
 
 RSpec.describe ItemStat, type: :model do
   describe 'properties and validations' do
-    desribe 'it has a bunch of stuff' do
-      it 'is valid when given valid info'
-      it 'is invalid when no item_id given'
+    subject { build(:item_stat) }
+    describe 'it has a bunch of stuff' do
 
+      it { should validate_numericality_of(:power) }
+      it { should validate_numericality_of(:p_bonus) }
+      it { should validate_numericality_of(:attr_bonus) }
+      it { should validate_numericality_of(:luck) }
+      it { should validate_presence_of(:cheese_effect) }
     end
+
+    it { should define_enum_for(:cheese_effect) }
+    it { should define_enum_for(:power_type) }
   end
 end
