@@ -22,13 +22,17 @@ require 'rails_helper'
 
 RSpec.describe ItemStat, type: :model do
   describe 'properties and validations' do
-    describe 'it has a bunch of stuff' do
+    describe 'shouldas' do
       subject { build(:item_stat) }
-      it { should validate_numericality_of(:power) }
-      it { should validate_numericality_of(:p_bonus) }
-      it { should validate_numericality_of(:attr_bonus) }
-      it { should validate_numericality_of(:luck) }
+      it { should validate_numericality_of(:power).only_integer.is_greater_than_or_equal_to(0) }
+      it { should validate_numericality_of(:p_bonus).only_integer.is_greater_than_or_equal_to(0) }
+      it { should validate_numericality_of(:attr_bonus).only_integer.is_greater_than_or_equal_to(0) }
+      it { should validate_numericality_of(:luck).only_integer.is_greater_than_or_equal_to(0) }
       it { should validate_presence_of(:cheese_effect) }
+    end
+
+    describe 'power_type only goes for weapons items' do
+      pending
     end
 
     it { should define_enum_for(:cheese_effect) }
