@@ -23,38 +23,21 @@ RSpec.describe MouseLocation, type: :model do
       it 'is valid when valid info is given' do
         expect(mouseloc.valid?).to be true
       end
-
-      it 'is not valid if no location id given' do
-        mouseloc.location_id = nil
-        expect(mouseloc.valid?).to be false
-      end
-
-      it 'is not valid if no mouse id given' do
-        mouseloc.mouse_id = nil
-        expect(mouseloc.valid?).to be false
-      end
     end
 
-
-    describe 'mice and locations can each have multiple entries' do
-      let(:mouseloc) { build(:mouse_location) }
-      it 'allows a mouse to have multiple entries' do
-        ml2 = build(:mouse_location, mouse_id: mouseloc.mouse_id)
-        expect(ml2.valid?).to be true
-      end
-      it 'allows a location to have multiple entries' do
-        ml3 = build(:mouse_location, location_id: mouseloc.location_id)
-        expect(ml3.valid?).to be true
-      end
-      it 'is not valid if a duplicate mouse id is given for a location' do
-        ml4 = build(:mouse_location, mouseloc.attributes)
-        expect(ml4.valid?).to be true
-      end
+    describe 'model shouldas' do
+      subject { create(:mouse_location) }
+      it { should validate_presence_of(:location_id) }
+      it { should validate_presence_of(:mouse_id) }
+      it { should validate_uniqueness_of(:mouse_id)
+            .scoped_to(:location_id)
+            .with_message("Mouse already saved to this location") }
     end
   end
 
-  describe 'associations' do
-    it 'belongs to a mouse'
-    it 'belongs to a location'
+  describe 'association shouldas' do
+    subject { build(:mouse_location) }
+    it { should belong_to(:mouse) }
+    it { should belong_to(:location) }
   end
 end

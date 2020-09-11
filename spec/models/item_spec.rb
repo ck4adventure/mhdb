@@ -23,14 +23,6 @@ RSpec.describe Item, type: :model do
       it 'is valid when given valid values' do
         expect(item.valid?).to be true
       end
-      it 'is invalid when no name is given' do
-        item.name = nil
-        expect(item.valid?).to be false
-      end
-      it 'is invalid when no itype is given' do
-        item.itype = nil
-        expect(item.valid?).to be false
-      end
       it 'has a default le of false' do
         i2 = Item.new()
         expect(item.le).to be false
@@ -43,12 +35,20 @@ RSpec.describe Item, type: :model do
         i3 = create(:item, :limited_edition)
         expect(i3.le).to be true
       end
-
-      it 'is invalid if a duplicate name is given' do
-        item.save
-        i2 = Item.new(item.attributes)
-        expect(i2.valid?).to be false
-      end
     end
+
+    describe 'shouldas' do
+      subject { build(:item) }
+      it { should validate_presence_of(:name) }
+      it { should validate_presence_of(:itype) }
+      it { should validate_uniqueness_of(:name) }
+    end
+
+    describe 'assocation shouldas' do
+      subject { build(:item) }
+      it { should have_one(:item_stat) }
+    end
+
+    it { should define_enum_for(:itype) }
   end
 end

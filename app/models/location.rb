@@ -17,7 +17,7 @@
 #
 class Location < ApplicationRecord
   validates :name, :rank_id, :region_id, presence: true
-  validates :name, uniqueness: { message: ": a location with this name already exists"}
+  validates :name, uniqueness: true
 
   # direct assocs
   belongs_to :rank

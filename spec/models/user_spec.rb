@@ -24,40 +24,22 @@ RSpec.describe User, type: :model do
       it 'is valid when given valid information' do
         expect(user.valid?).to be true
       end
-
-      it 'is not valid when no name is given' do
-        user.name = ""
-        expect(user.valid?).to be false
-      end
-      
-      it 'is not valid when a duplicate email is given' do
-        user.save!
-        u2 = build(:user, email: user.email)
-        expect(u2.valid?).to be false
-      end
-    end
-
-    describe 'it has a rank_id' do
-      it 'sets a default rank if none given' do
-        u = User.new()
-        expect(u.rank_id).to be 1
-      end
     end
   end 
 
-  describe 'a User has a session_token at all time' do
-    let(:user) { build(:user) }
-    it 'is valid when a session_token is present' do
-      expect(user.valid?).to be true
-    end
-    it 'is invalid if no session_token is present' do
-      user.session_token = nil
-      expect(user.valid?).to be false
-    end
+  describe 'model shouldas' do
+    subject { build(:user) }
+    it { should validate_presence_of(:name) }
+    it { should validate_presence_of(:email) }
+    it { should validate_uniqueness_of(:email) }
+    it { should validate_presence_of(:session_token) }
+    it { should validate_uniqueness_of(:session_token) }
   end
 
-  describe 'model associations' do
-    it 'has many locations through rank'
+  describe 'association shouldas' do
+    subject { build(:user) }
+    it { should belong_to(:rank) }
+    it { should have_many(:locations).through(:rank) }
   end
 
   describe 'model methods' do
@@ -75,13 +57,10 @@ RSpec.describe User, type: :model do
     end
 
     describe '#reset_session_token' do
-      it 'creates a new session token'
-      it 'saves it to the user'
-      it 'returns the value'
+      it 'creates a new session token, saves it to user, and returns it'
     end
 
     describe '#ensure_default_rank' do
-      
       it 'retrieves the rank if one exists' do
         user = User.new(name: "Larry", email: "test@test.com", rank_id: 2)
         expect(user.rank_id).to eq 2

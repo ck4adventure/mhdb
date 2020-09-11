@@ -17,48 +17,25 @@ require 'rails_helper'
 
 RSpec.describe Mouse, type: :model do
   describe 'model properties' do
-    context 'it has a required unique name, amt of gold and amt of points' do
-      let(:mouse) { Mouse.new(name: "Minnie", gold: 550, points: 1000) }
+    describe 'it has a required unique name, amt of gold and amt of points' do
+      let(:mouse) { build(:mouse) }
       it 'is valid when given valid values' do
         expect(mouse.valid?).to be true
       end
-
-      it 'is not valid when no name is present' do
-        mouse.name = nil
-        expect(mouse.valid?).to be false
-      end
-
-      it 'is not valid when name is not unique' do 
-        mouse.save!
-        m2 = Mouse.new(name: mouse.name, gold: 500, points: 500)
-        expect(m2.valid?).to be false
-      end
-      
-      it 'is not valid when there is no amt of gold given' do
-        mouse.gold = nil
-        expect(mouse.valid?).to be false
-      end
-
-      it 'is not valid when the amount of gold is 0' do
-        mouse.gold = 0
-        expect(mouse.valid?).to be false
-      end
-
-      it 'is not valid when the amount of gold is negative' do
-        mouse.gold = -2
-        expect(mouse.valid?).to be false
-      end
-
-      it 'is not valid when there is no amt of points given' do
-        mouse.points = nil
-        expect(mouse.valid?).to be false
-      end
-
-      it 'is not valid when the amount of points is negative' do
-        mouse.points = -2
-        expect(mouse.valid?).to be false
-      end
+    end
+    
+    describe 'model shouldas' do
+      subject { build(:mouse) }
+      it { should validate_presence_of(:name) }
+      it { should validate_uniqueness_of(:name) }
+      it { should validate_numericality_of(:gold).is_greater_than_or_equal_to(10) }
+      it { should validate_numericality_of(:points).is_greater_than_or_equal_to(0) }
     end
 
+    describe 'association shouldas' do
+      subject { build(:mouse) }
+      it { should have_many(:mouse_locations) }
+      it { should have_many(:locations).through(:mouse_locations) }
+    end
   end
 end

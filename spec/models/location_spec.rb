@@ -24,32 +24,25 @@ RSpec.describe Location, type: :model do
       it 'is valid when given valid information' do
         expect(loc.valid?).to be true
       end
+    end
 
-      it 'is not valid when no name is given' do
-        loc.name = ""
-        expect(loc.valid?).to be false
-      end
-      it 'is not valid when no rank_id is given' do
-        loc.rank_id = nil
-        expect(loc.valid?).to be false
-      end
-      it 'is not valid when no region_id is given' do
-        loc.region_id = nil
-        expect(loc.valid?).to be false
-      end
-      it 'is not valid when duplicate name is given' do
-        loc.save
-        l2 = Location.new(loc.attributes)
-        expect(l2.valid?).to be false
-      end
+    describe 'shouldas' do
+      subject { build(:location) }
+      it { should validate_presence_of(:name) }
+      it { should validate_presence_of(:rank_id) }
+      it { should validate_presence_of(:region_id) }
+      it { should validate_uniqueness_of(:name) }
+      it { should have_db_index(:name) }
+      it { should have_db_index(:rank_id) }
+      it { should have_db_index(:region_id) }
+    end
+
+    describe 'model assocation shouldas' do
+      subject { build(:location) }
+      it { should belong_to(:region) }
+      it { should belong_to(:rank) }
+      it { should have_many(:mouse_locations) }
+      it { should have_many(:mice).through(:mouse_locations) }
     end
   end 
-
-  describe 'model associations' do
-    let(:loc) { build(:location) }
-    it 'belongs to a rank' do
-      expect(loc.rank).to be
-      expect(loc.rank.title).to eq(Rank.find(loc.rank.id).title)
-    end
-  end
 end

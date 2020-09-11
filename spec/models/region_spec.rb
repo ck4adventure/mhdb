@@ -20,15 +20,17 @@ RSpec.describe Region, type: :model do
       it 'is valid when given a valid name' do
         expect(region.valid?).to be true
       end
-      it 'is invalid when given no name' do
-        region.name = nil
-        expect(region.valid?).to be false
-      end
-      it 'is invalid when given a duplicate name' do
-        region.save
-        r2 = build(:region, name: region.name)
-        expect(r2.valid?).to be false
-      end
+    end
+
+    describe 'model shouldas' do
+      subject { build(:region) }
+      it { should validate_presence_of(:name) }
+      it { should validate_uniqueness_of(:name) }
+    end
+
+    describe 'association shouldas' do
+      subject { build(:region) }
+      it { should have_many(:locations) }
     end
   end
 end

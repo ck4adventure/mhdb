@@ -22,9 +22,8 @@ require 'rails_helper'
 
 RSpec.describe ItemStat, type: :model do
   describe 'properties and validations' do
-    subject { build(:item_stat) }
     describe 'it has a bunch of stuff' do
-
+      subject { build(:item_stat) }
       it { should validate_numericality_of(:power) }
       it { should validate_numericality_of(:p_bonus) }
       it { should validate_numericality_of(:attr_bonus) }
