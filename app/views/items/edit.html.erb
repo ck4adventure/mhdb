@@ -1,7 +1,39 @@
 <h2>Edit an Item</h2>
 
 <%= render 'shared/errors' %>
-<%= render  partial: "item_form", locals: { item: @item } %>
+<%= form_with model: @item, local: true, class: "item_form" do |f| %>
+  <%= f.label(:name) %>
+  <%= f.text_field(:name) %>
+  <%= f.label(:type) %>
+  <%= f.select(:itype, options_for_select(itypes_options, @item.itype)) %>
+  <%= f.label(:le, "Limited Edition?") %>
+  <%= f.check_box(:le) %>
+  <br>
+  <br>
+  <h4>Add item stats if it's a weapon, charm or base</h4>
+  <%= f.fields_for :item_stat do |sf| %>
+    <%= sf.label(:power_type) %>
+    <%= sf.select(:power_type, options_for_select(power_types_options, @item.item_stat.power_type)) %>(can't be none if it's a weapon)<br>
+    <%= sf.label(:power) %>
+    <%= sf.number_field(:power, min: 1, step: 1) %><br>
+    <%= sf.label(:p_bonus, "Power bonus") %>
+    <%= sf.number_field(:p_bonus, min: 0, step: 1) %>%<br>
+    <%= sf.label(:attr_bonus) %>
+    <%= sf.number_field(:attr_bonus, min: 0, step: 1) %>%<br>
+    <%= sf.label(:luck) %>
+    <%= sf.number_field(:luck, min: 0, step: 1) %><br>
+    <%= sf.label(:cheese_effect) %>
+    <%= sf.select(:cheese_effect, options_for_select(cheese_effects_options, @item.item_stat.cheese_effect)) %>
+
+
+
+
+  
+  <% end %>
+  <br>
+  <br>
+  <%= f.submit %>
+<% end %>
 <br>
 <br>
 <%= link_to  "Go back to item", item_path(@item) %>

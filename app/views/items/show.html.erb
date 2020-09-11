@@ -1,5 +1,5 @@
 <h2><%= @item.name %> </h2>
-<h3>Stats</h3>
+<h4>Stats</h4>
 <% if @item.item_stat %>
   <%= render partial: "items/stats/stats_table" %>
 <% elsif @item.trap_item? %>

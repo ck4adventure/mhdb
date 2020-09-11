@@ -20,6 +20,7 @@ class Item < ApplicationRecord
   validates :itype, presence: true
 
   has_one :item_stat, dependent: :destroy
+  accepts_nested_attributes_for :item_stat, reject_if: lambda {|attributes| attributes['luck'].blank?}
 
   def trap_item?
     traps_items = ["weapon", "base", "charm"]
