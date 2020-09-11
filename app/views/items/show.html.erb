@@ -1,8 +1,16 @@
 <h2><%= @item.name %> </h2>
 <h3>Stats</h3>
-<p>Type: <%= @item.itype.capitalize %><br>
-Limited Edition? <%= @item.le ? "Yep" : "Nope" %> </p>
+<% if @item.item_stat %>
+  <%= render partial: "items/stats/stats_table" %>
+<% elsif @item.trap_item? %>
+  No stats yet. But it needs some.
+  <br>
+<% else %>
+  Simple type item.
+  <br>
+<% end %>
 
+Limited Edition? <%= @item.le ? "Yep" : "Nope" %> </p>
 <h4>Obtaining</h4>
 <h5>Loot</h5>
 Available from the following mice:

@@ -21,7 +21,10 @@ class Item < ApplicationRecord
 
   has_one :item_stat, dependent: :destroy
 
-
+  def trap_item?
+    traps_items = ["weapon", "base", "charm"]
+    traps_items.include?(self.itype)
+  end
   
 
 end
