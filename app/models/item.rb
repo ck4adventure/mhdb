@@ -19,7 +19,7 @@ class Item < ApplicationRecord
   validates :name, presence: true, uniqueness: true
   validates :itype, presence: true
 
-  has_one :item_stat
+  has_one :item_stat, dependent: :destroy
 
 
   
