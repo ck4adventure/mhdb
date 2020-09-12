@@ -167,4 +167,15 @@ meadow_mice.each do |mm|
   l.save! if l.valid?
 end
 
-larry = User.find_or_create_by!(name: "Larry", email: "larry@test.com", rank_id: Rank.first)
+
+me = User.find_or_create_by!(name: "Dekka", email: "dekka", rank_id: Rank.last)
+
+# Categories aka Item Types
+
+categories = [
+  "bait", "base", "charm", "collectible", "convertible", "crafting", "map_piece", "special", "weapon", "skin",
+]
+
+categories.each do |catty|
+  Category.find_or_create_by!(name: catty)
+end
