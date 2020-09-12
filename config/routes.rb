@@ -70,11 +70,9 @@ Rails.application.routes.draw do
     resources :mouse_locations, as: 'locations', only: [:create, :destroy]
   end
 
-  resources :categories do
-    resources :items, shallow: true
-    get ':power_type_id/items', to: 'items#index', as: 'power_type_items'
-  end
 
-  get  ':category/items', to: 'items#index'
+  get 'weapons/:power_type/items', to: 'items#index', as: 'weapons_for_power_type'
+
+  get  ':category/items', to: 'items#index', as: 'category_items'
 
 end
