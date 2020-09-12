@@ -21,4 +21,9 @@ RSpec.describe Category, type: :model do
     it { should validate_uniqueness_of(:name) }
     it { should have_db_index(:name) }
   end
+
+  describe 'assocs shouldas' do
+    subject { build(:category) }
+    it { should have_many(:items) }
+  end
 end

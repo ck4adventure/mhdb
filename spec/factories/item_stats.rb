@@ -20,7 +20,7 @@
 #
 FactoryBot.define do
   factory :item_stat do
-    item 
+    item
     power_type { Faker::Number.between(from: 1, to: 10)}
     power { Faker::Number.between(from: 100, to: 1000) }
     p_bonus { Faker::Number.between(from: 0, to: 20) }
@@ -28,15 +28,4 @@ FactoryBot.define do
     luck { Faker::Number.between(from: 0, to: 35) }
     cheese_effect { Faker::Number.between(from: -6, to: 6) }
   end
-
-  factory :weapon_item_stat do
-    weapon_item
-    power_type { Faker::Number.between(from: 1, to: 10)}
-    power { Faker::Number.between(from: 100, to: 1000) }
-    p_bonus { Faker::Number.between(from: 0, to: 20) }
-    attr_bonus { Faker::Number.between(from: 0, to: 10) }
-    luck { Faker::Number.between(from: 0, to: 35) }
-    cheese_effect { Faker::Number.between(from: -6, to: 6) }
-  end
-    
 end

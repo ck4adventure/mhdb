@@ -173,7 +173,7 @@ me = User.find_or_create_by!(name: "Dekka", email: "dekka", rank_id: Rank.last)
 # Categories aka Item Types
 
 categories = [
-  "bait", "base", "charm", "collectible", "convertible", "crafting", "map_piece", "special", "weapon", "skin",
+  "bait", "base", "charm", "collectible", "convertible", "crafting", "map_piece", "special", "weapon", "trap_skin",
 ]
 
 categories.each do |catty|

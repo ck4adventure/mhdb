@@ -8,9 +8,7 @@
 
 <br>
 <br>
-<% Item.itypes.keys.each do |itype| %>
-  <%= render partial: "items/tables/items_table", locals: { items: items_for_type(itype), itype: itype  } %>
-<% end %>
+<%= render @items %>
 <br>
 <br>
 <%= link_to  "Back to Main", root_path %>

@@ -36,8 +36,13 @@
 #                                       PATCH  /mouses/:id(.:format)                                                                    mouses#update
 #                                       PUT    /mouses/:id(.:format)                                                                    mouses#update
 #                                       DELETE /mouses/:id(.:format)                                                                    mouses#destroy
-#                weapons_for_power_type GET    /weapons/:power_type/items(.:format)                                                     items#index
-#                        category_items GET    /:category/items(.:format)                                                               categories#index
+#                weapons_for_power_type GET    /weapons/:power_type(.:format)                                                           items#index
+#                                 items GET    /items(.:format)                                                                         items#index
+#                             edit_item GET    /items/:id/edit(.:format)                                                                items#edit
+#                                  item GET    /items/:id(.:format)                                                                     items#show
+#                                       PATCH  /items/:id(.:format)                                                                     items#update
+#                                       PUT    /items/:id(.:format)                                                                     items#update
+#                         category_page GET    /:category(.:format)                                                                     categories#show
 #         rails_postmark_inbound_emails POST   /rails/action_mailbox/postmark/inbound_emails(.:format)                                  action_mailbox/ingresses/postmark/inbound_emails#create
 #            rails_relay_inbound_emails POST   /rails/action_mailbox/relay/inbound_emails(.:format)                                     action_mailbox/ingresses/relay/inbound_emails#create
 #         rails_sendgrid_inbound_emails POST   /rails/action_mailbox/sendgrid/inbound_emails(.:format)                                  action_mailbox/ingresses/sendgrid/inbound_emails#create
@@ -75,9 +80,9 @@ Rails.application.routes.draw do
   end
 
 
-  get 'weapons/:power_type/items', to: 'items#index', as: 'weapons_for_power_type'
+  get 'weapons/:power_type', to: 'items#index', as: 'weapons_for_power_type'
 
-  resources :categories, only: [:index, :show]
+  resources :items
   get ':category', to: 'categories#show', as: 'category_page'
 
 end
