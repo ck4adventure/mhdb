@@ -19,11 +19,16 @@ class Item < ApplicationRecord
   validates :name, presence: true, uniqueness: true
   validates :category_id, presence: true
 
+  after_initialize :set_default_category
+
   belongs_to :category
   
   has_one :item_stat, dependent: :destroy
   accepts_nested_attributes_for :item_stat, reject_if: lambda {|attributes| attributes['luck'].blank?}
 
+  def set_default_category
+    self.category_id ||= 8
+  end
   def trap_item?
     traps_items = ["weapon", "base", "charm"]
     traps_items.include?(self.category.name)

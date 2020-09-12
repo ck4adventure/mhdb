@@ -45,6 +45,6 @@ class ItemsController < ApplicationController
   private
   def item_params
     params.require(:item).permit(:name, :le, :category_id,
-      item_stat_attributes: [:power, :p_bonus, :attr_bonus, :luck, :cheese_effect, :power_type] )
+      item_stat_attributes: [:id, :power, :p_bonus, :attr_bonus, :luck, :cheese_effect, :power_type] )
   end
 end
