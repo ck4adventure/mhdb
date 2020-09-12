@@ -24,6 +24,7 @@ class Item < ApplicationRecord
   belongs_to :category
   
   has_one :item_stat, dependent: :destroy
+  
   accepts_nested_attributes_for :item_stat, reject_if: lambda {|attributes| attributes['luck'].blank?}
 
   def set_default_category
