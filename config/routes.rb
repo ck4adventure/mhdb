@@ -75,4 +75,6 @@ Rails.application.routes.draw do
     get ':power_type_id/items', to: 'items#index', as: 'power_type_items'
   end
 
+  get  ':category/items', to: 'items#index'
+
 end
