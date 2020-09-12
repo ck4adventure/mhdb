@@ -2,23 +2,24 @@
 #
 # Table name: items
 #
-#  id         :bigint           not null, primary key
-#  itype      :integer          default("special"), not null
-#  le         :boolean          default(FALSE), not null
-#  name       :string           not null
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id          :bigint           not null, primary key
+#  le          :boolean          default(FALSE), not null
+#  name        :string           not null
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  category_id :integer          not null
 #
 # Indexes
 #
-#  index_items_on_le    (le)
-#  index_items_on_name  (name) UNIQUE
+#  index_items_on_category_id  (category_id)
+#  index_items_on_le           (le)
+#  index_items_on_name         (name) UNIQUE
 #
 require 'rails_helper'
 
 RSpec.describe Item, type: :model do
   describe 'properties and their validations' do
-    describe 'it has a unique name, an int itype, and is possibly limited edition' do
+    describe 'it has a unique name, a category_id, and is possibly limited edition' do
       let(:item) { build(:item) }
       it 'is valid when given valid values' do
         expect(item.valid?).to be true
@@ -40,15 +41,14 @@ RSpec.describe Item, type: :model do
     describe 'shouldas' do
       subject { build(:item) }
       it { should validate_presence_of(:name) }
-      it { should validate_presence_of(:itype) }
       it { should validate_uniqueness_of(:name) }
+      it { should validate_presence_of(:category_id) }
     end
 
     describe 'assocation shouldas' do
       subject { build(:item) }
       it { should have_one(:item_stat) }
+      it { should belong_to(:category) }
     end
-
-    it { should define_enum_for(:itype) }
   end
 end

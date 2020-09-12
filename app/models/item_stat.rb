@@ -39,9 +39,6 @@ class ItemStat < ApplicationRecord
     self.item.weapon?
   end
 
-  def non_weapon_item?
-    !self.item.weapon?
-  end
 
   def ensure_no_power_type
     self.power_type = nil unless weapon_item?   
@@ -49,8 +46,9 @@ class ItemStat < ApplicationRecord
 
   def must_be_trap_item
     traps = ["base", "weapon", "charm"]
-    unless traps.include?(self.item.itype)
-      errors.add(:itype, "is not of type 'base', 'weapon', or 'charm'")
+    unless traps.include?(self.item.category.name)
+      errors.add(:category, "is not of type 'base', 'weapon', or 'charm'")
     end
   end
+
 end
