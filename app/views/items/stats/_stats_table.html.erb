@@ -2,16 +2,18 @@
   <table id="weapon-stats-table">
     <thead>
       <tr>
-        <th>Power</th><th>P Bonus</th><th>Attr</th><th>Luck</th><th>Effect</th>
+        <th>Power Type</th><th>Power</th><th>Power Bonus</th><th>Attr</th><th>Luck</th><th>Effect</th><th>LE?</th>
       </tr>
     </thead>
     <tbody>
       <tr>
+        <td><%= @item.item_stat.power_type %></td>
         <td><%= @item.item_stat.power %></td>
         <td><%= @item.item_stat.p_bonus %></td>
         <td><%= @item.item_stat.attr_bonus %></td>
         <td><%= @item.item_stat.luck %></td>
         <td><%= @item.item_stat.cheese_effect %></td>
+        <td><%= @item.le ? "X" : "" %></td>
       </tr>
     </tbody>
   </table>
