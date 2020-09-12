@@ -4,7 +4,8 @@
   <p>This app is designed as a companion to players of the game <%= link_to  "Mousehunt", "https://www.mousehuntgame.com" %>, which is also available on Facebook. Having been a slow but steady player over the last 9 years, I decided it was time to put away my excel spreadsheet and develop a better inventory acquisition tracker.
   <p>This is a place to search and review all of the available Weapons, Bases, and other collectible items needed to play the game. If you'd like a better understanding, please see the <%= link_to  "MH Wiki", "https://mhwiki.hitgrab.com/wiki/index.php/MouseHunt_Wiki" %>
   <br>
-
+  <br>
+  <br>
   
   <%= link_to  "Ranks", ranks_path %><br>
   <%= link_to  "Regions", regions_path %><br>
@@ -14,7 +15,9 @@
   <br>
   <br>
   <br>
-    <p>In progress Thurs, Sep 10 - Items created, starting stats table for weapons</p>
+    <p>
+    <p>Friday's reset: Ended up creating a table for category instead of enum, rewired specs, controllers, views. Tested out rails routes for like an hour, learned a bit there. Custom routes for each item category as an index page since soo many items. Next up is to finish wiring in additional forms on the show pages to add items from there directly.</p>
+    <p>Thurs, Sep 10 - Items created, stats table for weapons</p>
     <p>Wed progress: Added mice and mice locations. Nested routes avail to add a mice location from either the mouse or the location as long as both exist. FactoryBot rules! Also, there are now Regions too just to make pretty tables.</p>
     <p>Tues progress: User's have ranks, add Locations. Basic RSpecs for red/green/refactor later. </p>
     <p>Monday's work: Add ranks and some basic styling</p>
