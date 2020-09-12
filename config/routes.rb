@@ -86,7 +86,5 @@ Rails.application.routes.draw do
   resources :mouses, as: 'mice' do
     resources :mouse_locations, as: 'locations', only: [:create, :destroy]
   end
-  resources :items do
-    resources :item_stats, as: 'stats', except: [:destroy]
-  end
+  resources :items
 end
