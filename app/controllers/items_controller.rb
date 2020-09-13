@@ -6,6 +6,12 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
   end
 
+  def category 
+    @category = Category.find_by(name: params[:category])
+    @items = Item.where(category_id: @category.id)
+    @item = Item.new()
+  end
+
   def new
     @item = Item.new
     @item.build_item_stat
@@ -14,7 +20,7 @@ class ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     if @item.save
-      redirect_to item_path(@item)
+      redirect_to category_page_path(@item.category.name)
     else
       flash.now[:errors] = @item.errors.full_messages
       render :new

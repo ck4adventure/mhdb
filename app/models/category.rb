@@ -15,4 +15,9 @@ class Category < ApplicationRecord
   validates :name, presence: true, uniqueness: true
 
   has_many :items
+
+  def stats_type?
+    traps = ["base", "weapon", "charm"]
+    traps.include?(self.name)
+  end
 end

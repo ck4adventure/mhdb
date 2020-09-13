@@ -83,6 +83,8 @@ Rails.application.routes.draw do
   get 'weapons/:power_type', to: 'items#index', as: 'weapons_for_power_type'
 
   resources :items
-  get ':category', to: 'categories#show', as: 'category_page'
+
+  get ':category', to: 'items#category', as: 'category_page'
+  get 'items/:category', to: 'items#category'
 
 end

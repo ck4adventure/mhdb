@@ -1,0 +1,8 @@
+<%= form_with model: @item, url: items_path, local: true, class: "item_form" do |f| %>
+  <%= f.label(:name) %>
+  <%= f.text_field(:name) %>
+  <%= f.hidden_field(:category_id, :value => @category.id) %>
+  <%= f.label(:le, "Limited Edition?") %>
+  <%= f.check_box(:le) %>
+  <%= f.submit %>
+<% end %>

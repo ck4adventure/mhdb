@@ -1,14 +1,12 @@
-<h2><%= @category.name %></h2>
+<h2><%= @category.name.capitalize %></h2>
+
+Quick add: <%= render  "item_quick_add" %>
 
 <h4>This is everything listed under <%= @category.name %> so far:</h4>
 <ul>
-<% if @items.kind_of?(Array) %>
   <% @items.each do |item| %>
     <li><%= link_to  item.name, item_path(item) %></li>
   <% end %>
-<% elsif @items %>
-  <%= link_to  @items.name, item_path(@items) %>
-<% end %>
 </ul>
 <br>
 <br>
