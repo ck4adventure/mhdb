@@ -2,6 +2,8 @@
 ## What is it?
 Mousehunt is a game on facebook which is kinda as simple as it sounds. You, the hunter have a trap that you arm and every 15 mins you get the chance to 'hunt' and see what you catch. One of the main features of the game is the rich graphical content and continual release of new areas and items to collect. One of the challenges of the game is learning what is available in each area and then collecting the necessary items. The app also presents a challenge of not having a well developed UI to sort items already owned in a meaningful manner.
 
+Visit the app at <a href="https://mousehuntcollector.herokuapp.com">https://mousehuntcollector.herokuapp.com</a>
+
 Main user story: As a mousehunt player, I want an app to track my weapons and special items so that I can know what I have yet to get and how to get it.
 
 ## Upcoming features in planning
@@ -10,6 +12,7 @@ Main user story: As a mousehunt player, I want an app to track my weapons and sp
 - User can track weapons, bases and collectibles as personal inventory
 - Item acquisition detail page
 - Formally split UI into CMS of game info and User App that only displays it all
+- Containerize it for practice
 
 
 ## Upcoming next few days
@@ -39,6 +42,8 @@ Main user story: As a mousehunt player, I want an app to track my weapons and sp
    - Basic RSpecs for red/green/refactor later. 
   - Monday's work: Add ranks and some basic styling
   - Sep 6, Sunday's setup: I have an app, it has a user. Feature work in Cucumber, testing in RSpec.
+  
+
 
 ## Getting Started
 * Ruby version
