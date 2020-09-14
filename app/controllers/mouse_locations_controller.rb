@@ -1,4 +1,5 @@
 class MouseLocationsController < ApplicationController
+  before_action :require_signed_in!
   def create
     if params[:location_id]
       ml = MouseLocation.new(location_id: params[:location_id])

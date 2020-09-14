@@ -9,7 +9,7 @@
 <h4>Items are of the following types, click on one for more info.</h4>
 <ul>
 <% Category.all.each do |cat| %>
-  <li><%= link_to  cat.name, category_page_path(cat.name) %></li>
+  <li><%= link_to  cat.name.titleize, category_page_path(cat.name) %></li>
 <% end %>
 </ul>
 <br>

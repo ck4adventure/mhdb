@@ -79,3 +79,21 @@ Rspec `bundle exec rspec`
 `heroku login`
 `git push heroku master`
 `heroku run rake db:seed` if `seeds.rb`.updated?
+
+## Common Gotchas
+
+```ba
+warning Integrity check: System parameters don't match                                                                    
+error Integrity check failed                                                                                              
+error Found 1 errors.                                                                                                     
+
+
+========================================
+  Your Yarn packages are out of date!
+  Please run `yarn install --check-files` to update.
+========================================
+
+
+To disable this check, please change `check_yarn_integrity`
+to `false` in your webpacker config file (config/webpacker.yml).
+```
