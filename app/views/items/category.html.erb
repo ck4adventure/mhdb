@@ -1,4 +1,4 @@
-<h2><%= @category.name.capitalize %></h2>
+<h2><%= @category.name.titleize.pluralize %></h2>
 <% if !!current_user %>
   <% if @category.is_a_trap_category? %>
     <%= render  "item_form", object: @item %>
@@ -18,5 +18,5 @@
 </ul>
 <br>
 <br>
-<%= link_to  "Back to items", items_path %>
+<%= link_to  "Back to Items", items_path %><br>
 <%= link_to  "Take me to Home", root_path %>
