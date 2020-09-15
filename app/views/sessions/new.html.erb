@@ -2,13 +2,12 @@
 <%= render "shared/errors" %>
 <form id="sign_in_form" action="<%= session_path %>" method="POST">
   <input type="hidden" value=<%= form_authenticity_token %> name="authenticity_token">
-  <p>
-  <label for="user_email">Email: </label>
+  <label for="user_email">Username: </label>
   <input type="text" id="user_email" name="user[email]" value="">
-  </p>
   <input type="submit" value="Sign in!">
 </form>
 <br>
+<%= render  "shared/inline_guest_sign_in" %>
 <br>
-<%= link_to  "Actually, I need to sign up", new_user_path %>
+<%= link_to  "Actually, I need to sign up", new_user_path %><br>
 <%= link_to  "Nevermind, take me back", root_path %>

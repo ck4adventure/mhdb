@@ -1,0 +1,5 @@
+<p>You can also just sign in as a guest user to poke around :) <%= form_with scope: :user, url: session_path, method: "post", local: true do |f| %>
+  <%= f.hidden_field(:email, :value => "hello") %>
+  <%= f.submit("Log in as guest") %>
+<% end %>
+</p>

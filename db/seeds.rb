@@ -167,8 +167,13 @@ meadow_mice.each do |mm|
   l.save! if l.valid?
 end
 
+unless User.find_by(email: "admin")
+  me = User.create(name: "Huntress", email: "admin", rank_id: Rank.last)
+end
 
-me = User.find_or_create_by!(name: "Dekka", email: "dekka", rank_id: Rank.last)
+unless User.find_by(email: "hello")
+  you = User.create(name: "Guest", email: "hello", rank_id: Rank.first)
+end
 
 # Categories aka Item Types
 
