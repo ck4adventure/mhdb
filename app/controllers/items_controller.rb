@@ -10,7 +10,7 @@ class ItemsController < ApplicationController
   def category 
     @category = Category.find_by(name: params[:category])
     @items = Item.where(category_id: @category.id)
-    @item = Item.new()
+    @item = Item.new(category_id: @category.id)
   end
 
   def new
