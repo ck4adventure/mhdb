@@ -13,6 +13,7 @@
   <body>
     <div id="page-container">
       <div id="content-wrap">
+        
         <div id="header" class="header">
           <div class="header__left">
             <p>Mousehunt Collector</p>
@@ -36,8 +37,12 @@
             <% end %>
           </div>
         </div>
-        <%= yield %>
+      
+        <div id="content-body">
+          <%= yield %>
+        </div>
       </div>
+      
       <div id="footer" class="footer-content">
         <small>Copyright © 2020 Christina Kiesz</small><%= link_to  "Back to Main", root_path %><%= link_to  "Source code on Github", 'https://github.com/ck4adventure/mhdb' %>
       </div>

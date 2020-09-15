@@ -46,8 +46,11 @@ a:active{
 
 #content-wrap {
   padding-bottom: 2.5rem;
-  display: flex;
+}
+
+#content-body {
   flex-direction: column;
+  margin: 20px 100px;
 }
 
 #footer {
@@ -97,6 +100,7 @@ a:active{
   display: flex;
   justify-content: center;
 }
+
 .footer-content {
   display: flex;
   justify-content: space-between;
