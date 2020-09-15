@@ -8,6 +8,7 @@ class UsersController < ApplicationController
 
   def new
     render :new
+    @user = User.new(email: "hello")
   end
 
   def create
