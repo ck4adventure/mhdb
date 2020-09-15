@@ -52,8 +52,10 @@ RSpec.describe Item, type: :model do
 
     describe 'assocation shouldas' do
       subject { build(:item) }
-      it { should have_one(:item_stat) }
-     # it { should belong_to(:category) }
+      it do
+        pending
+        should belong_to(:category) 
+      end
     end
 
     describe 'it has an optional col for limited edition' do
