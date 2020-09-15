@@ -24,12 +24,13 @@
 #
 class Item < ApplicationRecord
   enum power_type: { arcane: 1, draconic: 2, forgotten: 3, hydro: 4, law: 5, parental: 6, physical: 7, rift: 8, shadow: 9, tactical: 10, }
-  enum cheese_effect: { uber_stale: -6, ultimately_stale: -5, insanely_stale: -4, extremely_stale: -3, very_stale: -2,
-                        stale: -1, no_effect: 0, fresh: 1, very_fresh: 2, extremely_fresh: 3, insanely_fresh: 4, ultimately_fresh: 5, uber_fresh: 6, }
+  enum cheese_effect: { uber_stale: -6, ultimately_stale: -5, insanely_stale: -4, extremely_stale: -3, very_stale: -2, stale: -1, no_effect: 0, fresh: 1, very_fresh: 2, extremely_fresh: 3, insanely_fresh: 4, ultimately_fresh: 5, uber_fresh: 6, }
   validates :name, presence: true, uniqueness: true
+  
   validates :category_id, presence: true
   validates :power, :p_bonus, :attr_bonus, :luck, :cheese_effect, presence: true, if: :trap_item?
   validates :power_type, presence: true, if: :weapon_item?
+  
   validates :power_type, :power, :p_bonus, :attr_bonus, :luck, :cheese_effect, absence: true, unless: :trap_item?
   validates :power_type, absence: true, unless: :weapon_item?
 
