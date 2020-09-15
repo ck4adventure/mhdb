@@ -14,8 +14,7 @@ class ItemsController < ApplicationController
   end
 
   def new
-    @item = Item.new
-    @item.build_item_stat
+    @item = Item.new()
   end
 
   def create
@@ -30,7 +29,6 @@ class ItemsController < ApplicationController
 
   def edit
     @item = Item.find(params[:id])
-    @item.build_item_stat unless @item.item_stat
   end
 
   def update
@@ -51,7 +49,6 @@ class ItemsController < ApplicationController
 
   private
   def item_params
-    params.require(:item).permit(:name, :le, :category_id,
-      item_stat_attributes: [:id, :power, :p_bonus, :attr_bonus, :luck, :cheese_effect, :power_type] )
+    params.require(:item).permit(:name, :le, :category_id, :power, :p_bonus, :attr_bonus, :luck, :cheese_effect, :power_type)
   end
 end

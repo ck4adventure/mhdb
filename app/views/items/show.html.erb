@@ -1,16 +1,14 @@
 <h2><%= @item.name %> </h2>
 <h4>Stats</h4>
-<% if @item.item_stat %>
-  <%= render partial: "items/stats/stats_table" %>
+<% if @item.weapon_item? %>
+  <%= render partial: "items/stats/stats_table_weapon" %>
 <% elsif @item.trap_item? %>
-  No stats yet. But it needs some.
-  <br>
+  <%= render partial: "items/stats/stats_table_base_charm" %>
 <% else %>
-  This item is used as/for <%= @item.category.name %>.
+  <p>This item is used as/for <%= @item.category.name %>.</p>
+  <p>Limited Edition? <%= @item.le ? "Yep" : "Nope" %> </p>
   <br>
 <% end %>
-
-Limited Edition? <%= @item.le ? "Yep" : "Nope" %> </p>
 
 
 
