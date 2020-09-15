@@ -13,6 +13,6 @@
 #
 FactoryBot.define do
   factory :category do
-    name { Faker::Games::Witcher.character }
+    name { "arcane" }
   end
 end
