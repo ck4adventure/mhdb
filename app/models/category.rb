@@ -16,7 +16,7 @@ class Category < ApplicationRecord
 
   has_many :items
 
-  def stats_type?
+  def is_a_trap_category?
     traps = ["base", "weapon", "charm"]
     traps.include?(self.name)
   end

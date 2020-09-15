@@ -1,6 +1,10 @@
 <h2><%= @category.name.capitalize %></h2>
 <% if !!current_user %>
-  Quick add: <%= render  "item_quick_add" %>
+  <% if @category.is_a_trap_category? %>
+    <%= render  "item_form", object: @item %>
+  <% else %>
+    Quick add: <%= render "item_quick_add" %>
+  <% end %>
 <% else %>
   <p>Want to help add some stuff? Just make an account to unlock access.</p>
 <% end %>

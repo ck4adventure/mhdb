@@ -1,0 +1,19 @@
+<div class="table-container">
+  <table id="base-charm-stats-table">
+    <thead>
+      <tr>
+        <th>Power</th><th>Power Bonus</th><th>Attr</th><th>Luck</th><th>Effect</th><th>LE?</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= @item.power %></td>
+        <td><%= @item.p_bonus %></td>
+        <td><%= @item.attr_bonus %></td>
+        <td><%= @item.luck %></td>
+        <td><%= @item.cheese_effect.titleize %></td>
+        <td><%= @item.le ? "X" : "" %></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
