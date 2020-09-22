@@ -4,4 +4,7 @@ class StaticPagesController < ApplicationController
     @ranks = Rank.all
     @locations = Location.all
   end
+
+  def root
+  end
 end
