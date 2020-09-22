@@ -1,7 +1,8 @@
 # == Route Map
 #
 #                                Prefix Verb   URI Pattern                                                                              Controller#Action
-#                                  root GET    /                                                                                        static_pages#main
+#                                  root GET    /                                                                                        static_pages#root
+#                                  main GET    /main(.:format)                                                                          static_pages#main
 #                                 users POST   /users(.:format)                                                                         users#create
 #                              new_user GET    /users/new(.:format)                                                                     users#new
 #                             edit_user GET    /users/:id/edit(.:format)                                                                users#edit
@@ -38,11 +39,15 @@
 #                                       DELETE /mouses/:id(.:format)                                                                    mouses#destroy
 #                weapons_for_power_type GET    /weapons/:power_type(.:format)                                                           items#index
 #                                 items GET    /items(.:format)                                                                         items#index
+#                                       POST   /items(.:format)                                                                         items#create
+#                              new_item GET    /items/new(.:format)                                                                     items#new
 #                             edit_item GET    /items/:id/edit(.:format)                                                                items#edit
 #                                  item GET    /items/:id(.:format)                                                                     items#show
 #                                       PATCH  /items/:id(.:format)                                                                     items#update
 #                                       PUT    /items/:id(.:format)                                                                     items#update
-#                         category_page GET    /:category(.:format)                                                                     categories#show
+#                                       DELETE /items/:id(.:format)                                                                     items#destroy
+#                         category_page GET    /:category(.:format)                                                                     items#category
+#                                       GET    /items/:category(.:format)                                                               items#category
 #         rails_postmark_inbound_emails POST   /rails/action_mailbox/postmark/inbound_emails(.:format)                                  action_mailbox/ingresses/postmark/inbound_emails#create
 #            rails_relay_inbound_emails POST   /rails/action_mailbox/relay/inbound_emails(.:format)                                     action_mailbox/ingresses/relay/inbound_emails#create
 #         rails_sendgrid_inbound_emails POST   /rails/action_mailbox/sendgrid/inbound_emails(.:format)                                  action_mailbox/ingresses/sendgrid/inbound_emails#create
@@ -66,7 +71,9 @@
 
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  root 'static_pages#main'
+  root 'static_pages#root'
+
+  get '/main', to: 'static_pages#main'
 
   resources :users, except: [:index]
   resource :session, only: [:new, :create, :destroy]
