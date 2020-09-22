@@ -18,7 +18,11 @@ require("channels")
 import React from 'react'
 import ReactDOM from 'react-dom'
 
+import configureStore from '../store/store'
+
 document.addEventListener('DOMContentLoaded', () => {
+  // get local storage here if needed
+  const store = configureStore();
   const root = document.getElementById('root')
-  ReactDOM.render(<h1>Hi from React!</h1>, root)
+  ReactDOM.render(<h1 store={store}>Hi from React!</h1>, root)
 })
