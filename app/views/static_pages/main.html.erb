@@ -1,5 +1,32 @@
-
-<div class="main">
+<div id="page-container">
+      <div id="content-wrap">
+        
+        <div id="header" class="header">
+          <div class="header__left">
+            <p>Mousehunt Collector</p>
+          </div>
+          <div class="header__right">
+            <% if current_user %>
+              <div class="welcome-container">
+                <div class="welcome-message">Welcome, </div>
+                <div class="welcome-name"><%= link_to  current_user.name, user_path(current_user) %> </div>
+              </div>
+              <div class="logout-container">
+                <form action="<%= session_path %>" method="post">
+                  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+                  <input type="hidden" name="_method" value="delete">
+                  <input type="submit" value="Logout">
+                </form>
+              </div>
+            <% else %>
+              <%= link_to  "Sign in", new_session_url%>
+              <%= link_to  "Sign up", new_user_path %>
+            <% end %>
+          </div>
+        </div>
+      
+        <div id="content-body">
+          <div class="main">
   <h3>Welcome to Mousehunt Collector</h3>
   <p>This app is designed as a companion to players of the game <%= link_to  "Mousehunt", "https://www.mousehuntgame.com" %>, which is also available on Facebook. Having been a slow but steady player over the last 9 years, I decided it was time to put away my excel spreadsheet and develop a better inventory acquisition tracker.
   <p>This is a place to search and review all of the available Weapons, Bases, and other collectible items needed to play the game. If you'd like a better understanding, please see the <%= link_to  "MH Wiki", "https://mhwiki.hitgrab.com/wiki/index.php/MouseHunt_Wiki" %>
@@ -19,3 +46,21 @@
     <p>Items add/edit forms now category specific and have stats on the same model</p>
 
 </div>
+
+        </div>
+      </div>
+      
+      <div id="footer" class="footer-content">
+        <small>Copyright © 2020 Christina Kiesz</small><%= link_to  "Back to Main", root_path %><%= link_to  "Source code on Github", 'https://github.com/ck4adventure/mhdb' %>
+      </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
