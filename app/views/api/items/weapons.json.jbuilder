@@ -1,4 +1,4 @@
-json.weapons @weapons do |wep|
+json.array! @weapons do |wep|
   json.id wep.id
   json.itype wep.itype
   json.name wep.name
