@@ -2,12 +2,18 @@ import { connect } from 'react-redux'
 
 import ItemsIndex from './items_index'
 
-const mapStateToProps = () => ({
+//actions
+import { fetchWeapons } from '../../actions/weapons_actions'
 
+//selectors
+import { toArray } from '../../reducers/selectors'
+
+const mapStateToProps = state => ({
+  weapons: toArray(state.weapons),
 });
 
-const mapDispatchToProps = () => ({
-
+const mapDispatchToProps = dispatch => ({
+  requestWeapons: () => dispatch(fetchWeapons()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ItemsIndex);
