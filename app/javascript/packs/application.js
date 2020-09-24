@@ -22,9 +22,15 @@ import ReactDOM from 'react-dom'
 import configureStore from '../store/store'
 import Root from '../components/root'
 
+import { receiveWeapons, fetchWeapons } from '../actions/weapons_actions'
+import * as ItemsApiUtil from '../util/items_api' 
+
 document.addEventListener('DOMContentLoaded', () => {
   // get local storage here if needed
   const store = configureStore();
+  window.dispatch = store.dispatch;
+  window.getState = store.getState;
+  window.fetchWeapons = fetchWeapons;
   const root = document.getElementById('root')
   ReactDOM.render(<Root store={store}/>, root)
 })
