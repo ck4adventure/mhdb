@@ -3,14 +3,12 @@
 #                                Prefix Verb   URI Pattern                                                                              Controller#Action
 #                                  root GET    /                                                                                        static_pages#root
 #                                  main GET    /main(.:format)                                                                          static_pages#main
-#                             api_items GET    /api/items(.:format)                                                                     api/items#index
-#                                       POST   /api/items(.:format)                                                                     api/items#create
-#                          new_api_item GET    /api/items/new(.:format)                                                                 api/items#new
-#                         edit_api_item GET    /api/items/:id/edit(.:format)                                                            api/items#edit
-#                              api_item GET    /api/items/:id(.:format)                                                                 api/items#show
-#                                       PATCH  /api/items/:id(.:format)                                                                 api/items#update
+#                             api_items POST   /api/items(.:format)                                                                     api/items#create
+#                              api_item PATCH  /api/items/:id(.:format)                                                                 api/items#update
 #                                       PUT    /api/items/:id(.:format)                                                                 api/items#update
 #                                       DELETE /api/items/:id(.:format)                                                                 api/items#destroy
+#                     api_items_weapons GET    /api/items/weapons(.:format)                                                             api/items#weapons
+#                       api_items_bases GET    /api/items/bases(.:format)                                                               api/items#bases
 #                                 users POST   /users(.:format)                                                                         users#create
 #                              new_user GET    /users/new(.:format)                                                                     users#new
 #                             edit_user GET    /users/:id/edit(.:format)                                                                users#edit
@@ -56,7 +54,26 @@
 #                                       DELETE /items/:id(.:format)                                                                     items#destroy
 #                         category_page GET    /:category(.:format)                                                                     items#category
 #                                       GET    /items/:category(.:format)                                                               items#category
-
+#         rails_postmark_inbound_emails POST   /rails/action_mailbox/postmark/inbound_emails(.:format)                                  action_mailbox/ingresses/postmark/inbound_emails#create
+#            rails_relay_inbound_emails POST   /rails/action_mailbox/relay/inbound_emails(.:format)                                     action_mailbox/ingresses/relay/inbound_emails#create
+#         rails_sendgrid_inbound_emails POST   /rails/action_mailbox/sendgrid/inbound_emails(.:format)                                  action_mailbox/ingresses/sendgrid/inbound_emails#create
+#   rails_mandrill_inbound_health_check GET    /rails/action_mailbox/mandrill/inbound_emails(.:format)                                  action_mailbox/ingresses/mandrill/inbound_emails#health_check
+#         rails_mandrill_inbound_emails POST   /rails/action_mailbox/mandrill/inbound_emails(.:format)                                  action_mailbox/ingresses/mandrill/inbound_emails#create
+#          rails_mailgun_inbound_emails POST   /rails/action_mailbox/mailgun/inbound_emails/mime(.:format)                              action_mailbox/ingresses/mailgun/inbound_emails#create
+#        rails_conductor_inbound_emails GET    /rails/conductor/action_mailbox/inbound_emails(.:format)                                 rails/conductor/action_mailbox/inbound_emails#index
+#                                       POST   /rails/conductor/action_mailbox/inbound_emails(.:format)                                 rails/conductor/action_mailbox/inbound_emails#create
+#     new_rails_conductor_inbound_email GET    /rails/conductor/action_mailbox/inbound_emails/new(.:format)                             rails/conductor/action_mailbox/inbound_emails#new
+#    edit_rails_conductor_inbound_email GET    /rails/conductor/action_mailbox/inbound_emails/:id/edit(.:format)                        rails/conductor/action_mailbox/inbound_emails#edit
+#         rails_conductor_inbound_email GET    /rails/conductor/action_mailbox/inbound_emails/:id(.:format)                             rails/conductor/action_mailbox/inbound_emails#show
+#                                       PATCH  /rails/conductor/action_mailbox/inbound_emails/:id(.:format)                             rails/conductor/action_mailbox/inbound_emails#update
+#                                       PUT    /rails/conductor/action_mailbox/inbound_emails/:id(.:format)                             rails/conductor/action_mailbox/inbound_emails#update
+#                                       DELETE /rails/conductor/action_mailbox/inbound_emails/:id(.:format)                             rails/conductor/action_mailbox/inbound_emails#destroy
+# rails_conductor_inbound_email_reroute POST   /rails/conductor/action_mailbox/:inbound_email_id/reroute(.:format)                      rails/conductor/action_mailbox/reroutes#create
+#                    rails_service_blob GET    /rails/active_storage/blobs/:signed_id/*filename(.:format)                               active_storage/blobs#show
+#             rails_blob_representation GET    /rails/active_storage/representations/:signed_blob_id/:variation_key/*filename(.:format) active_storage/representations#show
+#                    rails_disk_service GET    /rails/active_storage/disk/:encoded_key/*filename(.:format)                              active_storage/disk#show
+#             update_rails_disk_service PUT    /rails/active_storage/disk/:encoded_token(.:format)                                      active_storage/disk#update
+#                  rails_direct_uploads POST   /rails/active_storage/direct_uploads(.:format)                                           active_storage/direct_uploads#create
 
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
@@ -65,7 +82,9 @@ Rails.application.routes.draw do
   get '/main', to: 'static_pages#main'
 
   namespace :api do
-    resources :items
+    resources :items, only: [:create, :update, :destroy]
+    get 'items/weapons', to: 'items#weapons'
+    get 'items/bases', to: 'items#bases'
   end
 
   resources :users, except: [:index]
