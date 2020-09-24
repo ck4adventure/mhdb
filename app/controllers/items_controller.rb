@@ -3,14 +3,9 @@ class ItemsController < ApplicationController
   def index
     @items = Item.all
   end
+  
   def show
     @item = Item.find(params[:id])
-  end
-
-  def category 
-    @category = Category.find_by(name: params[:category])
-    @items = Item.where(category_id: @category.id)
-    @item = Item.new(category_id: @category.id)
   end
 
   def new
@@ -20,7 +15,7 @@ class ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     if @item.save
-      redirect_to category_page_path(@item.category.name)
+      redirect_to item_path(@item)
     else
       flash.now[:errors] = @item.errors.full_messages
       render :new
@@ -49,6 +44,6 @@ class ItemsController < ApplicationController
 
   private
   def item_params
-    params.require(:item).permit(:name, :le, :category_id, :power, :p_bonus, :attr_bonus, :luck, :cheese_effect, :power_type)
+    params.require(:item).permit(:name, :le, :itype, :power, :p_bonus, :attr_bonus, :luck, :cheese_effect, :power_type)
   end
 end

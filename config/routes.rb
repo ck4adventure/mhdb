@@ -84,7 +84,4 @@ Rails.application.routes.draw do
 
   resources :items
 
-  get ':category', to: 'items#category', as: 'category_page'
-  get 'items/:category', to: 'items#category'
-
 end
