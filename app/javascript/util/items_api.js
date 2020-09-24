@@ -12,5 +12,11 @@ export const fetchItem = (item_id) => $.ajax({
 export const fetchWeapons = () => $.ajax({
   type: "GET",
   url: "api/items/weapons",
+  dataType: 'json',
+})
+
+export const fetchWeapon = (id) => $.ajax({
+  type: "GET",
+  url: "api/items/${item_id}",
 })
 
