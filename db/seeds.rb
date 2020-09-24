@@ -174,13 +174,3 @@ end
 unless User.find_by(email: "hello")
   you = User.create(name: "Guest", email: "hello", rank_id: Rank.first)
 end
-
-# Categories aka Item Types
-
-categories = [
-  "bait", "base", "charm", "collectible", "convertible", "crafting", "map_piece", "special", "weapon", "trap_skin",
-]
-
-categories.each do |catty|
-  Category.find_or_create_by!(name: catty)
-end

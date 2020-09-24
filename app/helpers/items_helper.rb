@@ -1,8 +1,8 @@
 module ItemsHelper
 
-  def category_options
-    Category.all.pluck(:name, :id)
-    # opts.map { |opt_pair| [opt_pair[0], opt_pair[0]] }
+  def itypes_options
+    opts = Item.itypes.to_a
+    opts.map { |opt_pair| [opt_pair[0], opt_pair[0]] }
   end
 
   def power_types_options

@@ -5,7 +5,7 @@
 <% elsif @item.trap_item? %>
   <%= render partial: "items/stats/stats_table_base_charm" %>
 <% else %>
-  <p>This item is used as/for <%= @item.category.name %>.</p>
+  <p>This item is used as/for <%= @item.itype %>.</p>
   <p>Limited Edition? <%= @item.le ? "Yep" : "Nope" %> </p>
   <br>
 <% end %>

@@ -5,6 +5,7 @@
 #  id            :bigint           not null, primary key
 #  attr_bonus    :integer
 #  cheese_effect :integer
+#  itype         :integer          default("special"), not null
 #  le            :boolean          default(FALSE), not null
 #  luck          :integer
 #  name          :string           not null
@@ -13,49 +14,36 @@
 #  power_type    :integer
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
-#  category_id   :integer          not null
 #
 # Indexes
 #
-#  index_items_on_category_id  (category_id)
-#  index_items_on_le           (le)
-#  index_items_on_name         (name) UNIQUE
-#  index_items_on_power_type   (power_type)
+#  index_items_on_le          (le)
+#  index_items_on_name        (name) UNIQUE
+#  index_items_on_power_type  (power_type)
 #
 require 'rails_helper'
 
 RSpec.describe Item, type: :model do
   describe 'properties and their validations' do
-    describe 'it must have a unique name and a category' do
+    describe 'ensure that' do
       let(:item) { build(:item) }
-      it 'is valid when given valid values' do
+      it 'a non-trap item is valid when given valid values' do
         expect(item.valid?).to be true
       end
     end
 
-    describe 'shouldas' do
+    describe 'any non-trap item' do
       subject { build(:item) }
       it { should validate_presence_of(:name) }
       it { should validate_uniqueness_of(:name) }
-      it do
-        pending
-        should validate_presence_of(:category_id) 
-      end
+      it { should validate_presence_of(:itype) }
       it { should validate_presence_of(:le).allow_nil }
-      it { should validate_presence_of(:power_type).allow_nil }
-      it { should validate_presence_of(:power).allow_nil }
-      it { should validate_presence_of(:p_bonus).allow_nil }
-      it { should validate_presence_of(:attr_bonus).allow_nil }
-      it { should validate_presence_of(:luck).allow_nil }
-      it { should validate_presence_of(:cheese_effect).allow_nil }
-    end
-
-    describe 'assocation shouldas' do
-      subject { build(:item) }
-      it do
-        pending
-        should belong_to(:category) 
-      end
+      it { should validate_absence_of(:power_type) }
+      it { should validate_absence_of(:power) }
+      it { should validate_absence_of(:p_bonus) }
+      it { should validate_absence_of(:attr_bonus) }
+      it { should validate_absence_of(:luck) }
+      it { should validate_absence_of(:cheese_effect) }
     end
 
     describe 'it has an optional col for limited edition' do
@@ -106,4 +94,15 @@ RSpec.describe Item, type: :model do
 
   it { should define_enum_for(:cheese_effect) }
   it { should define_enum_for(:power_type) }
+  it { should define_enum_for(:itype) }
+  
+  it { should have_db_column(:name) }
+  it { should have_db_column(:itype) }
+  it { should have_db_column(:le) }
+  it { should have_db_column(:power_type) }
+  it { should have_db_column(:power) }
+  it { should have_db_column(:p_bonus) }
+  it { should have_db_column(:attr_bonus) }
+  it { should have_db_column(:luck) }
+  it { should have_db_column(:cheese_effect) }
 end

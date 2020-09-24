@@ -6,13 +6,6 @@
   <p>Want to help add some stuff? Just make an account to unlock access.</p>
 <% end %>
 
-<h4>Items are of the following types, click on one for more info.</h4>
-<ul>
-<% Category.all.each do |cat| %>
-  <li><%= link_to  cat.name.titleize, category_page_path(cat.name) %></li>
-<% end %>
-</ul>
-<br>
 
 <br>
 <br>

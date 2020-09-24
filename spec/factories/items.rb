@@ -5,6 +5,7 @@
 #  id            :bigint           not null, primary key
 #  attr_bonus    :integer
 #  cheese_effect :integer
+#  itype         :integer          default("special"), not null
 #  le            :boolean          default(FALSE), not null
 #  luck          :integer
 #  name          :string           not null
@@ -13,27 +14,25 @@
 #  power_type    :integer
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
-#  category_id   :integer          not null
 #
 # Indexes
 #
-#  index_items_on_category_id  (category_id)
-#  index_items_on_le           (le)
-#  index_items_on_name         (name) UNIQUE
-#  index_items_on_power_type   (power_type)
+#  index_items_on_le          (le)
+#  index_items_on_name        (name) UNIQUE
+#  index_items_on_power_type  (power_type)
 #
 FactoryBot.define do
   factory :item do
     name { Faker::JapaneseMedia::SwordArtOnline.item }
     le { false }
-    category
+    itype { "bait" }
 
     trait :limited_edition do
       le { true }
     end
 
     trait :weapon do
-      category factory: :category, name: "weapon"
+      itype { "weapon" }
       power_type { "arcane" }
       power { Faker::Number.between(from: 100, to: 1000) }
       p_bonus { Faker::Number.between(from: 0, to: 20) }
@@ -43,7 +42,7 @@ FactoryBot.define do
     end
 
     trait :base do
-      category factory: :category, name: "base"
+      itype { "base" }
       power { Faker::Number.between(from: 100, to: 1000) }
       p_bonus { Faker::Number.between(from: 0, to: 20) }
       attr_bonus { Faker::Number.between(from: 0, to: 10) }
@@ -51,7 +50,7 @@ FactoryBot.define do
       cheese_effect { Faker::Number.between(from: -6, to: 6) }
     end
 
-    trait :hyrdo do
+    trait :hydro do
       power_type { "hydro" }
     end
 
