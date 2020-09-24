@@ -1,0 +1,1 @@
+export const toArray =  items  => Object.keys(items).map(key => items[key]);
