@@ -3,6 +3,7 @@ import React from 'react'
 class ItemsIndex extends React.Component {
   componentDidMount() {
     this.props.requestWeapons();
+    this.props.requestBases();
   }
 
   render() {
@@ -24,11 +25,11 @@ class ItemsIndex extends React.Component {
       <div>
         <h4>Weapons</h4>
         <ul>
-          { weaponsArr.map(el => <li>{el.name}</li>) }
+          { weaponsArr.map(el => <li key={el.id}>{el.name}</li>) }
         </ul>
         <h4>Bases</h4>
         <ul>
-          { basesArr.map(el => <li>{el.name}</li>) }
+          { basesArr.map(el => <li key={el.id}>{el.name}</li>) }
         </ul>
       </div>
     );

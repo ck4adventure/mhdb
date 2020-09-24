@@ -1,4 +1,4 @@
-json.bases @bases do |base|
+json.array! @bases do |base|
   json.id base.id
   json.name base.name
   json.power base.power
