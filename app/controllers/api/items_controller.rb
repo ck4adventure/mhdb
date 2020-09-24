@@ -1,16 +1,19 @@
 class Api::ItemsController < ApplicationController
-  before_action :require_signed_in!, except: [:index, :show, :category]
+  # before_action :require_signed_in!, except: [:index, :show, :category]
   def index
     @items = Item.all
   end
+  
   def show
     @item = Item.find(params[:id])
   end
 
-  def category 
-    @category = Category.find_by(name: params[:category])
-    @items = Item.where(category_id: @category.id)
-    @item = Item.new(category_id: @category.id)
+  def weapons
+    @weapons = Item.weapon
+  end
+
+  def bases
+    @bases = Item.base
   end
 
   def new
