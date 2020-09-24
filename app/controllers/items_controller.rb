@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :require_signed_in!, except: [:index, :show, :category]
+  before_action :require_signed_in!, except: [:index, :show]
   def index
     @items = Item.all
   end
