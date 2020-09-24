@@ -6,6 +6,11 @@
   <p>Want to help add some stuff? Just make an account to unlock access.</p>
 <% end %>
 
+<ul>
+  <% @items.each do |item| %>
+    <li><%= item.name %></li>
+  <% end %>
+</ul>
 
 <br>
 <br>
