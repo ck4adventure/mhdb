@@ -1,14 +1,15 @@
 # == Route Map
 #
 #                                Prefix Verb   URI Pattern                                                                              Controller#Action
-#                                  root GET    /                                                                                        static_pages#root
+#                                  root GET    /                                                                                        static_pages#main
 #                                  main GET    /main(.:format)                                                                          static_pages#main
+#                                   app GET    /app(.:format)                                                                           static_pages#root
+#                     api_items_weapons GET    /api/items/weapons(.:format)                                                             api/items#weapons
+#                       api_items_bases GET    /api/items/bases(.:format)                                                               api/items#bases
 #                             api_items POST   /api/items(.:format)                                                                     api/items#create
 #                              api_item PATCH  /api/items/:id(.:format)                                                                 api/items#update
 #                                       PUT    /api/items/:id(.:format)                                                                 api/items#update
 #                                       DELETE /api/items/:id(.:format)                                                                 api/items#destroy
-#                     api_items_weapons GET    /api/items/weapons(.:format)                                                             api/items#weapons
-#                       api_items_bases GET    /api/items/bases(.:format)                                                               api/items#bases
 #                                 users POST   /users(.:format)                                                                         users#create
 #                              new_user GET    /users/new(.:format)                                                                     users#new
 #                             edit_user GET    /users/:id/edit(.:format)                                                                users#edit
@@ -55,9 +56,10 @@
 
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  root 'static_pages#root'
+  root 'static_pages#main'
 
   get '/main', to: 'static_pages#main'
+  get '/app', to: 'static_pages#root'
 
   namespace :api do
     get 'items/weapons', to: 'items#weapons'
