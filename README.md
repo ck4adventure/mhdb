@@ -17,13 +17,18 @@ Main user story: As a mousehunt player, I want an app to track my weapons and sp
 
 ## Upcoming next few days
 - Finishing up Feature: Basic Items
-  - Need to remove ItemStats table and save that info direct on Item, with create/update controls on whether or not stats req'd
-  - Then create two custom forms: for Items with stats and without
-  - This solves the stats on edit bug
   - Add some details on list views, make sure things capitalized and spaced
+  - Add React Tables and Forms
+  - Add Jest testing
 - Once POC stable with Items, catalog current features and rewrite the cucumber files and request specs accordingly before it gets too big
 
 ## Updates
+  - Fri, Sept 25: after a bit of break due to personal, here's what did get done
+    - ItemsStats moved to Item
+    - Category moved to Item
+    - React is up an running on '/', Rails Views available at '/main'
+    - React/Redux/Thunks/Router
+
   - Sat, Sept 12, changed items add into a quickadd form only for each category, can put stats in on edit.
   - Friday's reset: 
     - Ended up creating a table for category instead of enum, rewired specs, controllers, views. 
