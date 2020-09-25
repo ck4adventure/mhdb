@@ -26,7 +26,7 @@ Main user story: As a mousehunt player, I want an app to track my weapons and sp
   - Fri, Sept 25: after a bit of break due to personal, here's what did get done
     - ItemsStats moved to Item
     - Category moved to Item
-    - React is up an running on '/', Rails Views available at '/main'
+    - React is up an running on '/app, Rails Views available as default and at '/main'
     - React/Redux/Thunks/Router
 
   - Sat, Sept 12, changed items add into a quickadd form only for each category, can put stats in on edit.
