@@ -60,27 +60,42 @@ a:active{
   height: 2.5rem;
   background-color: rgba(63, 88, 134, 0.5);
 }
-.header {
-  display: flex;
-  justify-content: space-between;
-  height: 52px;
-  align-items: center;
-  margin: 0px;
-  border-bottom: 3px solid $color-main;
-}
 
-.header__left {
+.wordmark {
+  font-size: 24px;
   color: $color-main;
-  font-size: 26px;
-  margin-left: 8px;
 }
 
-.header__right {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-right: 8px;
+.header {
+  
+  &__container {
+
+    display: flex;
+    justify-content: space-between;
+    height: 52px;
+    align-items: center;
+    margin: 0px;
+    border-bottom: 3px solid $color-main;
+
+    &--left {
+      margin-left: 8px;
+    }
+    &--right {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-right: 8px;
+    }
+  }
+
+
+
 }
+.user-info {
+  padding: 10px;
+  color: $color-main;
+}
+
 
 .header__right > a {
   margin: 6px;
