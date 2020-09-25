@@ -16,7 +16,7 @@ export const receiveBase = base => ({
 
 
 // async actions
-export const fetchBases = () => dispatch => (
+export const fetchAllBases = () => dispatch => (
   ItemsApiUtil.fetchBases()
     .then(
       bases => dispatch(receiveBases(bases)),

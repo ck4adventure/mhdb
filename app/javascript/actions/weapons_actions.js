@@ -16,7 +16,7 @@ export const receiveWeapon = weapon => ({
 
 
 // async actions
-export const fetchWeapons = () => dispatch => (
+export const fetchAllWeapons = () => dispatch => (
   ItemsApiUtil.fetchWeapons()
     .then(
       weapons => dispatch(receiveWeapons(weapons)),
