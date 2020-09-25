@@ -7,15 +7,24 @@ import { fetchWeapons } from '../../actions/weapons_actions'
 import { fetchBases } from '../../actions/bases_actions'
 
 //selectors
-import { toArray } from '../../reducers/selectors'
+import { toArray, byPowerType } from '../../reducers/selectors'
 
 const mapStateToProps = state => ({
-  weapons: toArray(state.weapons),
+  arcaneWeapons: byPowerType(state.weapons, "arcane"),
+  draconicWeapons: byPowerType(state.weapons, "draconic"),
+  forgottenWeapons: byPowerType(state.weapons, "forgotten"),
+  hydroWeapons: byPowerType(state.weapons, "hydro"),
+  lawWeapons: byPowerType(state.weapons, "law"),
+  parentalWeapons: byPowerType(state.weapons, "parental"),
+  physicalWeapons: byPowerType(state.weapons, "physical"),
+  riftWeapons: byPowerType(state.weapons, "rift"),
+  shadowWeapons: byPowerType(state.weapons, "shadow"),
+  tacticalWeapons: byPowerType(state.weapons, "tactical"),
   bases: toArray(state.bases),
 });
 
 const mapDispatchToProps = dispatch => ({
-  requestWeapons: () => dispatch(fetchWeapons()),
+  requestAllWeapons: () => dispatch(fetchWeapons()),
   requestBases: () => dispatch(fetchBases()),
 });
 
