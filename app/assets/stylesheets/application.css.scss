@@ -49,8 +49,13 @@ a:active{
 }
 
 #content-body {
-  flex-direction: column;
-  margin: 20px 100px;
+
+}
+
+.app {
+  &__main {
+    display: flex;
+  }
 }
 
 #footer {
@@ -66,56 +71,6 @@ a:active{
   color: $color-main;
 }
 
-.header {
-  
-  &__container {
-
-    display: flex;
-    justify-content: space-between;
-    height: 52px;
-    align-items: center;
-    margin: 0px;
-    border-bottom: 3px solid $color-main;
-
-    &--left {
-      margin-left: 8px;
-    }
-    &--right {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-right: 8px;
-    }
-  }
-
-
-
-}
-.user-info {
-  padding: 10px;
-  color: $color-main;
-}
-
-
-.header__right > a {
-  margin: 6px;
-}
-
-.welcome-container {
-  display: flex;
-  justify-content: space-between;
-  margin-right: 12px;
-}
-
-.welcome-message {
-  margin-right: 4px
-}
-
-.logout-container {
-  display: flex;
-  justify-content: center;
-}
-
 .footer-content {
   display: flex;
   justify-content: space-between;
@@ -128,4 +83,8 @@ a {
   margin: 0;
   padding: 0;
   
+}
+
+body {
+  margin: 0;
 }

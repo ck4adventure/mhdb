@@ -1,0 +1,29 @@
+$color-main: rgb(59, 10, 150);
+
+.header {
+  
+  &__container {
+
+    display: flex;
+    justify-content: space-between;
+    height: 52px;
+    align-items: center;
+    margin: 0px;
+    border-bottom: 3px solid $color-main;
+
+    &--left {
+      margin-left: 8px;
+    }
+    &--right {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-right: 8px;
+    }
+  }
+}
+
+.user-info {
+  padding: 10px;
+  color: $color-main;
+}
