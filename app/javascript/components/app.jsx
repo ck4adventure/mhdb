@@ -1,7 +1,7 @@
 import React from 'react'
 
 import Header from './header/header_container'
-import MainPage from './main_page/main_page'
+import MainPage from './main_page/main_page_container'
 import SideNav from './side_nav/side_nav'
 import Footer from './footer/footer'
 
