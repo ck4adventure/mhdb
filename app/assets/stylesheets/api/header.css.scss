@@ -9,7 +9,7 @@ $color-main: rgb(59, 10, 150);
     height: 52px;
     align-items: center;
     margin: 0px;
-    border-bottom: 3px solid $color-main;
+    border-bottom: 6px double $color-main;
 
     &--left {
       margin-left: 8px;

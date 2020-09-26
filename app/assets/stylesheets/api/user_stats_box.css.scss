@@ -1,0 +1,17 @@
+$color-main: rgb(59, 10, 150);
+.userstats__container {
+  display: flex;
+  justify-content: center;
+}
+
+.userstats__box {
+  margin: 40px;
+  align-self: center;
+  min-width: 200px;
+  border: 6px double $color-main;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 10px;
+}

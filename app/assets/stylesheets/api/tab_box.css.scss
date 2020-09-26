@@ -1,0 +1,23 @@
+.tab_box {
+  
+
+  &__container {
+    border: 1px solid lightgrey;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__header {
+    display: flex;
+    flex-direction: row;
+  }
+  &__header_item{
+    font-weight: bold;
+  }
+
+  &__content {
+    min-height: 150px;
+  }
+
+
+}

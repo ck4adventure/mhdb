@@ -1,13 +1,13 @@
 import React from 'react';
 import ItemsIndex from '../items/items_container'
+import UserStatsBox from './user_stats_box'
+import TabBox from './tab_box'
 
 const MainPage = () => {
   return (
     <div className="main_page__container">
-      <div className="userstats__container">
-        <h4>Welcome, Huntress</h4>
-        <div>Stats are coming soon.</div>
-      </div>
+      <UserStatsBox />
+      <TabBox />
       <ItemsIndex />
     </div>
   )
