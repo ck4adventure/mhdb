@@ -1,20 +1,19 @@
 import React from 'react'
 import TrapsTable from '../items/traps_table'
 
-const TabBox = () => {
+const WeaponsTabBox = (data) => {
+
+  console.log(data.infos)
+  const headerItems = data.infos.map((info, i) =>
+    <div key={i}className="tab_box__header_item">
+      {info.title}
+    </div>
+  );
 
   return (
     <div className="tab_box__container">
       <div className="tab_box__header">
-        <div className="tab_box__header_item">
-          Arcane
-        </div>
-        <div className="tab_box__header_item">
-          Physical
-        </div>
-        <div className="tab_box__header_item">
-          Rift
-        </div>
+      { headerItems }
       </div>
       <div className="tab_box__content">
         Table Content will Go Here
@@ -22,4 +21,4 @@ const TabBox = () => {
     </div>
   )
 }
-export default TabBox
+export default WeaponsTabBox
