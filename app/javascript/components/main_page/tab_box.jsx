@@ -1,4 +1,5 @@
 import React from 'react'
+import TrapsTable from '../items/traps_table'
 
 const TabBox = () => {
 
@@ -6,13 +7,13 @@ const TabBox = () => {
     <div className="tab_box__container">
       <div className="tab_box__header">
         <div className="tab_box__header_item">
-          Header1
+          Arcane
         </div>
         <div className="tab_box__header_item">
-          Header2
+          Physical
         </div>
         <div className="tab_box__header_item">
-          Header3
+          Rift
         </div>
       </div>
       <div className="tab_box__content">
