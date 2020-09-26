@@ -3,7 +3,7 @@ import React from 'react'
 class Header extends React.Component {
   render(){
     return (
-      <div className="header__container"> 
+      <div id="header" className="header__container"> 
         <div className="header__container--left">
           <div className="header wordmark">
             MouseHunt Collector
