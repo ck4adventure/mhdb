@@ -1,24 +1,57 @@
 import React from 'react'
-import TrapsTable from '../items/traps_table'
+import TrapsTable from '../items/traps_table_container'
 
-const WeaponsTabBox = (data) => {
+class WeaponsTabBox extends React.Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      selectedTab: 0,
+      isLoading: true,
+    };
+    this.selectTab = this.selectTab.bind(this);
+  }
 
-  console.log(data.infos)
-  const headerItems = data.infos.map((info, i) =>
+  componentDidMount(){
+    this.setState({isLoading: false});
+  }
+
+  
+
+  selectTab(num) {
+    this.setState({selectedTab: num});
+  }
+
+
+  
+  render () {
+    const pane = this.props.panes[this.state.selectedTab];
+    const { panes } = this.props
+
+    const headerItems = panes.map((pane, i) =>
     <div key={i}className="tab_box__header_item">
-      {info.title}
+      {pane.title}
     </div>
-  );
+    ); 
+    
+    
+    if (this.state.isLoading) {
+      console.log("not yet");
+      return <div>Loading...</div>
+    } else {
+      console.log("props exist");
+      return (
+        <div className="tab_box__container">
+          <div className="tab_box__header">
+          { headerItems }
+          </div>
+          <div className="tab_box__content table-container">
+            <TrapsTable weaponsType={pane.power_type} />
+          </div>
+        </div>
+      );
+    }
+   
 
-  return (
-    <div className="tab_box__container">
-      <div className="tab_box__header">
-      { headerItems }
-      </div>
-      <div className="tab_box__content">
-        Table Content will Go Here
-      </div>
-    </div>
-  )
+  }
 }
 export default WeaponsTabBox
