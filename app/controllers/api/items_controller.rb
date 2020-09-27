@@ -9,7 +9,8 @@ class Api::ItemsController < ApplicationController
   end
 
   def weapons
-    @weapons = Item.weapon
+    @weapons = Item.all
+    @power_types = Item.power_types.keys
   end
 
   def bases
