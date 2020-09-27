@@ -1,19 +1,19 @@
 import { connect } from 'react-redux';
 
-import * as ItemsApiUtil from '../../util/items_api'
-import { byPowerType } from '../../reducers/selectors';
 import { fetchAllWeapons }from '../../actions/weapons_actions';
+import { fetchAllBases }from '../../actions/bases_actions';
 
 import MainPage from './main_page'
 
 const mapStateToProps = (state, ownProps) => ({
-  tableWeapons: byPowerType(state.weapons, "physical"),
+  ptypes: Object.keys(state.weapons),
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    requestAllWeapons: () => {
-      dispatch(fetchAllWeapons());
+    requestAllWeapons: () => { dispatch(fetchAllWeapons()); },
+    requestAllBases: () => {
+      dispatch(fetchAllBases());
     }
   };
 };
