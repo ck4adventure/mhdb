@@ -14,11 +14,18 @@ $color-main: rgb(59, 10, 150);
     justify-content: space-between;
   }
 
-  &__weapons-stats {
+  &__weapons_stats_container {
     display: flex;
+  }
+
+  &__weapons-stats-box {
+    max-width: 350px;
+    display: flex;
+    flex-wrap: wrap;
 
   }
   &__item-box {
+    border: 1px solid gainsboro;
     align-self: center;
     display: flex;
     flex-direction: column;
@@ -30,3 +37,5 @@ $color-main: rgb(59, 10, 150);
     font-size: 14px;
   }
 }
+
+* { }
