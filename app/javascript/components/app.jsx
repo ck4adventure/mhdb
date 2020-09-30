@@ -18,12 +18,16 @@ import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 
+
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import Switch from '@material-ui/core/Switch';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormGroup from '@material-ui/core/FormGroup';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
+
+import Main from './main_page/main';
+
 
 const drawerWidth = 240;
 
@@ -78,6 +82,8 @@ const useStyles = makeStyles((theme) => ({
       duration: theme.transitions.duration.leavingScreen,
     }),
     marginLeft: -drawerWidth,
+    display: 'flex',
+    justifyContent: 'center',
   },
   contentShift: {
     transition: theme.transitions.create('margin', {
@@ -85,10 +91,10 @@ const useStyles = makeStyles((theme) => ({
       duration: theme.transitions.duration.enteringScreen,
     }),
     marginLeft: 0,
-  },
+  }
 }));
 
-export default function PersistentDrawerLeft() {
+export default function App() {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
@@ -167,7 +173,7 @@ export default function PersistentDrawerLeft() {
                 onClose={handleClose}
               >
                 <MenuItem onClick={handleClose}>Profile</MenuItem>
-                <MenuItem onClick={handleClose}>My account</MenuItem>
+                <MenuItem onClick={handleClose}>Log Out</MenuItem>
               </Menu>
             </div>
           )}
@@ -214,19 +220,7 @@ export default function PersistentDrawerLeft() {
           [classes.contentShift]: open,
         })}
       >
-        <div className={classes.drawerHeader} />
-        <FormGroup>
-        <FormControlLabel
-          control={<Switch checked={auth} onChange={handleChange} aria-label="login switch" />}
-          label={auth ? 'Logout' : 'Login'}
-        />
-      </FormGroup>
-        <Typography paragraph>
-          Two
-        </Typography>
-        <Typography paragraph>
-          One
-        </Typography>
+        <Main />
       </main>
     </div>
   );
