@@ -1,4 +1,5 @@
 import React from 'react';
+import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -8,10 +9,31 @@ import MenuIcon from '@material-ui/icons/Menu';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
+import { FormatColorTextSharp } from '@material-ui/icons';
+
+const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
   root: {
+    display: 'flex',
     flexGrow: 1,
+  },
+  appBar: {
+    transition: theme.transitions.create(['margin', 'width'], {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen,
+    }),
+  },
+  appBarShift: {
+    width: `calc(100% - ${drawerWidth}px)`,
+    marginLeft: drawerWidth,
+    transition: theme.transitions.create(['margin', 'width'], {
+      easing: theme.transitions.easing.easeOut,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
+  },
+  hide: {
+    display: 'none',
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -23,9 +45,10 @@ const useStyles = makeStyles((theme) => ({
 
 export default function CustomAppBar() {
   const classes = useStyles();
+  const theme = useTheme();
   const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const open = Boolean(anchorEl);
+  const [open, setOpen] = React.useState(false);
 
   const handleChange = (event) => {
     setAuth(event.target.checked);
@@ -39,15 +62,29 @@ export default function CustomAppBar() {
     setAnchorEl(null);
   };
 
+  const handleDrawerOpen = () => {
+    setOpen(true);
+  };
+  const handleDrawerClose = () => {
+    setOpen(false);
+  };
+
+
   return (
     <div className={classes.root}>
-      <AppBar position="static">
+      <AppBar 
+        position="fixed"
+        className={clsx(classes.appBar, {
+          [classes.appBarShift]: open,
+        })}
+      >
         <Toolbar>
           <IconButton 
             edge="start" 
             className={classes.menuButton} 
+            onClick={handleDrawerOpen}
             color="inherit" 
-            aria-label="menu"
+            aria-label="open drawer"
           >
             <MenuIcon />
           </IconButton>
