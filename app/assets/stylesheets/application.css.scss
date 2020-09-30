@@ -88,3 +88,13 @@ a {
 body {
   margin: 0;
 }
+
+.icon {
+  width: 25px;
+  height: 25px;
+  -webkit-background-size: contain;
+  -moz-background-size: contain;
+  background-size: contain;
+  background-position: 50% 50%;
+  background-repeat: no-repeat
+}
