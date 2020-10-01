@@ -1,0 +1,38 @@
+$color-main: rgb(59, 10, 150);
+
+.tab_box {
+  &__container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__header {
+    display: flex;
+    flex-direction: row;
+  }
+  &__header_item{
+    font-weight: bold;
+    border-left: 1px solid $color-main;
+    border-top: 1px solid $color-main;
+    padding: 5px 10px;
+    border-radius: 5px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+
+    &:last-child {
+      border-right: 1px solid $color-main;
+    }
+
+  }
+
+
+  &__content {
+    min-height: 150px;
+    padding: 2px;
+    border: 1px solid $color-main;
+    border-radius: 2px;
+    border-top-left-radius: 0px;
+  }
+
+
+}

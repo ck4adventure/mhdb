@@ -49,8 +49,13 @@ a:active{
 }
 
 #content-body {
-  flex-direction: column;
-  margin: 20px 100px;
+
+}
+
+.app {
+  &__main {
+    display: flex;
+  }
 }
 
 #footer {
@@ -60,45 +65,10 @@ a:active{
   height: 2.5rem;
   background-color: rgba(63, 88, 134, 0.5);
 }
-.header {
-  display: flex;
-  justify-content: space-between;
-  height: 52px;
-  align-items: center;
-  margin: 0px;
-  border-bottom: 3px solid $color-main;
-}
 
-.header__left {
+.wordmark {
+  font-size: 24px;
   color: $color-main;
-  font-size: 26px;
-  margin-left: 8px;
-}
-
-.header__right {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-right: 8px;
-}
-
-.header__right > a {
-  margin: 6px;
-}
-
-.welcome-container {
-  display: flex;
-  justify-content: space-between;
-  margin-right: 12px;
-}
-
-.welcome-message {
-  margin-right: 4px
-}
-
-.logout-container {
-  display: flex;
-  justify-content: center;
 }
 
 .footer-content {
@@ -113,4 +83,18 @@ a {
   margin: 0;
   padding: 0;
   
+}
+
+body {
+  margin: 0;
+}
+
+.icon {
+  width: 25px;
+  height: 25px;
+  -webkit-background-size: contain;
+  -moz-background-size: contain;
+  background-size: contain;
+  background-position: 50% 50%;
+  background-repeat: no-repeat
 }

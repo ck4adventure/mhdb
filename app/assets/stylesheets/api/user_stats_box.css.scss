@@ -1,0 +1,41 @@
+$color-main: rgb(59, 10, 150);
+.userstats {
+  &__container {
+  display: flex;
+  flex-direction: column;
+  border: 6px double $color-main;
+  border-radius: 6px;
+  margin: 20px 0px;
+  }
+
+  &__greeting {
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__weapons_stats_container {
+    display: flex;
+  }
+
+  &__weapons-stats-box {
+    max-width: 350px;
+    display: flex;
+    flex-wrap: wrap;
+
+  }
+  &__item-box {
+    border: 1px solid gainsboro;
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    width: 45px;
+    height: 45px;
+    font-size: 14px;
+  }
+}
+
+* { }
