@@ -5,41 +5,64 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import { CardMedia } from '@material-ui/core';
+
 
 const useStyles = makeStyles({
   croot: {
-    // maxWidth: 150,
+    minWidth: 75,
     margin: 10,
     display: 'flex',
-    // flexDirection: 'column',
-    alignItems: 'center',
-  },
-  bullet: {
-    display: 'inline-block',
-    margin: '0 2px',
-    transform: 'scale(0.8)',
+    flexDirection: 'column',
+
   },
   content: {
-    padding: 4,
+    padding: 0,
+    margin: 4,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 0,
   },
   number_box: {
-    textAlign: 'center',
+    marginLeft: 6,
+    fontSize: 14,
+    color: 'blue',
+
+  },
+  media: {
+    height: 20,
+    width: 20,
+  },
+  button_box: {
+    padding: 0,
+    justifyContent: 'center',
+  },
+  button_text: {
+    fontSize: 11,
+    color: 'gray',
   }
 });
 
 export default function SimpleCard(props) {
   const classes = useStyles();
-  const bull = <span className={classes.bullet}>•</span>;
+  console.log(props)
+
 
   return (
     <Card className={classes.croot} variant="outlined">
       <CardContent className={classes.content}>
+        <CardMedia        
+            className={classes.media}
+            image={props.img}
+            title={props.name}
+        />
         <Typography className={classes.number_box}>
           19/23
         </Typography>
       </CardContent>
-      <CardActions>
-        <Button size="small">{props.name}</Button>
+      <CardActions className={classes.button_box}>
+        <Button size="small" className={classes.button_text}>{props.name}</Button>
       </CardActions>
     </Card>
   );
