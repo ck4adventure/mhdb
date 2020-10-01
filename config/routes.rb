@@ -56,7 +56,7 @@
 
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  root 'static_pages#main'
+  root 'static_pages#root'
 
   get '/main', to: 'static_pages#main'
   get '/app', to: 'static_pages#root'
