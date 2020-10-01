@@ -15,9 +15,16 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
+import { CardMedia } from '@material-ui/core';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 
+import Traps from '../images/traps.png';
+import Travel from '../images/travel.png';
+import Mice from '../images/mice';
+import Crafting from '../images/crafting';
+import Collectibles from '../images/collectibles.png';
+import Recruit from '../images/recruit.gif';
 
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import Switch from '@material-ui/core/Switch';
@@ -72,7 +79,8 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(0, 1),
     // necessary for content to be below app bar
     ...theme.mixins.toolbar,
-    justifyContent: 'flex-end',
+    justifyContent: 'space-between',
+    paddingLeft: 16,
   },
   content: {
     flexGrow: 1,
@@ -91,6 +99,10 @@ const useStyles = makeStyles((theme) => ({
       duration: theme.transitions.duration.enteringScreen,
     }),
     marginLeft: 0,
+  },
+  icon: {
+    height: 18,
+    width: 18,
   }
 }));
 
@@ -122,6 +134,33 @@ export default function App() {
   const handleDrawerClose = () => {
     setOpen(false);
   };
+
+  const list1Items = [{name: "Traps", img: Traps}, {name: "Locations", img: Travel }, {name: "Mice", img: Mice }].map((el, index) => (
+    <ListItem button key={el.name}>
+      <ListItemIcon>
+      <CardMedia        
+            className={classes.icon}
+            image={el.img}
+            title={el.name}
+        />
+      </ListItemIcon>
+      <ListItemText primary={el.name} />
+    </ListItem>
+  ));
+
+  const list2Items = [{name: "Crafting", img: Crafting}, {name: "Collectibles", img: Collectibles }, {name: "Ranks", img: Recruit }].map((el, index) => (
+    <ListItem button key={el.name}>
+      <ListItemIcon>
+      <CardMedia        
+            className={classes.icon}
+            image={el.img}
+            title={el.name}
+        />
+      </ListItemIcon>
+      <ListItemText primary={el.name} />
+    </ListItem>
+  ));
+
 
   return (
     <div className={classes.root}>
@@ -190,7 +229,7 @@ export default function App() {
       >
         <div className={classes.drawerHeader}>
           <Typography>
-            Go To
+            Quick Links
           </Typography>
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
@@ -198,21 +237,11 @@ export default function App() {
         </div>
         <Divider />
         <List>
-          {['Traps', 'Crafting', 'Shops', 'Locations'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
+          {list1Items}
         </List>
         <Divider />
         <List>
-          {['Mice', 'Ranks', 'All Items'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
+          {list2Items}
         </List>
       </Drawer>
       <main
