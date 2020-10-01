@@ -8,7 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import { CardMedia } from '@material-ui/core';
 
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme => ({
   croot: {
     minWidth: 75,
     margin: 10,
@@ -27,7 +27,7 @@ const useStyles = makeStyles({
   number_box: {
     marginLeft: 6,
     fontSize: 14,
-    color: 'blue',
+    color: theme.palette.primary.main,
 
   },
   media: {
@@ -42,11 +42,10 @@ const useStyles = makeStyles({
     fontSize: 11,
     color: 'gray',
   }
-});
+}));
 
 export default function SimpleCard(props) {
   const classes = useStyles();
-  console.log(props)
 
 
   return (
