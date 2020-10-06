@@ -16,13 +16,17 @@ Main user story: As a mousehunt player, I want an app to track my weapons and sp
 
 
 ## Upcoming next few days
+- Wire hooks in and create basic pages for game items
 - Finishing up Feature: Basic Items
   - Add some details on list views, make sure things capitalized and spaced
-  - Add React Tables and Forms
+  - Add tables and Forms
   - Add Jest testing
 - Once POC stable with Items, catalog current features and rewrite the cucumber files and request specs accordingly before it gets too big
 
 ## Updates
+  - Tues Oct 6: Have now refactored to Material-UI for an easier UI/UX creation
+    - React Hooks, incl Redux Hooks to preserve Store functionality
+    - using themes and materialUI syntax and options
   - Fri, Sept 25: after a bit of break due to personal, here's what did get done
     - ItemsStats moved to Item
     - Category moved to Item
