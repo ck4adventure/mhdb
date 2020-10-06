@@ -1,4 +1,11 @@
 import React from 'react';
+import {
+  Route,
+  Redirect,
+  Switch,
+  Link,
+  HashRouter
+} from 'react-router-dom';
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -27,13 +34,15 @@ import Collectibles from '../images/collectibles.png';
 import Recruit from '../images/recruit.gif';
 
 import AccountCircle from '@material-ui/icons/AccountCircle';
-import Switch from '@material-ui/core/Switch';
+// import Switch from '@material-ui/core/Switch';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormGroup from '@material-ui/core/FormGroup';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 
 import Main from './main_page/main';
+import SignIn from './session/sign_in';
+import SignUp from './session/sign_up';
 
 
 const drawerWidth = 240;
@@ -250,7 +259,11 @@ export default function App() {
           [classes.contentShift]: open,
         })}
       >
-        <Main />
+        <Switch>
+          <Route path="/signup" component={SignUp} />
+          <Route path="/login" component={SignIn} />
+          <Route path="/" component={Main} />
+        </Switch>
       </main>
     </div>
   );
