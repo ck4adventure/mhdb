@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useEffect }  from 'react';
+import React from 'react';
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -35,9 +35,6 @@ import Menu from '@material-ui/core/Menu';
 
 import Main from './main_page/main';
 
-import { useDispatch } from 'react-redux';
-import { fetchAllWeapons } from '../actions/weapons_actions';
-import * as APIUtil from '../util/items_api';
 
 const drawerWidth = 240;
 
