@@ -1,10 +1,10 @@
 import { RECEIVE_DRAWER_OPEN, RECEIVE_DRAWER_CLOSED } from '../actions/ui_actions';
 
-closed = {
+const closed = {
   drawerOpen: false,
 };
 
-export default = (state = closed, action) => {
+export default (state = closed, action) => {
   Object.freeze(state);
   switch (action.type) {
     case RECEIVE_DRAWER_OPEN:
