@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { Fragment, useState, useEffect }  from 'react';
+import {useSelector, useDispatch} from 'react-redux';
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
@@ -23,6 +24,9 @@ import Traps from '../../images/traps.png';
 import Collectibles from '../../images/collectibles.png';
 import Travel from '../../images/travel.png';
 import Recruit from '../../images/recruit.gif';
+import { fetchAllWeapons } from '../../actions/weapons_actions';
+import { fetchAllBases } from '../../actions/bases_actions';
+import { toArray } from '../../reducers/selectors';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -74,9 +78,18 @@ const flist = [ {name: "arcane", img: Arcane}, {name: "draconic", img: Draconic 
 
 
 
-const cardsForList = flist.map(el => <SimpleCard name={el.name} key={el.name} img={el.img}/>);
+const cardsForList = flist.map(el => <SimpleCard name={el.name} key={el.name} img={el.img} count={10} />);
+
 export default function Main () {
   const classes = useStyles();
+  const bases = useSelector(state => state.items.bases ? toArray(state.items.bases) : []);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchAllWeapons());
+    dispatch(fetchAllBases());
+  }, []);
+
   return (
     <div>
       <div className={classes.drawerHeader} />
@@ -100,7 +113,7 @@ export default function Main () {
           </Typography>
           <Divider />
           <Container className={classes.cards_container}>
-            <SimpleCard name={"bases"} key={"bases"} img={Traps} />
+            <SimpleCard name={"bases"} key={"bases"} img={Traps} count={bases.length}/>
           </Container>
         </Paper>
 
@@ -121,16 +134,6 @@ export default function Main () {
           <Divider />
           <Container className={classes.cards_container}>
             <SimpleCard name={"locations"} key={"locations"} img={Travel}/>
-          </Container>
-        </Paper>
-
-        <Paper elevation={8} className={classes.single_box}>
-          <Typography variant="h6" component="div" className={classes.box_title}>
-            Ranks
-          </Typography>
-          <Divider />
-          <Container className={classes.cards_container}>
-            <SimpleCard name={"ranks"} key={"ranks"} img={Recruit}/>
           </Container>
         </Paper>
       

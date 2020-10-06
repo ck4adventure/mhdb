@@ -57,7 +57,7 @@ export default function SimpleCard(props) {
             title={props.name}
         />
         <Typography className={classes.number_box}>
-          19/23
+          {props.count}
         </Typography>
       </CardContent>
       <CardActions className={classes.button_box}>

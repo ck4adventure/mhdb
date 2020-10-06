@@ -1,12 +1,16 @@
 import { combineReducers } from 'redux'
-import weaponsReducer from './weapons_reducer';
 import itemsReducer from './items_reducer';
-import basesReducer from './bases_reducer';
+import errorsReducer from './errors_reducer';
+import sessionReducer from './session_reducer';
+import usersReducer from './users_reducer';
+import uiReducer from './ui_reducer';
 
 const rootReducer = combineReducers({
-  weapons: weaponsReducer,
+  session: sessionReducer,
+  users: usersReducer,
   items: itemsReducer,
-  bases: basesReducer,
+  errors: errorsReducer,
+  ui: uiReducer,
 });
 
 export default rootReducer;

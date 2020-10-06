@@ -1,6 +1,8 @@
 import React from 'react'
 import { Provider } from 'react-redux'
+import { HashRouter } from 'react-router-dom'
 import App from './app'
+import App2 from './app2'
 
 import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
@@ -19,9 +21,11 @@ const theme = createMuiTheme({
 
 const Root = ({store}) => (
   <Provider store={store}>
-    <ThemeProvider theme={theme}>
-      <App />
-    </ThemeProvider>
+    <HashRouter>
+      <ThemeProvider theme={theme}>
+        <App2 />
+      </ThemeProvider>
+    </HashRouter>
   </Provider>
 )
 

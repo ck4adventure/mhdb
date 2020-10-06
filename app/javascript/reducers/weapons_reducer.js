@@ -1,7 +1,19 @@
 import { RECEIVE_WEAPONS, RECEIVE_WEAPON } from '../actions/weapons_actions'
 
-
-const weaponsReducer = (state = {}, action) => {
+// TODO: refactor to fetch list of types from backend
+const initialState = {
+  arcane: {},
+  draconic: {},
+  forgotten: {},
+  hydro: {},
+  law: {},
+  parental: {},
+  physical: {},
+  rift: {},
+  shadow: {},
+  tactical: {},
+}
+const weaponsReducer = (state = initialState, action) => {
   Object.freeze(state)
   let nextState = {}
   switch (action.type) {
