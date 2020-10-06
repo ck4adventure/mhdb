@@ -136,16 +136,6 @@ export default function Main () {
             <SimpleCard name={"locations"} key={"locations"} img={Travel}/>
           </Container>
         </Paper>
-
-        <Paper elevation={8} className={classes.single_box}>
-          <Typography variant="h6" component="div" className={classes.box_title}>
-            Ranks
-          </Typography>
-          <Divider />
-          <Container className={classes.cards_container}>
-            <SimpleCard name={"ranks"} key={"ranks"} img={Recruit}/>
-          </Container>
-        </Paper>
       
       
       
