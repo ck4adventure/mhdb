@@ -1,11 +1,13 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
 import {
   Route,
   Redirect,
   Switch,
-  Link,
   HashRouter
 } from 'react-router-dom';
+import { useHistory } from "react-router-dom";
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -22,7 +24,7 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import { CardMedia } from '@material-ui/core';
+import { CardMedia, Link } from '@material-ui/core';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 
@@ -43,8 +45,9 @@ import Menu from '@material-ui/core/Menu';
 import Main from './main_page/main';
 import SignIn from './session/sign_in';
 import SignUp from './session/sign_up';
+import Profile from './profile/profile';
 
-
+import { signup, login, logout } from '../actions/session_actions';
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
@@ -120,9 +123,12 @@ export default function App() {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
-  const [auth, setAuth] = React.useState(true);
+  const auth = useSelector(state => state.session.id);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const menuOpen = Boolean(anchorEl);
+
+  let history = useHistory();
+  const dispatch = useDispatch();
 
 
   // mine
@@ -134,8 +140,16 @@ export default function App() {
     setAnchorEl(event.currentTarget);
   };
 
-  const handleClose = () => {
+  const handleClose = (path, event) => {
     setAnchorEl(null);
+    handlePath(path);
+  };
+
+  const handleLogout = () => {
+    // close window
+    setAnchorEl(null);
+    // dispatch logout
+    dispatch(logout());
   };
 
   const handleDrawerOpen = () => {
@@ -145,6 +159,14 @@ export default function App() {
   const handleDrawerClose = () => {
     setOpen(false);
   };
+  const handleHome = (event) => {
+    event.preventDefault();
+    history.push('/');
+  }
+  const handlePath = (path, event) => {
+    event.preventDefault();
+    history.push(path);
+  }
 
   const list1Items = [{name: "Traps", img: Traps}, {name: "Locations", img: Travel }, {name: "Mice", img: Mice }].map((el, index) => (
     <ListItem button key={el.name}>
@@ -192,7 +214,9 @@ export default function App() {
             <MenuIcon />
           </IconButton>
           <Typography className={classes.title} variant="h6" noWrap>
-            MouseHunt Collector
+            <Link href="/" onClick={handleHome} color="inherit" underline="none">
+              MouseHuntCollector
+            </Link>
           </Typography>
           {auth && (
             <div>
@@ -221,10 +245,15 @@ export default function App() {
                 open={menuOpen}
                 onClose={handleClose}
               >
-                <MenuItem onClick={handleClose}>Profile</MenuItem>
-                <MenuItem onClick={handleClose}>Log Out</MenuItem>
+                <MenuItem onClick={e => handleClose("/profile", e)}>Profile</MenuItem>
+                <MenuItem onClick={handleLogout}>Log Out</MenuItem>
               </Menu>
             </div>
+          )}
+          { !auth && (
+            <Link href="/login" onClick={e => handlePath('/login', e)} underline="none">
+              Login
+            </Link>
           )}
         </Toolbar>
       </AppBar>
@@ -262,6 +291,7 @@ export default function App() {
         <Switch>
           <Route path="/signup" component={SignUp} />
           <Route path="/login" component={SignIn} />
+          <Route path="/profile" component={Profile} />
           <Route path="/" component={Main} />
         </Switch>
       </main>

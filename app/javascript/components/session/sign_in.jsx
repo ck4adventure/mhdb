@@ -1,4 +1,5 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -11,6 +12,9 @@ import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+
+import { login } from '../../actions/session_actions'
+import { useHistory, withRouter } from "react-router-dom";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -35,7 +39,19 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignIn() {
   const classes = useStyles();
+  const dispatch = useDispatch();
+  let history = useHistory();
+  const [user, setUser] = React.useState({ email: "" })
 
+  const handleInput = (type, e) => {
+    setUser({ [type]: e.target.value })
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(login(user));
+    history.push('/');
+  }
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -57,6 +73,7 @@ export default function SignIn() {
             name="user[email]"
             autoComplete="email"
             autoFocus
+            onChange={e => handleInput("email", e)}
           />
           <Button
             type="submit"
@@ -64,6 +81,7 @@ export default function SignIn() {
             variant="contained"
             color="primary"
             className={classes.submit}
+            onClick={handleSubmit}
           >
             Sign In
           </Button>
