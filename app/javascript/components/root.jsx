@@ -6,16 +6,12 @@ import App2 from './app2'
 
 import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
-import { deepPurple } from '@material-ui/core/colors';
+import { deepPurple, green, purple, blue } from '@material-ui/core/colors';
 
 const theme = createMuiTheme({
   palette: {
-    primary: {
-      main: deepPurple[500],
-    },
-    secondary: {
-      main: '#f44336',
-    },
+    primary: deepPurple,
+    secondary: blue,
   },
 });
 

@@ -10,6 +10,7 @@ import {
 import { useHistory } from "react-router-dom";
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box';
 import Drawer from '@material-ui/core/Drawer';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import AppBar from '@material-ui/core/AppBar';
@@ -68,6 +69,13 @@ const useStyles = makeStyles((theme) => ({
       easing: theme.transitions.easing.easeOut,
       duration: theme.transitions.duration.enteringScreen,
     }),
+  },
+  session_box: {
+    display: 'flex',
+  },
+  sessionLink: {
+    marginLeft: 4,
+    marginRight: 4,
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -245,15 +253,27 @@ export default function App() {
                 open={menuOpen}
                 onClose={handleClose}
               >
-                <MenuItem onClick={e => handleClose("/profile", e)}>Profile</MenuItem>
+                <MenuItem onClick={e => handlePath("/profile", e)}>Profile</MenuItem>
                 <MenuItem onClick={handleLogout}>Log Out</MenuItem>
               </Menu>
             </div>
           )}
           { !auth && (
-            <Link href="/login" onClick={e => handlePath('/login', e)} underline="none">
-              Login
-            </Link>
+            <Box component="div" className={classes.session_box}>
+              <Typography className={classes.sessionLink}>
+                <Link href="/login" onClick={e => handlePath('/login', e)} underline="none" color="inherit">
+                  Login  
+                </Link>
+                </Typography>
+                <Typography >
+                  or
+                </Typography>
+                <Typography className={classes.sessionLink}>
+                <Link href="/signup" onClick={e => handlePath('/signup', e)} underline="none" color="inherit">
+                  Sign Up
+                </Link>
+              </Typography>
+            </Box>
           )}
         </Toolbar>
       </AppBar>
