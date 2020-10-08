@@ -13,6 +13,10 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 
 import { useSelector, useDispatch } from 'react-redux'
+import { useHistory } from 'react-router-dom';
+
+import { signup } from '../../actions/session_actions'
+import { SettingsSystemDaydream } from '@material-ui/icons';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -37,6 +41,32 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignUp() {
   const classes = useStyles();
+  const dispatch = useDispatch();
+  let history = useHistory();
+  const [inputName, setInputName] = React.useState("")
+  const [inputEmail, setInputEmail] = React.useState("")
+
+
+  const handleInput = (type, e) => {
+    switch (type) {
+      case "email":
+        setInputEmail(e.target.value);
+        break;
+      case "name":
+        setInputName(e.target.value);
+        break;
+      default:
+        break;
+    }
+  }
+
+  const handleSubmit = (e) => {
+    let user = { name: inputName,
+                 email: inputEmail };
+    e.preventDefault();
+    dispatch(signup(user));
+    history.push('/');
+  }
 
   return (
     <Container component="main" maxWidth="xs">
@@ -60,6 +90,7 @@ export default function SignUp() {
                 id="user_name"
                 label="Display Name"
                 autoFocus
+                onChange={e => handleInput("name", e)}
               />
             </Grid>
             <Grid item xs={12}>
@@ -71,6 +102,7 @@ export default function SignUp() {
                 label="Email Address"
                 name="email"
                 autoComplete="email"
+                onChange={e => handleInput("email", e)}
               />
             </Grid>
           </Grid>
@@ -80,6 +112,7 @@ export default function SignUp() {
             variant="contained"
             color="primary"
             className={classes.submit}
+            onClick={handleSubmit}
           >
             Sign Up
           </Button>

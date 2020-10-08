@@ -148,9 +148,8 @@ export default function App() {
     setAnchorEl(event.currentTarget);
   };
 
-  const handleClose = (path, event) => {
+  const handleClose = () => {
     setAnchorEl(null);
-    handlePath(path);
   };
 
   const handleLogout = () => {
