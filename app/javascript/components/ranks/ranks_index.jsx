@@ -4,6 +4,14 @@ import { useHistory } from "react-router-dom";
 
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Link from '@material-ui/core/Link';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableContainer from '@material-ui/core/TableContainer';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Paper from '@material-ui/core/Paper';
+
 import { toArray } from '../../reducers/selectors';
 
 const useStyles = makeStyles((theme) => ({
@@ -15,7 +23,14 @@ const useStyles = makeStyles((theme) => ({
     ...theme.mixins.toolbar,
     alignContent: 'flex-end',
   },
+  table: {
+    minWidth: 650,
+  },
 }))
+
+function createData(name, id, path) {
+  return { name, id, path }
+}
 export default function RanksPage () {
   const r = useSelector(state => state.ranks);
   const classes = useStyles();
@@ -26,27 +41,36 @@ export default function RanksPage () {
     history.push(path);
   }
   
-  const rarr = Object.keys(r).map(id => {
-    const rank = r[id];
-    return (
-      <li key={id}>
-        <Link href={`/ranks/${id}`} onClick={e => handlePath(`/ranks/${id}`, e)} underline="none">
-          {rank.title}
-        </Link>
-      </li>
-    )
-  });
-  if (rarr.length == 0) {
+  const rows = Object.keys(r).map(id => createData(r[id].title, id, `/ranks/${id}`));
+
+  if (rows.length == 0) {
     return <h1>Loading</h1>
   }
   
   return (
     <div>
       <div className={classes.drawerHeader} />
-        <h4>Ranks</h4>
-        <ul>
-          {rarr}
-        </ul>
+        <h2>All the Ranks</h2>
+        <TableContainer component={Paper}>
+          <Table className={classes.table} aria-label="simple table">
+            <TableHead>
+              <TableRow>
+                <TableCell>Title</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {rows.map((row) => (
+                <TableRow key={row.name}>
+                  <TableCell component="th" scope="row">
+                    <Link href={`/ranks/${row.id}`} onClick={e => handlePath(row.path, e)} underline="none">
+                      {row.name}
+                    </Link>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
     </div>
-  )
+  );
 }
