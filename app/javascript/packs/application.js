@@ -27,7 +27,19 @@ import * as ItemsApiUtil from '../util/items_api'
 
 document.addEventListener('DOMContentLoaded', () => {
   // get local storage here if needed
-  const store = configureStore();
+  // bootstrapping session to persist
+  let preloadedState = undefined;
+  if (window.currentUser) {
+    preloadedState = {
+      session: {
+        currentUser: window.currentUser
+      }
+    };
+  }
+  const store = configureStore(preloadedState);
+  // const store = configureStore();
+
+  // TESTING ON THE WINDOW
   // window.dispatch = store.dispatch;
   // window.getState = store.getState;
   // window.fetchRanks = fetchRanks;
