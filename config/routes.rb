@@ -98,6 +98,7 @@ Rails.application.routes.draw do
     resources :users, only: [:show, :create, :update, :destroy]
     resource :session, only: [:create, :destroy]
     resources :ranks, only: [:index]
+    resources :regions, only: [:index]
   end
 
   resources :users, except: [:index]
