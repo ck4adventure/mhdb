@@ -95,7 +95,7 @@ Rails.application.routes.draw do
     get 'items/weapons', to: 'items#weapons'
     get 'items/bases', to: 'items#bases'
     resources :items, only: [:create, :update, :destroy]
-    resources :users, except: [:index]
+    resources :users, only: [:show, :create, :update, :destroy]
     resource :session, only: [:create, :destroy]
 
   end
