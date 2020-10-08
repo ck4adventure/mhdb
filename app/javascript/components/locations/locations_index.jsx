@@ -28,11 +28,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-function createData(name, id, path) {
-  return { name, id, path }
+function createData(name, id, path, region, rank) {
+  return { name, id, path, region, rank }
 }
-export default function RanksIndex () {
-  const r = useSelector(state => state.ranks);
+export default function LocationsIndex () {
+  const r = useSelector(state => state.locations);
   const classes = useStyles();
   let history = useHistory();
 
@@ -41,7 +41,7 @@ export default function RanksIndex () {
     history.push(path);
   }
   
-  const rows = Object.keys(r).map(id => createData(r[id].title, id, `/ranks/${id}`));
+  const rows = Object.keys(r).map(id => createData(r[id].name, id, `/locations/${id}`, r[id].region, r[id].rank));
 
   if (rows.length == 0) {
     return <h1>Loading</h1>
@@ -50,21 +50,29 @@ export default function RanksIndex () {
   return (
     <div>
       <div className={classes.drawerHeader} />
-        <h2>All the Ranks</h2>
+        <h2>All the Locations</h2>
         <TableContainer component={Paper}>
           <Table className={classes.table} aria-label="simple table">
             <TableHead>
               <TableRow>
-                <TableCell>Title</TableCell>
+                <TableCell>Name</TableCell>
+                <TableCell>Region</TableCell>
+                <TableCell>Rank</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               {rows.map((row) => (
                 <TableRow key={row.name}>
                   <TableCell component="th" scope="row">
-                    <Link href={`/ranks/${row.id}`} onClick={e => handlePath(row.path, e)} underline="none">
+                    <Link href={`/locations/${row.id}`} onClick={e => handlePath(row.path, e)} underline="none">
                       {row.name}
                     </Link>
+                  </TableCell>
+                  <TableCell>
+                    {row.region}
+                  </TableCell>
+                  <TableCell>
+                    {row.rank}
                   </TableCell>
                 </TableRow>
               ))}

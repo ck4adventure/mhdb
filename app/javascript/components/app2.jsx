@@ -47,16 +47,19 @@ import Main from './main_page/main';
 import SignIn from './session/sign_in';
 import SignUp from './session/sign_up';
 import Profile from './profile/profile';
-import RanksPage from './ranks/ranks_index';
+import RanksIndex from './ranks/ranks_index';
 import RankShow from './ranks/rank_show';
 import RegionsIndex from './regions/regions_index';
 import RegionShow from './regions/region_show';
+import LocationsIndex from './locations/locations_index';
+import LocationShow from './locations/location_show';
 
 import { signup, login, logout } from '../actions/session_actions';
 import { fetchAllWeapons } from '../actions/weapons_actions';
 import { fetchAllBases } from '../actions/bases_actions';
 import { fetchRanks } from '../actions/ranks_actions';
 import { fetchAllRegions } from '../actions/regions_actions';
+import { fetchAllLocations } from '../actions/locations_actions';
 
 
 
@@ -158,6 +161,7 @@ export default function App() {
     dispatch(fetchAllBases());
     dispatch(fetchRanks());
     dispatch(fetchAllRegions());
+    dispatch(fetchAllLocations());
   }, []);
 
 
@@ -343,9 +347,11 @@ export default function App() {
           <Route path="/login" component={SignIn} />
           <Route path="/profile" component={Profile} />
           <Route path="/ranks/:rankId" component={RankShow} />
-          <Route path="/ranks" component={RanksPage} />
+          <Route path="/ranks" component={RanksIndex} />
           <Route path="/regions/:regionId" component={RegionShow} />
           <Route path="/regions" component={RegionsIndex} />
+          <Route path="/locations/:locationId" component={LocationShow} />
+          <Route path="/locations" component={LocationsIndex} />
           <Route path="/" component={Main} />
         </Switch>
       </main>
