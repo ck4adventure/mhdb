@@ -97,7 +97,7 @@ Rails.application.routes.draw do
     resources :items, only: [:create, :update, :destroy]
     resources :users, only: [:show, :create, :update, :destroy]
     resource :session, only: [:create, :destroy]
-
+    resources :ranks, only: [:index]
   end
 
   resources :users, except: [:index]

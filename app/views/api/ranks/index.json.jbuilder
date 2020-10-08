@@ -1,0 +1,1 @@
+json.array! @ranks, :id, :title
