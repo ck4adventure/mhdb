@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useEffect }  from 'react';
+import React  from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
@@ -24,8 +24,7 @@ import Traps from '../../images/traps.png';
 import Collectibles from '../../images/collectibles.png';
 import Travel from '../../images/travel.png';
 import Recruit from '../../images/recruit.gif';
-import { fetchAllWeapons } from '../../actions/weapons_actions';
-import { fetchAllBases } from '../../actions/bases_actions';
+
 import { toArray } from '../../reducers/selectors';
 
 
@@ -83,12 +82,7 @@ const cardsForList = flist.map(el => <SimpleCard name={el.name} key={el.name} im
 export default function Main () {
   const classes = useStyles();
   const bases = useSelector(state => state.items.bases ? toArray(state.items.bases) : []);
-  const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(fetchAllWeapons());
-    dispatch(fetchAllBases());
-  }, []);
 
   return (
     <div>

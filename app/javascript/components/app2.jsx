@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import {
@@ -49,6 +49,9 @@ import SignUp from './session/sign_up';
 import Profile from './profile/profile';
 
 import { signup, login, logout } from '../actions/session_actions';
+import { fetchAllWeapons } from '../actions/weapons_actions';
+import { fetchAllBases } from '../actions/bases_actions';
+import { fetchRanks } from '../actions/ranks_actions';
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
@@ -132,11 +135,19 @@ export default function App() {
   const [open, setOpen] = React.useState(false);
 
   const auth = useSelector(state => state.session.id);
+  const username = useSelector(state => state.session.name);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const menuOpen = Boolean(anchorEl);
 
   let history = useHistory();
+
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchAllWeapons());
+    dispatch(fetchAllBases());
+    dispatch(fetchRanks());
+  }, []);
 
 
   // mine
@@ -235,6 +246,9 @@ export default function App() {
                 onClick={handleMenu}
                 color="inherit"
               >
+                <Typography>
+                  Welcome, {username}
+                </Typography>
                 <AccountCircle />
               </IconButton>
               <Menu
