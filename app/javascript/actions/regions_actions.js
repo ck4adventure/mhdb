@@ -10,7 +10,7 @@ export const receiveRegions = regions => ({
 // regions
 // [{id: 1, name: "Gnawnia"},...]
 
-export const fetchRegions = () => dispatch => (
+export const fetchAllRegions = () => dispatch => (
   RegionsApiUtil.fetchRegions().then(regions => dispatch(receiveRegions(regions)),
   )
 );

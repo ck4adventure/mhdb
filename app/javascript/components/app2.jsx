@@ -49,11 +49,19 @@ import SignUp from './session/sign_up';
 import Profile from './profile/profile';
 import RanksPage from './ranks/ranks_index';
 import RankShow from './ranks/rank_show';
+import RegionsIndex from './regions/regions_index';
+import RegionShow from './regions/region_show';
 
 import { signup, login, logout } from '../actions/session_actions';
 import { fetchAllWeapons } from '../actions/weapons_actions';
 import { fetchAllBases } from '../actions/bases_actions';
 import { fetchRanks } from '../actions/ranks_actions';
+import { fetchAllRegions } from '../actions/regions_actions';
+
+
+
+
+
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
@@ -149,6 +157,7 @@ export default function App() {
     dispatch(fetchAllWeapons());
     dispatch(fetchAllBases());
     dispatch(fetchRanks());
+    dispatch(fetchAllRegions());
   }, []);
 
 
@@ -194,7 +203,7 @@ export default function App() {
     history.push(path);
   }
 
-  const list1Items = [{name: "Ranks", img: Recruit, path: '/ranks', }, {name: "Traps", img: Traps, path: '/',}, {name: "Locations", img: Travel, path: '/', }, {name: "Mice", img: Mice, path: '/', }].map((el, index) => (
+  const list1Items = [{name: "Ranks", img: Recruit, path: '/ranks', }, {name: "Regions", img: Travel, path: '/regions', }, {name: "Traps", img: Traps, path: '/',}, {name: "Locations", img: Travel, path: '/', }, {name: "Mice", img: Mice, path: '/', }].map((el, index) => (
     <ListItem button key={el.name} onClick={e => handleDrawerPath(el.path, e)}>
       <ListItemIcon>
       <CardMedia        
@@ -335,7 +344,8 @@ export default function App() {
           <Route path="/profile" component={Profile} />
           <Route path="/ranks/:rankId" component={RankShow} />
           <Route path="/ranks" component={RanksPage} />
-
+          <Route path="/regions/:regionId" component={RegionShow} />
+          <Route path="/regions" component={RegionsIndex} />
           <Route path="/" component={Main} />
         </Switch>
       </main>
