@@ -47,7 +47,8 @@ import Main from './main_page/main';
 import SignIn from './session/sign_in';
 import SignUp from './session/sign_up';
 import Profile from './profile/profile';
-import RanksPage from './ranks/ranks_page';
+import RanksPage from './ranks/ranks_index';
+import RankShow from './ranks/rank_show';
 
 import { signup, login, logout } from '../actions/session_actions';
 import { fetchAllWeapons } from '../actions/weapons_actions';
@@ -332,7 +333,9 @@ export default function App() {
           <Route path="/signup" component={SignUp} />
           <Route path="/login" component={SignIn} />
           <Route path="/profile" component={Profile} />
+          <Route path="/ranks/:rankId" component={RankShow} />
           <Route path="/ranks" component={RanksPage} />
+
           <Route path="/" component={Main} />
         </Switch>
       </main>
