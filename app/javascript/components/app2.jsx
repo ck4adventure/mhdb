@@ -207,7 +207,13 @@ export default function App() {
     history.push(path);
   }
 
-  const list1Items = [{name: "Ranks", img: Recruit, path: '/ranks', }, {name: "Regions", img: Travel, path: '/regions', }, {name: "Traps", img: Traps, path: '/',}, {name: "Locations", img: Travel, path: '/', }, {name: "Mice", img: Mice, path: '/', }].map((el, index) => (
+  const list1Items = [
+                      {name: "Ranks", img: Recruit, path: '/ranks', }, 
+                      {name: "Regions", img: Travel, path: '/regions', }, 
+                      {name: "Locations", img: Travel, path: '/locations', }, 
+                      {name: "Traps", img: Traps, path: '/',}, 
+                      {name: "Mice", img: Mice, path: '/', },
+                    ].map((el, index) => (
     <ListItem button key={el.name} onClick={e => handleDrawerPath(el.path, e)}>
       <ListItemIcon>
       <CardMedia        
@@ -220,7 +226,10 @@ export default function App() {
     </ListItem>
   ));
 
-  const list2Items = [{name: "Crafting", img: Crafting, path: '/',}, {name: "Collectibles", img: Collectibles, path: '/', }, ].map((el, index) => (
+  const list2Items = [
+                      {name: "Crafting", img: Crafting, path: '/',}, 
+                      {name: "Collectibles", img: Collectibles, path: '/', }, 
+                    ].map((el, index) => (
     <ListItem button key={el.name} onClick={e => handleDrawerPath(el.path, e)}>
       <ListItemIcon>
       <CardMedia        
