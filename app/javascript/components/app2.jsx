@@ -187,8 +187,14 @@ export default function App() {
     history.push(path);
   }
 
-  const list1Items = [{name: "Traps", img: Traps}, {name: "Locations", img: Travel }, {name: "Mice", img: Mice }].map((el, index) => (
-    <ListItem button key={el.name}>
+  const handleDrawerPath = (path, event) => {
+    event.preventDefault();
+    handleDrawerClose();
+    history.push(path);
+  }
+
+  const list1Items = [{name: "Traps", img: Traps, path: '/',}, {name: "Locations", img: Travel, path: '/', }, {name: "Mice", img: Mice, path: '/', }].map((el, index) => (
+    <ListItem button key={el.name} onClick={e => handleDrawerPath(el.path, e)}>
       <ListItemIcon>
       <CardMedia        
             className={classes.icon}
@@ -200,8 +206,8 @@ export default function App() {
     </ListItem>
   ));
 
-  const list2Items = [{name: "Crafting", img: Crafting}, {name: "Collectibles", img: Collectibles }, {name: "Ranks", img: Recruit }].map((el, index) => (
-    <ListItem button key={el.name}>
+  const list2Items = [{name: "Crafting", img: Crafting, path: '/',}, {name: "Collectibles", img: Collectibles, path: '/', }, {name: "Ranks", img: Recruit, path: '/ranks', }].map((el, index) => (
+    <ListItem button key={el.name} onClick={e => handleDrawerPath(el.path, e)}>
       <ListItemIcon>
       <CardMedia        
             className={classes.icon}
