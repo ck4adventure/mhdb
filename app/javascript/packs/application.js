@@ -28,16 +28,26 @@ import * as ItemsApiUtil from '../util/items_api'
 document.addEventListener('DOMContentLoaded', () => {
   // get local storage here if needed
   // bootstrapping session to persist
-  let preloadedState = undefined;
+  // see application.html.erb for server side setting the window
+  let store;
   if (window.currentUser) {
-    preloadedState = {
-      session: {
-        currentUser: window.currentUser
-      }
-    };
+    const { currentUser } = window;
+    const { id } = currentUser;
+    const preloadedState = { 
+      users: {
+        [id]: currentUser
+      },
+      session: currentUser
+      };
+    store = configureStore(preloadedState);
+
+    // Clean up after ourselves so we don't accidentally use the
+    // global currentUser instead of the one in the store
+    delete window.currentUser;
+
+  } else {
+    store = configureStore();
   }
-  const store = configureStore(preloadedState);
-  // const store = configureStore();
 
   // TESTING ON THE WINDOW
   // window.dispatch = store.dispatch;
