@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
 export default function LocationShow (props) {
   const classes = useStyles();
   const locationId = props.match.params.locationId;
-  const location = useSelector(state => state.locations.locationId)
+  const location = useSelector(state => state.locations[locationId])
   let name = "";
   if (location && Object.keys(location)) {
     name = location.name;
