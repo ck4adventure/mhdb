@@ -41,7 +41,7 @@ export default function LocationsIndex () {
     history.push(path);
   }
   
-  const rows = Object.keys(r).map(id => createData(r[id].name, id, `/locations/${id}`, r[id].region, r[id].rank));
+  const rows = Object.keys(r).map(id => createData(r[id].name, id, `/locations/${id}`, r[id].region.name, r[id].rank));
 
   if (rows.length == 0) {
     return <h1>Loading</h1>
