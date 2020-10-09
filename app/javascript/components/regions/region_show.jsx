@@ -40,6 +40,9 @@ export default function RegionShow (props) {
       <ul>
         {region.locations.map(loc => <li key={loc.id}><Link href={`/locations/${loc.id}`} onClick={e => handlePath(`/locations/${loc.id}`, e)}>{loc.name}</Link></li>)}
       </ul>
+      <br/>
+      <br/>
+      <Link href="/regions" onClick={e => handlePath("/regions",e)}>Back to Regions</Link>
       
     </div>
   )

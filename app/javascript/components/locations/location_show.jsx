@@ -19,10 +19,6 @@ export default function LocationShow (props) {
   const classes = useStyles();
   const locationId = props.match.params.locationId;
   const location = useSelector(state => state.locations[locationId])
-  let name = "";
-  if (location && Object.keys(location)) {
-    name = location.name;
-  }
 
   let history = useHistory();
 
@@ -30,18 +26,21 @@ export default function LocationShow (props) {
     event.preventDefault();
     history.push(path);
   }
-  if (!Boolean(location.region)) {
-    return <h1>Loading</h1>
+
+  if (!Boolean(location)) {
+    return <h1>Loading...</h1>
   }
-  
   
   return (
     <div>
       <div className={classes.drawerHeader} />
       <h2>Location Page</h2>
-      <h4>{name}</h4>
-      <p>The {name} is found within the region of <Link href={`/regions/${location.region.id}`} onClick={e => handlePath(`/regions/${location.region.id}`, e)}>{location.region.name}</Link>.</p>
-      <p>The minimum Rank for this location is {location.rank}.</p>
+      <h4>{location.name}</h4>
+      <p>The {location.name} is found within the region of <Link href={`/regions/${location.region.id}`} onClick={e => handlePath(`/regions/${location.region.id}`, e)}>{location.region.name}</Link>.</p>
+      <p>The minimum Rank for this location is <Link href={`/ranks/${location.rank.id}`} onClick={e => handlePath(`/ranks/${location.rank.id}`, e)}>{location.rank.title}</Link>.</p>
+      <br/>
+      <br/>
+      <Link href="/locations" onClick={e => handlePath("/locations",e)}>Back to Locations</Link>
     </div>
   )
 }
