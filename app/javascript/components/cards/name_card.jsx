@@ -27,6 +27,7 @@ const useStyles = makeStyles(theme => ({
   media: {
     height: 38,
     width: 38,
+    borderRadius: 3,
   },
 }));
 
@@ -38,7 +39,6 @@ export default function NameCard(props) {
     e.preventDefault();
     history.push(path);
   }
-
 
   return (
     <Card className={classes.croot} elevation={0} >

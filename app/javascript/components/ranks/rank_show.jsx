@@ -7,6 +7,8 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 
+import { List, ListItem, ListItemLink, ListItemText } from '@material-ui/core';
+
 const images = require.context('../../images', true)
 const imagePath = (name) => images(name, true);
 
@@ -24,6 +26,7 @@ const useStyles = makeStyles((theme) => ({
   titleContainer: {
     display: 'flex',
     alignItems: 'center',
+    marginBottom: 16,
   },
   title: {
     marginLeft: 20,
@@ -62,10 +65,14 @@ export default function RankShow (props) {
 
       </Container>
 
-      <h4>Locations unlocked:</h4>
-      <ul>
-        {rank.locations.map(loc => <NameCard key={loc.id} name={loc.name} path={`/locations/${loc.id}`} ipath={loc.ipath} />)}
-      </ul>
+      <Typography variant="h6">Locations unlocked:</Typography>
+      <List>
+        {rank.locations.map(loc => (
+          <ListItem key={loc.id} >
+            <NameCard name={loc.name} path={`/locations/${loc.id}`} ipath={loc.ipath} />
+          </ListItem>
+        ))}
+      </List>
       <br/>
       <br/>
       <Link href="/ranks" onClick={e => handlePath("/ranks",e)}>Back to Ranks</Link>

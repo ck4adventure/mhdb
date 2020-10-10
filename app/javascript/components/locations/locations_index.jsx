@@ -45,7 +45,6 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 function createData(name, id, path, ipath, region, rank) {
-  console.log(rank)
   return { name, id, path, ipath, region, rank }
 }
 export default function LocationsIndex () {
