@@ -10,6 +10,8 @@ import Typography from '@material-ui/core/Typography';
 const images = require.context('../../images', true)
 const imagePath = (name) => images(name, true);
 
+import NameCard from '../cards/name_card';
+
 const useStyles = makeStyles((theme) => ({
   drawerHeader: {
     display: 'flex',
@@ -62,7 +64,7 @@ export default function RankShow (props) {
 
       <h4>Locations unlocked:</h4>
       <ul>
-        {rank.locations.map(loc => <li key={loc.id}><Link href={`/locations/${loc.id}`} onClick={e => handlePath(`/locations/${loc.id}`, e)}>{loc.name}</Link></li>)}
+        {rank.locations.map(loc => <NameCard key={loc.id} name={loc.name} path={`/locations/${loc.id}`} ipath={loc.ipath} />)}
       </ul>
       <br/>
       <br/>

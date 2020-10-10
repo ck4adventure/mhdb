@@ -8,7 +8,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
 
-const images = require.context('../../images/locations', true)
+const images = require.context('../../images', true)
 const imagePath = (name) => images(name, true);
 
 const useStyles = makeStyles((theme) => ({

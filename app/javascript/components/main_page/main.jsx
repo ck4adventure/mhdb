@@ -8,7 +8,7 @@ import Divider from '@material-ui/core/Divider';
 import Container from '@material-ui/core/Container';
 import SimpleCard from '../cards/simple_card';
 
-const images = require.context('../../images/power_types', true)
+const images = require.context('../../images', true)
 const imagePath = (name) => images(name, true)
 
 import Traps from '../../images/traps.png';
