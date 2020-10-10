@@ -8,22 +8,13 @@ import Divider from '@material-ui/core/Divider';
 import Container from '@material-ui/core/Container';
 import SimpleCard from '../cards/simple_card';
 
-import ScrollableTabsButtonAuto from '../tabs/scrollable_tabs';
+const images = require.context('../../images/power_types', true)
+const imagePath = (name) => images(name, true)
 
-import Arcane from '../../images/arcane.png';
-import Draconic from '../../images/draconic.png';
-import Forgotten from '../../images/forgotten.png';
-import Hydro from '../../images/hydro.png';
-import Law from '../../images/law.png';
-import Parental from '../../images/parental.png';
-import Rift from '../../images/rift.png';
-import Shadow from '../../images/shadow.png';
-import Tactical from '../../images/tactical.png';
-import Physical from '../../images/physical.png';
 import Traps from '../../images/traps.png';
 import Collectibles from '../../images/collectibles.png';
 import Travel from '../../images/travel.png';
-import Recruit from '../../images/recruit.gif';
+
 
 import { toArray } from '../../reducers/selectors';
 
@@ -71,13 +62,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const plist = ["arcane", "draconic", "forgotten", "hydro", "law", "parental", "physical", "rift", "shadow", "tactical"];
-const flist = [ {name: "arcane", img: Arcane}, {name: "draconic", img: Draconic }, {name: "forgotten", img: Forgotten },
-                {name: "hydro", img: Hydro}, {name: "law", img: Law }, {name: "parental", img: Parental },
-                {name: "physical", img: Physical}, {name: "rift", img: Rift }, {name: "shadow", img: Shadow }, {name: "tactical", img: Tactical },];
 
-
-
-const cardsForList = flist.map(el => <SimpleCard name={el.name} key={el.name} img={el.img} count={10} />);
+const cardsForList = plist.map(el => <SimpleCard name={el} key={el} img={imagePath('./' + `${el}`)} count={10} />);
 
 export default function Main () {
   const classes = useStyles();
