@@ -16,6 +16,7 @@
 #  index_locations_on_region_id  (region_id)
 #
 class Location < ApplicationRecord
+  include ImageConcern
   validates :name, :rank_id, :region_id, presence: true
   validates :name, uniqueness: true
 
