@@ -1,8 +1,15 @@
 import React from 'react';
 import { useSelector } from 'react-redux'
-import { makeStyles } from '@material-ui/core/styles'
-import Link from '@material-ui/core/Link'
 import { useHistory } from 'react-router-dom';
+
+import { makeStyles } from '@material-ui/core/styles';
+import Container from '@material-ui/core/Container';
+import CardMedia from '@material-ui/core/CardMedia';
+import Typography from '@material-ui/core/Typography';
+import Link from '@material-ui/core/Link';
+
+const images = require.context('../../images/locations', true)
+const imagePath = (name) => images(name, true);
 
 const useStyles = makeStyles((theme) => ({
   drawerHeader: {
@@ -13,13 +20,25 @@ const useStyles = makeStyles((theme) => ({
     ...theme.mixins.toolbar,
     alignContent: 'flex-end',
   },
+  titleContainer: {
+    display: 'flex',
+    alignItems: 'center',
+  },
+  media: {
+    height: 38,
+    width: 38,
+    borderRadius: 3,
+  },
+  title: {
+   padding: 0,
+   paddingLeft: 5,
+  },
 }));
 
 export default function LocationShow (props) {
   const classes = useStyles();
   const locationId = props.match.params.locationId;
   const location = useSelector(state => state.locations[locationId])
-
   let history = useHistory();
 
   function handlePath(path, event) {
@@ -34,8 +53,15 @@ export default function LocationShow (props) {
   return (
     <div>
       <div className={classes.drawerHeader} />
-      <h2>Location Page</h2>
-      <h4>{location.name}</h4>
+      <Container className={classes.titleContainer}>
+        <CardMedia        
+            className={classes.media}
+            image={imagePath(location.ipath)}
+            title={location.name}
+        />
+        <Typography variant="h4" className={classes.title}>{location.name}</Typography>
+
+      </Container>
       <p>The {location.name} is found within the region of <Link href={`/regions/${location.region.id}`} onClick={e => handlePath(`/regions/${location.region.id}`, e)}>{location.region.name}</Link>.</p>
       <p>The minimum Rank for this location is <Link href={`/ranks/${location.rank.id}`} onClick={e => handlePath(`/ranks/${location.rank.id}`, e)}>{location.rank.title}</Link>.</p>
       <br/>

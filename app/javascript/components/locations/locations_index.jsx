@@ -11,8 +11,13 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import CardMedia from '@material-ui/core/CardMedia';
+import Typography from '@material-ui/core/Typography';
 
-import { toArray } from '../../reducers/selectors';
+
+const images = require.context('../../images/locations', true)
+const imagePath = (name) => images(name, true);
+
 
 const useStyles = makeStyles((theme) => ({
   drawerHeader: {
@@ -26,13 +31,28 @@ const useStyles = makeStyles((theme) => ({
   table: {
     minWidth: 650,
   },
+  name_box: {
+    display: 'flex',
+    alignItems: 'center',
+  },
+  media: {
+    height: 25,
+    width: 25,
+    borderRadius: 3,
+  },
+  name: {
+   padding: 0,
+   paddingLeft: 5,
+   fontSize: 14,
+  },
 }))
 
-function createData(name, id, path, region, rank) {
-  return { name, id, path, region, rank }
+function createData(name, id, path, ipath, region, rank) {
+  console.log(ipath)
+  return { name, id, path, ipath, region, rank }
 }
 export default function LocationsIndex () {
-  const r = useSelector(state => state.locations);
+  const locs = useSelector(state => state.locations);
   const classes = useStyles();
   let history = useHistory();
 
@@ -41,7 +61,7 @@ export default function LocationsIndex () {
     history.push(path);
   }
   
-  const rows = Object.keys(r).map(id => createData(r[id].name, id, `/locations/${id}`, r[id].region.name, r[id].rank.title));
+  const rows = Object.keys(locs).map(id => createData(locs[id].name, id, `/locations/${id}`, locs[id].ipath, locs[id].region.name, locs[id].rank.title));
 
   if (rows.length == 0) {
     return <h1>Loading</h1>
@@ -64,9 +84,18 @@ export default function LocationsIndex () {
               {rows.map((row) => (
                 <TableRow key={row.name}>
                   <TableCell component="th" scope="row">
-                    <Link href={`/locations/${row.id}`} onClick={e => handlePath(row.path, e)} underline="none">
-                      {row.name}
-                    </Link>
+                    <div className={classes.name_box}>
+                      <CardMedia        
+                          className={classes.media}
+                          image={imagePath(row.ipath)}
+                          title={row.name}
+                      />
+                      <Typography className={classes.name} >
+                        <Link href={`/locations/${row.id}`} onClick={e => handlePath(row.path, e)} underline="none">
+                          {row.name}
+                        </Link>
+                      </Typography>
+                    </div>
                   </TableCell>
                   <TableCell>
                     {row.region}
