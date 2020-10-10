@@ -12,7 +12,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 
-const images = require.context('../../images/ranks', true)
+const images = require.context('../../images', true)
 const imagePath = (name) => images(name, true);
 
 import CardMedia from '@material-ui/core/CardMedia';

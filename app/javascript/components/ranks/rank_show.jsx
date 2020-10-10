@@ -7,7 +7,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 
-const images = require.context('../../images/ranks', true)
+const images = require.context('../../images', true)
 const imagePath = (name) => images(name, true);
 
 const useStyles = makeStyles((theme) => ({

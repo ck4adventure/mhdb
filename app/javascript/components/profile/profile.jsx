@@ -3,17 +3,20 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux'
 
-const images = require.context('../../images/ranks', true)
+const images = require.context('../../images', true)
 const imagePath = (name) => images(name, true)
+
 import { makeStyles } from '@material-ui/core/styles';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
+
 const useStyles = makeStyles(theme => ({
   media: {
     height: 20,
     width: 20,
   },
 }));
+
 export default function Profile() {
   const classes = useStyles();
   const session = useSelector(state => state.session)
