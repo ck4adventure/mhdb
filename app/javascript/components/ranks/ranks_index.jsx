@@ -12,7 +12,11 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 
-import { toArray } from '../../reducers/selectors';
+const images = require.context('../../images/ranks', true)
+const imagePath = (name) => images(name, true);
+
+import CardMedia from '@material-ui/core/CardMedia';
+
 
 const useStyles = makeStyles((theme) => ({
   drawerHeader: {
@@ -26,11 +30,17 @@ const useStyles = makeStyles((theme) => ({
   table: {
     minWidth: 650,
   },
+  media: {
+    height: 30,
+    width: 30,
+  },
 }))
 
 function createData(name, id, path) {
-  return { name, id, path }
+  const ipath = './' + name.split(" ").join("").toLowerCase();
+  return { name, id, path, ipath}
 }
+
 export default function RanksIndex () {
   const r = useSelector(state => state.ranks);
   const classes = useStyles();
@@ -55,12 +65,20 @@ export default function RanksIndex () {
           <Table className={classes.table} aria-label="simple table">
             <TableHead>
               <TableRow>
+                <TableCell size="small">Image</TableCell>
                 <TableCell>Title</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               {rows.map((row) => (
                 <TableRow key={row.name}>
+                  <TableCell size="small">
+                    <CardMedia        
+                        className={classes.media}
+                        image={imagePath(row.ipath)}
+                        title={row.name}
+                    />
+                  </TableCell>
                   <TableCell component="th" scope="row">
                     <Link href={`/ranks/${row.id}`} onClick={e => handlePath(row.path, e)} underline="none">
                       {row.name}
