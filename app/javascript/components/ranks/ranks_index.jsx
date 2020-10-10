@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
     alignContent: 'flex-end',
   },
   table: {
-    minWidth: 650,
+    minWidth: 500,
   },
   media: {
     height: 30,
@@ -65,14 +65,14 @@ export default function RanksIndex () {
           <Table className={classes.table} aria-label="simple table">
             <TableHead>
               <TableRow>
-                <TableCell size="small">Image</TableCell>
+                <TableCell padding="checkbox">Image</TableCell>
                 <TableCell>Title</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               {rows.map((row) => (
                 <TableRow key={row.name}>
-                  <TableCell size="small">
+                  <TableCell padding="checkbox">
                     <CardMedia        
                         className={classes.media}
                         image={imagePath(row.ipath)}
