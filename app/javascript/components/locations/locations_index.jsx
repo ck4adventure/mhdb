@@ -11,8 +11,10 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import Typography from '@material-ui/core/Typography';
+import NameCard from '../cards/name_card';
 
-import { toArray } from '../../reducers/selectors';
+
 
 const useStyles = makeStyles((theme) => ({
   drawerHeader: {
@@ -26,13 +28,27 @@ const useStyles = makeStyles((theme) => ({
   table: {
     minWidth: 650,
   },
+  name_box: {
+    display: 'flex',
+    alignItems: 'center',
+  },
+  media: {
+    height: 25,
+    width: 25,
+    borderRadius: 3,
+  },
+  name: {
+   padding: 0,
+   paddingLeft: 5,
+   fontSize: 14,
+  },
 }))
 
-function createData(name, id, path, region, rank) {
-  return { name, id, path, region, rank }
+function createData(name, id, path, ipath, region, rank) {
+  return { name, id, path, ipath, region, rank }
 }
 export default function LocationsIndex () {
-  const r = useSelector(state => state.locations);
+  const locs = useSelector(state => state.locations);
   const classes = useStyles();
   let history = useHistory();
 
@@ -41,10 +57,10 @@ export default function LocationsIndex () {
     history.push(path);
   }
   
-  const rows = Object.keys(r).map(id => createData(r[id].name, id, `/locations/${id}`, r[id].region.name, r[id].rank.title));
+  const rows = Object.keys(locs).map(id => createData(locs[id].name, id, `/locations/${id}`, locs[id].ipath, locs[id].region, locs[id].rank));
 
   if (rows.length == 0) {
-    return <h1>Loading</h1>
+    return <h1>Loading...</h1>
   }
   
   return (
@@ -64,15 +80,15 @@ export default function LocationsIndex () {
               {rows.map((row) => (
                 <TableRow key={row.name}>
                   <TableCell component="th" scope="row">
-                    <Link href={`/locations/${row.id}`} onClick={e => handlePath(row.path, e)} underline="none">
-                      {row.name}
+                    <NameCard name={row.name} ipath={row.ipath} path={row.path} />
+                  </TableCell>
+                  <TableCell>
+                    <Link href={`/regions/${row.region.id}`} className={classes.name} onClick={e => handlePath(`/regions/${row.region.id}`, e)} underline="none">
+                      {row.region.name}
                     </Link>
                   </TableCell>
                   <TableCell>
-                    {row.region}
-                  </TableCell>
-                  <TableCell>
-                    {row.rank}
+                    <NameCard name={row.rank.title} ipath={row.rank.ipath} path={`/ranks/${row.rank.id}`} />
                   </TableCell>
                 </TableRow>
               ))}

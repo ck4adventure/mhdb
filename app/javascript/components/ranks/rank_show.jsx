@@ -3,6 +3,16 @@ import { useSelector } from 'react-redux'
 import { useHistory } from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles'
 import Link from '@material-ui/core/Link';
+import CardMedia from '@material-ui/core/CardMedia';
+import Container from '@material-ui/core/Container';
+import Typography from '@material-ui/core/Typography';
+
+import { List, ListItem, ListItemLink, ListItemText } from '@material-ui/core';
+
+const images = require.context('../../images', true)
+const imagePath = (name) => images(name, true);
+
+import NameCard from '../cards/name_card';
 
 const useStyles = makeStyles((theme) => ({
   drawerHeader: {
@@ -12,6 +22,18 @@ const useStyles = makeStyles((theme) => ({
     // necessary for content to be below app bar
     ...theme.mixins.toolbar,
     alignContent: 'flex-end',
+  },
+  titleContainer: {
+    display: 'flex',
+    alignItems: 'center',
+    marginBottom: 16,
+  },
+  title: {
+    marginLeft: 20,
+  },
+  media: {
+    height: 50,
+    width: 50,
   },
 }));
 
@@ -28,15 +50,29 @@ export default function RankShow (props) {
     e.preventDefault();
     history.push(path);
   }
+  const ipath = './' + rank.title.split(" ").join("").toLowerCase();
+
   return (
     <div>
       <div className={classes.drawerHeader} />
-      <h2>Rank Page</h2>
-      <h4>{rank.title}</h4>
-      <h4>Locations unlocked:</h4>
-      <ul>
-        {rank.locations.map(loc => <li key={loc.id}><Link href={`/locations/${loc.id}`} onClick={e => handlePath(`/locations/${loc.id}`, e)}>{loc.name}</Link></li>)}
-      </ul>
+      <Container className={classes.titleContainer}>
+        <CardMedia        
+                          className={classes.media}
+                          image={imagePath(ipath)}
+                          title={rank.title}
+                      />
+        <Typography variant="h3" className={classes.title}>{rank.title}</Typography>
+
+      </Container>
+
+      <Typography variant="h6">Locations unlocked:</Typography>
+      <List>
+        {rank.locations.map(loc => (
+          <ListItem key={loc.id} >
+            <NameCard name={loc.name} path={`/locations/${loc.id}`} ipath={loc.ipath} />
+          </ListItem>
+        ))}
+      </List>
       <br/>
       <br/>
       <Link href="/ranks" onClick={e => handlePath("/ranks",e)}>Back to Ranks</Link>
