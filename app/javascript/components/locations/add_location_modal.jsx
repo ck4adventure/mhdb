@@ -4,7 +4,8 @@ import Modal from '@material-ui/core/Modal';
 
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
-import TextField from '@material-ui/core/TextField';
+
+import AddLocationForm from './add_location_form';
 
 function getModalStyle() {
   const top = 50;
@@ -48,20 +49,6 @@ export default function AddLocationModal() {
     setOpen(false);
   };
 
-  const body = (
-    <div style={modalStyle} className={classes.paper}>
-      <h2 id="simple-modal-title">Need to pick a style</h2>
-      <form className={classes.root} noValidate autoComplete="off">
-        <TextField id="standard-basic" label="Trap Name" />
-        <br/>
-        <TextField id="filled-basic" label="Trap Name" variant="filled" />
-        <br/>
-        <TextField id="outlined-basic" label="Trap Name" variant="outlined" />
-      </form>
-      <button type="button" onClick={handleClose}>Close Modal</button>
-    </div>
-  );
-
   return (
     <div>
       <Fab color="secondary" className={classes.fab_pos} onClick={handleOpen}>
@@ -73,7 +60,9 @@ export default function AddLocationModal() {
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"
       >
-        {body}
+        <div style={modalStyle} className={classes.paper}>
+          <AddLocationForm closeModal={handleClose} />
+        </div>
       </Modal>
     </div>
   );
