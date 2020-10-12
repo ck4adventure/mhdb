@@ -13,6 +13,8 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import NameCard from '../cards/name_card';
+import AddLocationModal from './add_location_modal';
+
 
 
 
@@ -41,6 +43,12 @@ const useStyles = makeStyles((theme) => ({
    padding: 0,
    paddingLeft: 5,
    fontSize: 14,
+  },
+  margin: {
+    margin: theme.spacing(2),
+    position: 'fixed',
+    bottom: 0,
+    right: 0,
   },
 }))
 
@@ -95,6 +103,7 @@ export default function LocationsIndex () {
             </TableBody>
           </Table>
         </TableContainer>
+        <AddLocationModal />
     </div>
   );
 }
