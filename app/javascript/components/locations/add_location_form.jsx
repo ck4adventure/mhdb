@@ -1,5 +1,7 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+
+import { createLocation } from '../../actions/locations_actions';
 
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
@@ -38,13 +40,14 @@ const useStyles = makeStyles((theme) => ({
 
 export default function AddLocationForm (props) {
   const classes = useStyles();
+  const dispatch = useDispatch();
 
   const regionsArr = useSelector(state =>  Object.keys(state.regions).map(regionId => ({ id: regionId, name: state.regions[regionId].name,})));
   const ranksArr = useSelector(state => Object.keys(state.ranks).map(rankId => ({id: rankId, name: state.ranks[rankId].title,})));
 
   const [name, setName] = React.useState("");
-  const [rank, setRank] = React.useState("1");
-  const [region, setRegion] = React.useState("1");
+  const [rankId, setRankId] = React.useState("1");
+  const [regionId, setRegionId] = React.useState("1");
 
   const handleName = (e) => {
     e.preventDefault();
@@ -53,17 +56,16 @@ export default function AddLocationForm (props) {
 
   const handleRank = (e) => {
     e.preventDefault();
-    setRank(e.target.value);
+    setRankId(e.target.value);
   }
   const handleRegion = (e) => {
     e.preventDefault();
-    setRegion(e.target.value);
+    setRegionId(e.target.value);
   }
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    props.closeModal();
+    dispatch(createLocation({name, rankId, regionId})).then(succ => props.closeModal());
   }
 
   const menuItems = (arr) => arr.map(item => <MenuItem key={item.id} value={item.id}>{item.name}</MenuItem>);
@@ -85,7 +87,7 @@ export default function AddLocationForm (props) {
         <Select
           labelId="location-region-select-label"
           id="region-select"
-          value={region}
+          value={regionId}
           onChange={handleRegion}
           name="regionId"
         >
@@ -97,7 +99,7 @@ export default function AddLocationForm (props) {
         <Select
           labelId="location-rank-select-label"
           id="rank-select"
-          value={rank}
+          value={rankId}
           onChange={handleRank}
           name="rankId"
         >

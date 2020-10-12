@@ -1,4 +1,4 @@
-import { RECEIVE_LOCATIONS } from '../actions/locations_actions';
+import { RECEIVE_LOCATIONS, RECEIVE_LOCATION } from '../actions/locations_actions';
 
 const locationsReducer = (state = {}, action) => {
   Object.freeze(state);
@@ -7,6 +7,9 @@ const locationsReducer = (state = {}, action) => {
     case RECEIVE_LOCATIONS:
       action.locations.forEach(loc => nextState[loc.id] = loc)
       return nextState;
+    case RECEIVE_LOCATION:
+      let newLoc = {[action.location.id]: action.location}
+      return Object.assign({}, state, newLoc);
     default:
       return state;
   }
