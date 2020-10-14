@@ -15,21 +15,46 @@ import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 
 import Button from '@material-ui/core/Button';
+import ImageIcon from '@material-ui/icons/Image';
+import CloudUploadIcon from '@material-ui/icons/CloudUpload';
+
+const images = require.context('../../images', true)
+const imagePath = (name) => images(name, true);
 
 const useStyles = makeStyles((theme) => ({
-  formHeader: {
+  root: {
+    '& > *': {
+      margin: theme.spacing(1),
+    },
+  },
+  headerContainer: {
     margin: theme.spacing(1),
   },
   nameContainer: {
+    margin: theme.spacing(1),
     display: 'flex',
+    flexDirection: 'column',
+  },
+  uploadContainer: {
+    margin: theme.spacing(1),
+    display: 'flex',
+    alignItems: 'center',
+    marginTop: theme.spacing(2),
+  },
+  input: {
+    display: 'none',
   },
   formControl: {
     margin: theme.spacing(1),
-    minWidth: 140,
   },
   selectsContainer: {
+    margin: theme.spacing(1),
     display: 'flex',
     justifyContent: 'space-between',
+  },
+  formControlSelect: {
+    margin: theme.spacing(1),
+    minWidth: 140,
   },
   buttonContainer: {
     margin: theme.spacing(1),
@@ -48,6 +73,7 @@ export default function AddLocationForm (props) {
   const [name, setName] = React.useState("");
   const [rankId, setRankId] = React.useState("1");
   const [regionId, setRegionId] = React.useState("1");
+  const [image, setImage] = React.useState({ name: "Upload Image" });
 
   const handleName = (e) => {
     e.preventDefault();
@@ -63,6 +89,13 @@ export default function AddLocationForm (props) {
     setRegionId(e.target.value);
   }
 
+  const handleImage = (e) => {
+    console.log(e.target.files[0])
+    if (e.target.files[0]) {
+      setImage(e.target.files[0])
+    }
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(createLocation({name, rankId, regionId})).then(succ => props.closeModal());
@@ -74,42 +107,68 @@ export default function AddLocationForm (props) {
 
   return (
     <form className={classes.root} noValidate autoComplete="off">
-      <Typography variant="h6" className={classes.formHeader}>
-        Add a Location
-      </Typography>
+      <div className={classes.headerContainer}>
+        <Typography variant="h6" className={classes.formControl}>
+          Add a Location
+        </Typography>
+      </div>
       <div className={classes.nameContainer}>
-        <TextField fullWidth className={classes.formControl} id="lname" name="name" onChange={handleName} value={name} label="Location Name" />
-      </div>
-      <br />
-        <div className={classes.selectsContainer}>
         <FormControl className={classes.formControl}>
-        <InputLabel id="location-region-select-label">Region</InputLabel>
-        <Select
-          labelId="location-region-select-label"
-          id="region-select"
-          value={regionId}
-          onChange={handleRegion}
-          name="regionId"
-        >
-          {menuItems(regionsArr)}
-        </Select>
-        </FormControl>
-        <FormControl className={classes.formControl}>
-        <InputLabel id="location-rank-select-label">Unlocked at</InputLabel>
-        <Select
-          labelId="location-rank-select-label"
-          id="rank-select"
-          value={rankId}
-          onChange={handleRank}
-          name="rankId"
-        >
-          {menuItems(ranksArr)}
-        </Select>
+          <TextField  id="lname" name="name" onChange={handleName} value={name} label="Location Name" helperText="Exactly as displayed"/>
         </FormControl>
       </div>
+      <div className={classes.selectsContainer}>
+        <FormControl className={classes.formControlSelect}>
+          <InputLabel id="location-region-select-label">Region</InputLabel>
+          <Select
+            labelId="location-region-select-label"
+            id="region-select"
+            value={regionId}
+            onChange={handleRegion}
+            name="regionId"
+          >
+            {menuItems(regionsArr)}
+          </Select>
+        </FormControl>
+        <FormControl className={classes.formControlSelect}>
+          <InputLabel id="location-rank-select-label">Unlocked at</InputLabel>
+          <Select
+            labelId="location-rank-select-label"
+            id="rank-select"
+            value={rankId}
+            onChange={handleRank}
+            name="rankId"
+          >
+            {menuItems(ranksArr)}
+          </Select>
+        </FormControl>
+      </div>
+      <div className={classes.uploadContainer}>
+        <FormControl className={classes.formControl}>
+          <input
+            accept="image/*"
+            className={classes.input}
+            id="img-upload-file"
+            type="file"
+            name="image"
+            onChange={handleImage}
+          />
+          <label htmlFor="img-upload-file">
+            <Button startIcon={<CloudUploadIcon />} variant="contained" color="default" size="small" component="span">
+              Image
+            </Button>
+          </label>
+        </FormControl>
+        <FormControl className={classes.formControl}>
+          {image && <Typography>
+            {image.name}
+          </Typography> }
+
+        </FormControl>
+        </div>
       <div className={classes.buttonContainer}>
-        <Button onClick={props.closeModal}>Cancel</Button>
-        <Button variant="contained" color="primary" onClick={handleSubmit}>
+        <Button onClick={props.closeModal} color="default" >Cancel</Button>
+        <Button className={classes.formControl} variant="contained" color="primary" onClick={handleSubmit}>
           Submit
         </Button>
       </div>
