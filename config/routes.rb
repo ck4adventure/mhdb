@@ -99,7 +99,7 @@ Rails.application.routes.draw do
     resource :session, only: [:create, :destroy]
     resources :ranks, only: [:index]
     resources :regions, only: [:index]
-    resources :locations, only: [:index]
+    resources :locations, only: [:index, :create, :destroy]
   end
 
   resources :users, except: [:index]

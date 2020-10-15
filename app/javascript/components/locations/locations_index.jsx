@@ -16,6 +16,7 @@ import NameCard from '../cards/name_card';
 
 
 
+
 const useStyles = makeStyles((theme) => ({
   drawerHeader: {
     display: 'flex',
@@ -41,6 +42,12 @@ const useStyles = makeStyles((theme) => ({
    padding: 0,
    paddingLeft: 5,
    fontSize: 14,
+  },
+  margin: {
+    margin: theme.spacing(2),
+    position: 'fixed',
+    bottom: 0,
+    right: 0,
   },
 }))
 
