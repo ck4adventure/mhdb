@@ -43,11 +43,11 @@ export default function NameCard(props) {
   return (
     <Card className={classes.croot} elevation={0} >
       <CardContent className={classes.content}>
-         <CardMedia        
+         {props.image && <CardMedia        
             className={classes.media}
-            image={imagePath(props.ipath)}
+            image={`http://localhost:3000${props.image}`}
             title={props.name}
-        />
+        />}
       </CardContent>
       <CardActions>
         <Link href={props.path} className={classes.name} onClick={e => handlePath(props.path, e)} underline="none">

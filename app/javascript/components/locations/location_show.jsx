@@ -54,11 +54,11 @@ export default function LocationShow (props) {
     <div>
       <div className={classes.drawerHeader} />
       <Container className={classes.titleContainer}>
-        <CardMedia        
+        {location.image && <CardMedia        
             className={classes.media}
-            image={imagePath(location.ipath)}
+            image={`http://localhost:3000${location.image}`}
             title={location.name}
-        />
+        />}
         <Typography variant="h4" className={classes.title}>{location.name}</Typography>
 
       </Container>
