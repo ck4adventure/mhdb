@@ -78,6 +78,7 @@ export default function EditLocationForm (props) {
   const [rankId, setRankId] = React.useState(loc.rank.id);
   const [regionId, setRegionId] = React.useState(loc.region.id);
   const [image, setImage] = React.useState({name: imageName});
+  const [imageChanged, setImageChanged] = React.useState(false);
 
   const handleName = (e) => {
     e.preventDefault();
@@ -96,7 +97,8 @@ export default function EditLocationForm (props) {
   const handleImage = (e) => {
     console.log(e.target.files[0])
     if (e.target.files[0]) {
-      setImage(e.target.files[0])
+      setImage(e.target.files[0]);
+      setImageChanged(true);
     }
   }
 
@@ -106,8 +108,14 @@ export default function EditLocationForm (props) {
     formData.append('location[name]', name);
     formData.append('location[rank_id]', rankId);
     formData.append('location[region_id]', regionId);
-    formData.append('location[image]', image);
-    dispatch(updateLocation(locationId, formData)).then(succ => props.closeModal());
+    if (imageChanged) {
+      formData.append('location[image]', image);
+    }
+    dispatch(updateLocation(locationId, formData)).then(succ => {
+      props.closeModal();
+      setImageChanged(false);
+    });
+    props.closeModal();
   }
 
   const menuItems = (arr) => arr.map(item => <MenuItem key={item.id} value={item.id}>{item.name}</MenuItem>);

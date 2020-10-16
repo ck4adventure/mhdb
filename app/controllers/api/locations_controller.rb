@@ -20,10 +20,10 @@ class Api::LocationsController < ApplicationController
   end
 
   def update
-    # naive handling of images
-    # todo: ensure purge old image, better typechecking, and error handling
+    # auto handling of images, only sending data if it changes on frontend
+    # todo:  better typechecking, and error handling
     @location = Location.find(params[:id])
-    if @location.update(location_params)
+    if @location.update!(location_params)
       render 'api/locations/show'
     else
       render json: ["Unable to update location"], status: 400
@@ -34,6 +34,5 @@ class Api::LocationsController < ApplicationController
   def location_params
     params.require(:location).permit(:name, :region_id, :rank_id, :image)
   end
-
 
 end
