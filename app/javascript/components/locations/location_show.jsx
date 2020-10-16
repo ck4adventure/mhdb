@@ -8,6 +8,8 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
 
+import EditLocationModal from './edit_location_modal';
+
 const images = require.context('../../images', true)
 const imagePath = (name) => images(name, true);
 
@@ -67,6 +69,7 @@ export default function LocationShow (props) {
       <br/>
       <br/>
       <Link href="/locations" onClick={e => handlePath("/locations",e)}>Back to Locations</Link>
+      <EditLocationModal locationId={location.id} />
     </div>
   )
 }
