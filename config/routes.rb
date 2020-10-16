@@ -11,15 +11,21 @@
 #                                       PUT    /api/items/:id(.:format)                                                                 api/items#update
 #                                       DELETE /api/items/:id(.:format)                                                                 api/items#destroy
 #                             api_users POST   /api/users(.:format)                                                                     api/users#create
-#                          new_api_user GET    /api/users/new(.:format)                                                                 api/users#new
-#                         edit_api_user GET    /api/users/:id/edit(.:format)                                                            api/users#edit
 #                              api_user GET    /api/users/:id(.:format)                                                                 api/users#show
 #                                       PATCH  /api/users/:id(.:format)                                                                 api/users#update
 #                                       PUT    /api/users/:id(.:format)                                                                 api/users#update
 #                                       DELETE /api/users/:id(.:format)                                                                 api/users#destroy
-#                       new_api_session GET    /api/session/new(.:format)                                                               api/sessions#new
 #                           api_session DELETE /api/session(.:format)                                                                   api/sessions#destroy
 #                                       POST   /api/session(.:format)                                                                   api/sessions#create
+#                             api_ranks GET    /api/ranks(.:format)                                                                     api/ranks#index
+#                           api_regions GET    /api/regions(.:format)                                                                   api/regions#index
+#                         api_locations GET    /api/locations(.:format)                                                                 api/locations#index
+#                                       POST   /api/locations(.:format)                                                                 api/locations#create
+#                      new_api_location GET    /api/locations/new(.:format)                                                             api/locations#new
+#                     edit_api_location GET    /api/locations/:id/edit(.:format)                                                        api/locations#edit
+#                          api_location GET    /api/locations/:id(.:format)                                                             api/locations#show
+#                                       PATCH  /api/locations/:id(.:format)                                                             api/locations#update
+#                                       PUT    /api/locations/:id(.:format)                                                             api/locations#update
 #                                 users POST   /users(.:format)                                                                         users#create
 #                              new_user GET    /users/new(.:format)                                                                     users#new
 #                             edit_user GET    /users/:id/edit(.:format)                                                                users#edit
@@ -99,7 +105,7 @@ Rails.application.routes.draw do
     resource :session, only: [:create, :destroy]
     resources :ranks, only: [:index]
     resources :regions, only: [:index]
-    resources :locations, only: [:index, :create, :destroy, :show]
+    resources :locations, except: [:destroy]
   end
 
   resources :users, except: [:index]
