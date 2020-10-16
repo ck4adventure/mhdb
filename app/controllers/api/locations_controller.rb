@@ -4,6 +4,11 @@ class Api::LocationsController < ApplicationController
     render 'api/locations/index'
   end
 
+  def show
+    @location = Location.find(params[:id])
+    render 'api/locations/show'
+  end
+
   def create
     @location = Location.new(location_params)
     if @location.save
