@@ -14,6 +14,8 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import NameCard from '../cards/name_card';
 
+import AddLocationModal from './add_location_modal';
+
 
 
 
@@ -102,6 +104,7 @@ export default function LocationsIndex () {
             </TableBody>
           </Table>
         </TableContainer>
+        <AddLocationModal />
     </div>
   );
 }
