@@ -1,6 +1,8 @@
 json.id @location.id
 json.name @location.name
-json.image url_for(@location.image)
+if @location.image.attached?
+  json.image url_for(@location.image)
+end
 json.rank do 
   json.id @location.rank.id
   json.title @location.rank.title
