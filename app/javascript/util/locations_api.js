@@ -10,3 +10,11 @@ export const postLocation = (formData) => $.ajax({
   contentType: false,
   processData: false,
 })
+
+export const putLocation = (id, formData) => $.ajax({
+  type: "PUT",
+  url: `api/locations/${id}`,
+  data: formData,
+  contentType: false,
+  processData: false,
+})

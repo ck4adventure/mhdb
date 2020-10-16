@@ -29,9 +29,13 @@ export const fetchAllLocations = () => dispatch => (
   )
 );
 
-export const createLocation = (location) => dispatch => (
-  LocationsApiUtil.postLocation(location)
+export const createLocation = (formData) => dispatch => (
+  LocationsApiUtil.postLocation(formData)
     .then(location => dispatch(receiveLocation(location)), 
-          err => (dispatch(receiveErrors(err.responseJSON)))
-          )
+          err => dispatch(receiveErrors(err.responseJSON)))
+);
+
+export const updateLocation = (id, formData) => dispatch => (
+  LocationsApiUtil.putLocation(id, formData)
+    .then(location => dispatch(receiveLocation(location)), err => dispatch(receiveErrors(err.responseJSON)))
 );

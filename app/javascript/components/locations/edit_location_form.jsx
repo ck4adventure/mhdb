@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
-import { createLocation } from '../../actions/locations_actions';
+import { updateLocation } from '../../actions/locations_actions';
 
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
@@ -107,7 +107,7 @@ export default function EditLocationForm (props) {
     formData.append('location[rank_id]', rankId);
     formData.append('location[region_id]', regionId);
     formData.append('location[image]', image);
-    dispatch(createLocation(formData)).then(succ => props.closeModal());
+    dispatch(updateLocation(locationId, formData)).then(succ => props.closeModal());
   }
 
   const menuItems = (arr) => arr.map(item => <MenuItem key={item.id} value={item.id}>{item.name}</MenuItem>);
