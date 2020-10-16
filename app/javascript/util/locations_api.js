@@ -3,8 +3,10 @@ export const fetchLocations = () => $.ajax({
   url: "api/locations",
 })
 
-export const postLocation = (location) => $.ajax({
+export const postLocation = (formData) => $.ajax({
   type: "POST",
   url: "api/locations",
-  data: { location },
+  data: formData,
+  contentType: false,
+  processData: false,
 })

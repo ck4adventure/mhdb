@@ -5,7 +5,7 @@ class Api::LocationsController < ApplicationController
   end
 
   def create
-    @location = Location.new(name: params[:location][:name], region_id: params[:location][:regionId], rank_id: params[:location][:rankId])
+    @location = Location.new(location_params)
     if @location.save
       render 'api/locations/show'
     else
@@ -17,6 +17,11 @@ class Api::LocationsController < ApplicationController
     location = Location.find(params[:id])
     location.destroy
     render json: { message: "Location #{location.name} successfully deleted" }, status: 200
+  end
+
+  private 
+  def location_params
+    params.require(:location).permit(:name, :region_id, :rank_id, :image)
   end
 
 

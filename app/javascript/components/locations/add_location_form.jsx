@@ -98,7 +98,12 @@ export default function AddLocationForm (props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(createLocation({name, rankId, regionId})).then(succ => props.closeModal());
+    const formData = new FormData();
+    formData.append('location[name]', name);
+    formData.append('location[rank_id]', rankId);
+    formData.append('location[region_id]', regionId);
+    formData.append('location[image]', image);
+    dispatch(createLocation(formData)).then(succ => props.closeModal());
   }
 
   const menuItems = (arr) => arr.map(item => <MenuItem key={item.id} value={item.id}>{item.name}</MenuItem>);
