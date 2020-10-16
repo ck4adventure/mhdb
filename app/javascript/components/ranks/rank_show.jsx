@@ -9,9 +9,6 @@ import Typography from '@material-ui/core/Typography';
 
 import { List, ListItem, ListItemLink, ListItemText } from '@material-ui/core';
 
-const images = require.context('../../images', true)
-const imagePath = (name) => images(name, true);
-
 import NameCard from '../cards/name_card';
 
 const useStyles = makeStyles((theme) => ({
@@ -50,17 +47,16 @@ export default function RankShow (props) {
     e.preventDefault();
     history.push(path);
   }
-  const ipath = './' + rank.title.split(" ").join("").toLowerCase();
 
   return (
     <div>
       <div className={classes.drawerHeader} />
       <Container className={classes.titleContainer}>
-        <CardMedia        
+        {rank.image && <CardMedia        
                           className={classes.media}
-                          image={imagePath(ipath)}
+                          image={rank.image}
                           title={rank.title}
-                      />
+        /> }
         <Typography variant="h3" className={classes.title}>{rank.title}</Typography>
 
       </Container>
@@ -69,7 +65,7 @@ export default function RankShow (props) {
       <List>
         {rank.locations.map(loc => (
           <ListItem key={loc.id} >
-            <NameCard name={loc.name} path={`/locations/${loc.id}`} ipath={loc.ipath} />
+            <NameCard name={loc.name} path={`/locations/${loc.id}`} image={loc.image} />
           </ListItem>
         ))}
       </List>

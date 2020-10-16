@@ -12,9 +12,6 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 
-const images = require.context('../../images', true)
-const imagePath = (name) => images(name, true);
-
 import CardMedia from '@material-ui/core/CardMedia';
 
 
@@ -36,13 +33,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-function createData(name, id, path) {
-  const ipath = './' + name.split(" ").join("").toLowerCase();
-  return { name, id, path, ipath}
+function createData(name, id, path, image) {
+  return { name, id, path, image };
 }
 
 export default function RanksIndex () {
-  const r = useSelector(state => state.ranks);
+  const ranks = useSelector(state => state.ranks);
   const classes = useStyles();
   let history = useHistory();
 
@@ -51,7 +47,7 @@ export default function RanksIndex () {
     history.push(path);
   }
   
-  const rows = Object.keys(r).map(id => createData(r[id].title, id, `/ranks/${id}`));
+  const rows = Object.keys(ranks).map(id => createData(ranks[id].title, id, `/ranks/${id}`, ranks[id].image));
 
   if (rows.length == 0) {
     return <h1>Loading</h1>
@@ -73,11 +69,11 @@ export default function RanksIndex () {
               {rows.map((row) => (
                 <TableRow key={row.name}>
                   <TableCell padding="checkbox">
-                    <CardMedia        
+                    {row.image && <CardMedia        
                         className={classes.media}
-                        image={imagePath(row.ipath)}
+                        image={`http://localhost:3000${row.image}`}
                         title={row.name}
-                    />
+                    /> }
                   </TableCell>
                   <TableCell component="th" scope="row">
                     <Link href={`/ranks/${row.id}`} onClick={e => handlePath(row.path, e)} underline="none">
