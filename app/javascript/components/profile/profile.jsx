@@ -35,7 +35,7 @@ export default function Profile() {
   }
   return (
     <div className="profile__container">
-      <h2>Hi there {session.name}</h2>
+      <h2>Hi there {session.username}</h2>
       <CardMedia        
             className={classes.media}
             image={ipath}
