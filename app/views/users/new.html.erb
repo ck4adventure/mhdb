@@ -5,10 +5,12 @@
 <form id="sign_up_form" action="/users" method="POST">
   <input type="hidden" value=<%= form_authenticity_token %> name="authenticity_token">
   <label for="user_name">Display Name: </label>
-  <input type="text" id="user_name" name="user[name]" value="">
+  <input type="text" id="user_name" name="user[username]" value="">
   <label for="user_email">Username: </label>
   <input type="text" id="user_email" name="user[email]" value="">
   <%= collection_select(:user, :rank_id, Rank.all, :id, :title ) %>
+  <label for="user_pw">Password (min 6 chars): </label>
+  <input type="password" id="user_pw" name="user[password]" >
 
   <input type="submit">
 </form>

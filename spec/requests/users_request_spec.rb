@@ -6,11 +6,10 @@ RSpec.describe "Users Requests", type: :request do
     @rank2 = Rank.create!(title: "Testi me twice")
   end
   it 'creates a new User and redirects to the show page' do
-    pending
     get "/users/new"
     expect(response).to render_template(:new)
 
-    post "/users", :params => { :user => { name:"Testy", email: "testy@test.com" } }
+    post "/users", :params => { :user => { username:"Testy", email: "testy@test.com", password: "tester", rank_id: Rank.first.id } }
     expect(response).to redirect_to user_path(assigns(:user))
     follow_redirect!
 
@@ -20,17 +19,18 @@ RSpec.describe "Users Requests", type: :request do
 
   it 'edits an existing User and redirects to the show page' do
     pending
-    realname_larry = User.create!(name: "Curly", email: "larry@test.com", rank_id: 1)
+    realname_larry = User.create!(username: "Curly", email: "larry@test.com", rank_id: Rank.last, password: "curlyme")
     get edit_user_path(realname_larry)
     expect(response).to render_template(:edit)
 
-    patch user_path(realname_larry.id), :params => { :user => { name:"Larry", email: "larry@test.com" } }
+    patch user_path(realname_larry.id), :params => { :user => { username:"Larry", email: "larry@test.com" } }
     expect(response).to redirect_to user_path(realname_larry.id)
   end
 
   it 'destroys an existing User and redirects to the index page' do
     pending
-    testy = User.create!(name: "testy", email: "testy@test.com", rank_id: 2)
+    testy = User.new(username: "testy", email: "testy@test.com", password: "muahaha", rank_id: Rank.first)
+    testy.save!
     delete user_path(testy)
     expect(response).to redirect_to root_path
   end
