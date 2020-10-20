@@ -30,10 +30,10 @@ class User < ApplicationRecord
   has_many :locations,
     through: :rank
 
-  def self.find_by_credentials(username, password)
-    user = User.find_by(username: username)
-    return nil if user.nil?
-    user.is_password?(password) ? user : nil
+  def self.find_by_credentials(un, pw)
+    user = User.find_by(username: un)
+    return nil unless user
+    user.is_password?(pw) ? user : nil
   end
 
   def is_password?(pw)
