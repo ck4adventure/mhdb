@@ -2,7 +2,7 @@ import { RECEIVE_CURRENT_USER, LOGOUT_CURRENT_USER } from '../actions/session_ac
 
 const _nullUser = Object.freeze({
   id: null,
-  name: null,
+  username: null,
   email: null,
   rank_id: null,
   title: null,
