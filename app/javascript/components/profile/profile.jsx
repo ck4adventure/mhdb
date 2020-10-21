@@ -34,7 +34,6 @@ export default function Profile() {
   }
 
   const ipath = imagePath('./'+`${session.title.toLowerCase()}`)
-  console.log(ipath)
 
   if (!Boolean(session)) {
     return <h1>Loading...</h1>
@@ -43,7 +42,7 @@ export default function Profile() {
     <div className="profile__container">
       <h2>{session.username}</h2>
 
-      <Typography className={classes.icon_link}>
+      <Typography component="div" className={classes.icon_link}>
         Your current Rank is 
             <Link className={classes.icon_link} href={`/ranks/${session.rank_id}`} onClick={e => handlePath(`/ranks/${session.rank_id}`, e)}>      
               <CardMedia        

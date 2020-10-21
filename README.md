@@ -24,6 +24,8 @@ Main user story: As a mousehunt player, I want an app to track my weapons and sp
 - Once POC stable with Items, catalog current features and rewrite the cucumber files and request specs accordingly before it gets too big
 
 ## Updates
+  - Thurs Oct 15: Switched over to ActiveRecord for CMS functionality on item data entry
+  - Mon Oct 12: Ranks and Locations have Images
   - Tues Oct 6: Have now refactored to Material-UI for an easier UI/UX creation
     - React Hooks, incl Redux Hooks to preserve Store functionality
     - using themes and materialUI syntax and options

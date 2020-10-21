@@ -17,6 +17,7 @@
 #
 class Location < ApplicationRecord
   include ImageConcern
+  has_one_attached :image
   validates :name, :rank_id, :region_id, presence: true
   validates :name, uniqueness: true
 

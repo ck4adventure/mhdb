@@ -14,6 +14,8 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import NameCard from '../cards/name_card';
 
+import AddLocationModal from './add_location_modal';
+
 
 
 
@@ -51,8 +53,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-function createData(name, id, path, ipath, region, rank) {
-  return { name, id, path, ipath, region, rank }
+function createData(name, id, path, image, region, rank) {
+  return { name, id, path, image, region, rank }
 }
 export default function LocationsIndex () {
   const locs = useSelector(state => state.locations);
@@ -64,7 +66,7 @@ export default function LocationsIndex () {
     history.push(path);
   }
   
-  const rows = Object.keys(locs).map(id => createData(locs[id].name, id, `/locations/${id}`, locs[id].ipath, locs[id].region, locs[id].rank));
+  const rows = Object.keys(locs).map(id => createData(locs[id].name, id, `/locations/${id}`, locs[id].image, locs[id].region, locs[id].rank));
 
   if (rows.length == 0) {
     return <h1>Loading...</h1>
@@ -87,7 +89,7 @@ export default function LocationsIndex () {
               {rows.map((row) => (
                 <TableRow key={row.name}>
                   <TableCell component="th" scope="row">
-                    <NameCard name={row.name} ipath={row.ipath} path={row.path} />
+                    <NameCard name={row.name} image={row.image} path={row.path} />
                   </TableCell>
                   <TableCell>
                     <Link href={`/regions/${row.region.id}`} className={classes.name} onClick={e => handlePath(`/regions/${row.region.id}`, e)} underline="none">
@@ -102,6 +104,7 @@ export default function LocationsIndex () {
             </TableBody>
           </Table>
         </TableContainer>
+        <AddLocationModal />
     </div>
   );
 }

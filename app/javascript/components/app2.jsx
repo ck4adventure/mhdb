@@ -198,6 +198,8 @@ export default function App() {
     history.push('/');
   }
   const handlePath = (path, event) => {
+    // close window
+    setAnchorEl(null);
     event.preventDefault();
     history.push(path);
   }
