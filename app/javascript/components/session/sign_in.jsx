@@ -35,6 +35,9 @@ const useStyles = makeStyles((theme) => ({
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
+  guest_submit: {
+    margin: theme.spacing(1, 0, 2),
+  },
 }));
 
 export default function SignIn() {
@@ -61,6 +64,14 @@ export default function SignIn() {
                  password: pw };
     e.preventDefault();
     console.log(user)
+    dispatch(login(user));
+    history.push('/');
+  }
+
+  const handleGuestSubmit = (e) => {
+    let user = { username: "Guest",
+                 password: "guestpass" };
+    e.preventDefault();
     dispatch(login(user));
     history.push('/');
   }
@@ -121,6 +132,19 @@ export default function SignIn() {
           </Grid>
         </form>
       </div>
+      <br />
+      <br />
+      <Button
+        type="submit"
+        fullWidth
+        variant="contained"
+        color="secondary"
+        className={classes.submit}
+        onClick={handleGuestSubmit}
+      >
+        Sign In as Guest
+      </Button>
+
     </Container>
   );
 }
