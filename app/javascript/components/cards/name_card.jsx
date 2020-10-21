@@ -31,6 +31,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
+const API_URL = process.env.NODE_ENV == 'production' ? 'https://mousehuntcollector.herokuapp.com' : 'http://localhost:3000'
 export default function NameCard(props) {
   const classes = useStyles();
   let history = useHistory();
@@ -40,12 +41,14 @@ export default function NameCard(props) {
     history.push(path);
   }
 
+  console.log(`${API_URL}${props.image}`)
+
   return (
     <Card className={classes.croot} elevation={0} >
       <CardContent className={classes.content}>
          {props.image && <CardMedia        
             className={classes.media}
-            image={`http://localhost:3000${props.image}`}
+            image={`${API_URL}${props.image}`}
             title={props.name}
         />}
       </CardContent>

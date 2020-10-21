@@ -37,6 +37,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const API_URL = process.env.NODE_ENV == 'production' ? 'https://mousehuntcollector.herokuapp.com' : 'http://localhost:3000'
+
 export default function LocationShow (props) {
   const classes = useStyles();
   const locationId = props.match.params.locationId;
@@ -58,7 +60,7 @@ export default function LocationShow (props) {
       <Container className={classes.titleContainer}>
         {location.image && <CardMedia        
             className={classes.media}
-            image={`http://localhost:3000${location.image}`}
+            image={`${API_URL}${location.image}`}
             title={location.name}
         />}
         <Typography variant="h4" className={classes.title}>{location.name}</Typography>

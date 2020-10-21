@@ -37,6 +37,8 @@ function createData(name, id, path, image) {
   return { name, id, path, image };
 }
 
+const API_URL = process.env.NODE_ENV == 'production' ? 'https://mousehuntcollector.herokuapp.com' : 'http://localhost:3000'
+
 export default function RanksIndex () {
   const ranks = useSelector(state => state.ranks);
   const classes = useStyles();
@@ -71,7 +73,7 @@ export default function RanksIndex () {
                   <TableCell padding="checkbox">
                     {row.image && <CardMedia        
                         className={classes.media}
-                        image={`http://localhost:3000${row.image}`}
+                        image={`${API_URL}${row.image}`}
                         title={row.name}
                     /> }
                   </TableCell>
