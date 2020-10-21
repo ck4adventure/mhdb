@@ -3,7 +3,8 @@ import { RECEIVE_CURRENT_USER } from '../actions/session_actions';
 // const initialUsers = {
 //   1: {
 //     id: 1,
-//     name: "Larry",
+//     username: "Larry",
+//     email: "Larry@test.com" 
 //     rank_id: 4,
 //     title: "Knight",
 //   },

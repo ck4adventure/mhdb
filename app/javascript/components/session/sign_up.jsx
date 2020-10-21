@@ -16,7 +16,6 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom';
 
 import { signup } from '../../actions/session_actions'
-import { SettingsSystemDaydream } from '@material-ui/icons';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -43,26 +42,29 @@ export default function SignUp() {
   const classes = useStyles();
   const dispatch = useDispatch();
   let history = useHistory();
-  const [inputName, setInputName] = React.useState("")
-  const [inputEmail, setInputEmail] = React.useState("")
-
+  const [username, setUsername] = React.useState("");
+  const [email, setEmail] = React.useState("");
+  const [pw, setPW] = React.useState("");
 
   const handleInput = (type, e) => {
     switch (type) {
       case "email":
-        setInputEmail(e.target.value);
+        setEmail(e.target.value);
         break;
-      case "name":
-        setInputName(e.target.value);
+      case "username":
+        setUsername(e.target.value);
         break;
+      case "pw":
+        setPW(e.target.value);
       default:
         break;
     }
   }
 
   const handleSubmit = (e) => {
-    let user = { name: inputName,
-                 email: inputEmail };
+    let user = { username: username,
+                 email: email,
+                 password: pw };
     e.preventDefault();
     dispatch(signup(user));
     history.push('/');

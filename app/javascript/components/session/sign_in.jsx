@@ -35,19 +35,42 @@ const useStyles = makeStyles((theme) => ({
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
+  guest_submit: {
+    margin: theme.spacing(1, 0, 2),
+  },
 }));
 
 export default function SignIn() {
   const classes = useStyles();
   const dispatch = useDispatch();
   let history = useHistory();
-  const [user, setUser] = React.useState({ email: "" })
+  const [username, setUsername] = React.useState("");
+  const [pw, setPW] = React.useState("");
 
   const handleInput = (type, e) => {
-    setUser({ [type]: e.target.value })
+    switch (type) {
+      case "username":
+        setUsername(e.target.value);
+        break;
+      case "pw":
+        setPW(e.target.value);
+      default:
+        break;
+    }
   }
 
   const handleSubmit = (e) => {
+    let user = { username: username,
+                 password: pw };
+    e.preventDefault();
+    console.log(user)
+    dispatch(login(user));
+    history.push('/');
+  }
+
+  const handleGuestSubmit = (e) => {
+    let user = { username: "Guest",
+                 password: "guestpass" };
     e.preventDefault();
     dispatch(login(user));
     history.push('/');
@@ -68,12 +91,22 @@ export default function SignIn() {
             margin="normal"
             required
             fullWidth
-            id="user_email"
-            label="Email Address"
-            name="user[email]"
-            autoComplete="email"
+            id="user_username"
+            label="Username"
+            name="user[username]"
             autoFocus
-            onChange={e => handleInput("email", e)}
+            onChange={e => handleInput("username", e)}
+          />
+          <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            id="user_password"
+            label="Password"
+            type="password"
+            name="user[password]"
+            onChange={e => handleInput("pw", e)}
           />
           <Button
             type="submit"
@@ -99,6 +132,19 @@ export default function SignIn() {
           </Grid>
         </form>
       </div>
+      <br />
+      <br />
+      <Button
+        type="submit"
+        fullWidth
+        variant="contained"
+        color="secondary"
+        className={classes.submit}
+        onClick={handleGuestSubmit}
+      >
+        Sign In as Guest
+      </Button>
+
     </Container>
   );
 }

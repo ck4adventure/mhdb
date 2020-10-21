@@ -148,7 +148,7 @@ export default function App() {
   const [open, setOpen] = React.useState(false);
 
   const auth = useSelector(state => state.session.id);
-  const username = useSelector(state => state.session.name);
+  const username = useSelector(state => state.session.username);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const menuOpen = Boolean(anchorEl);
 
@@ -183,6 +183,7 @@ export default function App() {
     setAnchorEl(null);
     // dispatch logout
     dispatch(logout());
+    history.push('/');
   };
 
   const handleDrawerOpen = () => {

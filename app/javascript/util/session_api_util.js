@@ -7,6 +7,7 @@ export const postUser = (user) => ($.ajax({
 export const postSession = (user) => ($.ajax({
   type: "POST",
   url: '/api/session',
+  dataType: 'json',
   data: { user },
 }));
 
