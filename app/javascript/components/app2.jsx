@@ -1,11 +1,9 @@
-import React, { Fragment, useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import {
   Route,
-  Redirect,
   Switch,
-  HashRouter
 } from 'react-router-dom';
 import { useHistory } from "react-router-dom";
 import clsx from 'clsx';
@@ -26,8 +24,6 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import { CardMedia, Link } from '@material-ui/core';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
 
 import Traps from '../images/traps.png';
 import Travel from '../images/travel.png';
@@ -37,7 +33,6 @@ import Collectibles from '../images/collectibles.png';
 import Recruit from '../images/recruit.gif';
 
 import AccountCircle from '@material-ui/icons/AccountCircle';
-// import Switch from '@material-ui/core/Switch';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormGroup from '@material-ui/core/FormGroup';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -60,6 +55,8 @@ import { fetchAllBases } from '../actions/bases_actions';
 import { fetchRanks } from '../actions/ranks_actions';
 import { fetchAllRegions } from '../actions/regions_actions';
 import { fetchAllLocations } from '../actions/locations_actions';
+
+import { AuthRoute, ProtectedRoute } from '../util/route_util';
 
 
 
@@ -353,9 +350,9 @@ export default function App() {
         })}
       >
         <Switch>
-          <Route path="/signup" component={SignUp} />
-          <Route path="/login" component={SignIn} />
-          <Route path="/profile" component={Profile} />
+          <AuthRoute path="/signup" component={SignUp} />
+          <AuthRoute path="/login" component={SignIn} />
+          <ProtectedRoute path="/profile" component={Profile} />
           <Route path="/ranks/:rankId" component={RankShow} />
           <Route path="/ranks" component={RanksIndex} />
           <Route path="/regions/:regionId" component={RegionShow} />

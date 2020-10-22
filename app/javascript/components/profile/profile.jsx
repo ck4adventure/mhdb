@@ -21,6 +21,12 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     alignItems: 'center',
   },
+  profile_container: {
+    marginTop: 40,
+  },
+  info_container: {
+    display: 'flex',
+  },
 }));
 
 export default function Profile() {
@@ -40,20 +46,21 @@ export default function Profile() {
     return <h1>Loading...</h1>
   }
   return (
-    <div className="profile__container">
+    <div className={classes.profile_container}>
       <h2>{session.username}</h2>
-
-      <Typography className={classes.icon_link}>
-        Your current Rank is 
-            <Link className={classes.icon_link} href={`/ranks/${session.rank_id}`} onClick={e => handlePath(`/ranks/${session.rank_id}`, e)}>      
-              <CardMedia        
-                className={classes.media}
-                image={ipath}
-                title={session.title.toLowerCase()}
-              /> 
-              {session.title} 
-            </Link>
-      </Typography>
+      <div className={classes.info_container}>
+        <Typography className={classes.icon_link} >
+          Your current Rank is 
+        </Typography>
+        <Link className={classes.icon_link} href={`/ranks/${session.rank_id}`} onClick={e => handlePath(`/ranks/${session.rank_id}`, e)}>      
+          <CardMedia        
+            className={classes.media}
+            image={ipath}
+            title={session.title.toLowerCase()}
+          /> 
+          {session.title} 
+        </Link>
+      </div>
     </div>
   );
 }
