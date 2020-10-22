@@ -14,7 +14,7 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import NameCard from '../cards/name_card';
 
-
+import AddLocationModal from './add_location_modal';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -56,6 +56,7 @@ function createData(name, id, path, image, region, rank) {
 }
 export default function LocationsIndex () {
   const locs = useSelector(state => state.locations);
+  const user = Boolean(useSelector(state => state.session.id));
   const classes = useStyles();
   let history = useHistory();
 
@@ -102,6 +103,8 @@ export default function LocationsIndex () {
             </TableBody>
           </Table>
         </TableContainer>
+        {user && 
+          <AddLocationModal />}
     </div>
   );
 }
