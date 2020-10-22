@@ -1,7 +1,8 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
-import { createLocation } from '../../actions/locations_actions';
+import { updateLocation } from '../../actions/locations_actions';
 
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
@@ -17,9 +18,6 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Button from '@material-ui/core/Button';
 import ImageIcon from '@material-ui/icons/Image';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
-
-const images = require.context('../../images', true)
-const imagePath = (name) => images(name, true);
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -63,17 +61,24 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function AddLocationForm (props) {
+export default function EditLocationForm (props) {
   const classes = useStyles();
   const dispatch = useDispatch();
 
   const regionsArr = useSelector(state =>  Object.keys(state.regions).map(regionId => ({ id: regionId, name: state.regions[regionId].name,})));
   const ranksArr = useSelector(state => Object.keys(state.ranks).map(rankId => ({id: rankId, name: state.ranks[rankId].title,})));
+  
+  const { locationId } = props;
+  const loc = useSelector(state => state.locations[locationId])
+  const i = loc.image.lastIndexOf("/") + 1;
+  const imageName = loc.image.slice(i);
 
-  const [name, setName] = React.useState("");
-  const [rankId, setRankId] = React.useState("1");
-  const [regionId, setRegionId] = React.useState("1");
-  const [image, setImage] = React.useState({ name: "Upload Image" });
+  
+  const [name, setName] = React.useState(loc.name);
+  const [rankId, setRankId] = React.useState(loc.rank.id);
+  const [regionId, setRegionId] = React.useState(loc.region.id);
+  const [image, setImage] = React.useState({name: imageName});
+  const [imageChanged, setImageChanged] = React.useState(false);
 
   const handleName = (e) => {
     e.preventDefault();
@@ -92,7 +97,8 @@ export default function AddLocationForm (props) {
   const handleImage = (e) => {
     console.log(e.target.files[0])
     if (e.target.files[0]) {
-      setImage(e.target.files[0])
+      setImage(e.target.files[0]);
+      setImageChanged(true);
     }
   }
 
@@ -102,8 +108,14 @@ export default function AddLocationForm (props) {
     formData.append('location[name]', name);
     formData.append('location[rank_id]', rankId);
     formData.append('location[region_id]', regionId);
-    formData.append('location[image]', image);
-    dispatch(createLocation(formData)).then(succ => props.closeModal());
+    if (imageChanged) {
+      formData.append('location[image]', image);
+    }
+    dispatch(updateLocation(locationId, formData)).then(succ => {
+      props.closeModal();
+      setImageChanged(false);
+    });
+    props.closeModal();
   }
 
   const menuItems = (arr) => arr.map(item => <MenuItem key={item.id} value={item.id}>{item.name}</MenuItem>);
@@ -174,7 +186,7 @@ export default function AddLocationForm (props) {
       <div className={classes.buttonContainer}>
         <Button onClick={props.closeModal} color="default" >Cancel</Button>
         <Button className={classes.formControl} variant="contained" color="primary" onClick={handleSubmit}>
-          Submit
+          Update
         </Button>
       </div>
     </form>
