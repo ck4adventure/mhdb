@@ -4,6 +4,8 @@ json.array! @regions do |region|
   json.locations region.locations do |loc|
     json.id  loc.id
     json.name loc.name
-    json.ipath loc.image_path
+    if loc.image.attached?
+      json.image url_for(loc.image)
+    end
   end
 end
