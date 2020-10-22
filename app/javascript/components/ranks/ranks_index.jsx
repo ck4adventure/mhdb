@@ -42,6 +42,7 @@ function createData(name, id, path) {
 }
 
 export default function RanksIndex () {
+  console.log(process.env.REACT_APP_API_URL)
   const r = useSelector(state => state.ranks);
   const classes = useStyles();
   let history = useHistory();
