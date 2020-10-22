@@ -85,14 +85,14 @@ export default function SignUp() {
             <Grid item xs={12}>
               <TextField
                 autoComplete="fname"
-                name="user[name]"
+                name="user[username]"
                 variant="outlined"
                 required
                 fullWidth
                 id="user_name"
-                label="Display Name"
+                label="Username (must be unique)"
                 autoFocus
-                onChange={e => handleInput("name", e)}
+                onChange={e => handleInput("username", e)}
               />
             </Grid>
             <Grid item xs={12}>
@@ -105,6 +105,19 @@ export default function SignUp() {
                 name="email"
                 autoComplete="email"
                 onChange={e => handleInput("email", e)}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                autoComplete="fname"
+                name="user[password]"
+                variant="outlined"
+                required
+                fullWidth
+                type="password"
+                id="user_pw"
+                label="Password (6 char min.)"
+                onChange={e => handleInput("pw", e)}
               />
             </Grid>
           </Grid>
