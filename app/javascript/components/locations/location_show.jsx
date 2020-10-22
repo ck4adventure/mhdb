@@ -8,6 +8,8 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
 
+// import EditLocationModal from './edit_location_modal';
+
 const images = require.context('../../images', true)
 const imagePath = (name) => images(name, true);
 
@@ -54,11 +56,11 @@ export default function LocationShow (props) {
     <div>
       <div className={classes.drawerHeader} />
       <Container className={classes.titleContainer}>
-        <CardMedia        
+        {location.image && <CardMedia        
             className={classes.media}
-            image={imagePath(location.ipath)}
+            image={`${process.env.REACT_APP_API_URL}${location.image}`}
             title={location.name}
-        />
+        />}
         <Typography variant="h4" className={classes.title}>{location.name}</Typography>
 
       </Container>
@@ -67,6 +69,7 @@ export default function LocationShow (props) {
       <br/>
       <br/>
       <Link href="/locations" onClick={e => handlePath("/locations",e)}>Back to Locations</Link>
+      {/* <EditLocationModal locationId={location.id} /> */}
     </div>
   )
 }
