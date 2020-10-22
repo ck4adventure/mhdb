@@ -4,8 +4,14 @@ class Api::LocationsController < ApplicationController
     render 'api/locations/index'
   end
 
+  def show
+    @location = Location.find(params[:id])
+    render 'api/locations/show'
+  end
+
   def create
-    @location = Location.new(name: params[:location][:name], region_id: params[:location][:regionId], rank_id: params[:location][:rankId])
+    # image save happens here automatically through activerecord!
+    @location = Location.new(location_params)
     if @location.save
       render 'api/locations/show'
     else
@@ -13,11 +19,20 @@ class Api::LocationsController < ApplicationController
     end
   end
 
-  def destroy
-    location = Location.find(params[:id])
-    location.destroy
-    render json: { message: "Location #{location.name} successfully deleted" }, status: 200
+  def update
+    # auto handling of images, only sending data if it changes on frontend
+    # todo:  better typechecking, and error handling
+    @location = Location.find(params[:id])
+    if @location.update!(location_params)
+      render 'api/locations/show'
+    else
+      render json: ["Unable to update location"], status: 400
+    end
   end
 
+  private 
+  def location_params
+    params.require(:location).permit(:name, :region_id, :rank_id, :image)
+  end
 
 end
