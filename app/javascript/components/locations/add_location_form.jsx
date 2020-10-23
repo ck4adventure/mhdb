@@ -90,7 +90,6 @@ export default function AddLocationForm (props) {
   }
 
   const handleImage = (e) => {
-    console.log(e.target.files[0])
     if (e.target.files[0]) {
       setImage(e.target.files[0])
     }

@@ -20,7 +20,7 @@ class Api::LocationsController < ApplicationController
   end
 
   def update
-    # auto handling of images, only sending data if it changes on frontend
+    # auto handling of images, frontend only sending data if it gets a new image 
     # todo:  better typechecking, and error handling
     @location = Location.find(params[:id])
     if @location.update!(location_params)

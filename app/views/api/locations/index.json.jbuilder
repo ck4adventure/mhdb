@@ -7,6 +7,9 @@ json.array! @locations do |loc|
   json.rank do 
     json.id loc.rank.id
     json.title loc.rank.title
+    if loc.rank.image.attached?
+      json.image url_for(loc.rank.image)
+    end
     json.ipath loc.rank.image_path
   end
   json.region do

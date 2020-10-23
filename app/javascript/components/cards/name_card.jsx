@@ -32,6 +32,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function NameCard(props) {
+  // props = image, name, path
   const classes = useStyles();
   let history = useHistory();
 

@@ -12,9 +12,9 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
-import NameCard from '../cards/name_card';
 
 import AddLocationModal from './add_location_modal';
+import LocationsTableRow from './locations_table_row';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -59,12 +59,6 @@ export default function LocationsIndex () {
   const user = Boolean(useSelector(state => state.session.id));
   const classes = useStyles();
   let history = useHistory();
-  console.log(process.env.REACT_APP_API_URL)
-
-  const handlePath = (path, e) => {
-    e.preventDefault();
-    history.push(path);
-  }
   
   const rows = Object.keys(locs).map(id => createData(locs[id].name, id, `/locations/${id}`, locs[id].image, locs[id].region, locs[id].rank));
 
@@ -87,19 +81,7 @@ export default function LocationsIndex () {
             </TableHead>
             <TableBody>
               {rows.map((row) => (
-                <TableRow key={row.name}>
-                  <TableCell component="th" scope="row">
-                    <NameCard name={row.name} image={row.image} path={row.path} />
-                  </TableCell>
-                  <TableCell>
-                    <Link href={`/regions/${row.region.id}`} className={classes.name} onClick={e => handlePath(`/regions/${row.region.id}`, e)} underline="none">
-                      {row.region.name}
-                    </Link>
-                  </TableCell>
-                  <TableCell>
-                    <NameCard name={row.rank.title} ipath={row.rank.ipath} path={`/ranks/${row.rank.id}`} />
-                  </TableCell>
-                </TableRow>
+                <LocationsTableRow key={row.id} row={row} />
               ))}
             </TableBody>
           </Table>
