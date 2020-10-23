@@ -31,7 +31,13 @@ titles = [
 ]
 
 titles.each do |titl|
-  Rank.find_or_create_by!(title: titl)
+  t = Rank.find_or_create_by!(title: titl)
+  path = titl.delete("'").split(" ").join('_').downcase + '.gif'
+  t.image.attach(
+    io: File.open("./public/seeds_images/ranks/#{path}"),
+    filename: path,
+    content_type: 'application/gif',
+  )
 end
 
 # Regions are seldom added
@@ -87,7 +93,13 @@ gnawnia_locations = [
 ]
 
 gnawnia_locations.each do |loc|
-  Location.find_or_create_by!(loc)
+  l = Location.find_or_create_by!(loc)
+  path = l.name.delete("'").split(" ").join('_').downcase + '.jpg'
+  l.image.attach(
+    io: File.open("./public/seeds_images/locations/#{path}"),
+    filename: path,
+    content_type: 'application/jpg',
+  )
 end
 
 valour_id = Region.find_by!(name: "Valour").id
@@ -110,7 +122,13 @@ valour_locations = [
 ]
 
 valour_locations.each do |loc|
-  Location.find_or_create_by!(loc)
+  l = Location.find_or_create_by!(loc)
+  path = l.name.delete("'").split(" ").join('_').downcase + '.jpg'
+  l.image.attach(
+    io: File.open("./public/seeds_images/locations/#{path}"),
+    filename: path,
+    content_type: 'application/jpg',
+  )
 end
 
 wwoods_id = Region.find_by!(name: "Whisker Woods").id
@@ -133,7 +151,13 @@ wwoods_locations = [
 ]
 
 wwoods_locations.each do |loc|
-  Location.find_or_create_by!(loc)
+  l = Location.find_or_create_by!(loc)
+  path = l.name.delete("'").split(" ").join('_').downcase + '.jpg'
+  l.image.attach(
+    io: File.open("./public/seeds_images/locations/#{path}"),
+    filename: path,
+    content_type: 'application/jpg',
+  )
 end
 
 
@@ -168,12 +192,12 @@ meadow_mice.each do |mm|
 end
 
 unless User.find_by(email: "admin")
-  me = User.new(username: "Huntress", email: "admin", password: "password", rank_id: Rank.last)
+  me = User.new(username: "Huntress", email: "admin", password: "password", rank_id: Rank.last.id)
   me.save!
 end
 
-unless User.find_by(email: "hello")
-  you = User.new(username: "Guest", email: "guest", password: "guestpass", rank_id: Rank.first)
+unless User.find_by(email: "guest")
+  you = User.new(username: "Guest", email: "guest", password: "guestpass", rank_id: Rank.first.id)
   you.save!
 end
 

@@ -5,6 +5,8 @@ import { useHistory } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles'
 import Link from '@material-ui/core/Link'
 
+import LocationListItem from './location_list_item'
+
 const useStyles = makeStyles((theme) => ({
   drawerHeader: {
     display: 'flex',
@@ -21,7 +23,8 @@ export default function RegionShow (props) {
   const regionId = props.match.params.regionId;
   const region = useSelector(state => state.regions[regionId])
 
-  if (!Boolean(region)) {
+
+  if (!Boolean(region.locations)) {
     return <h1>Loading...</h1>
   }
 
@@ -31,19 +34,18 @@ export default function RegionShow (props) {
     event.preventDefault();
     history.push(path);
   }
-  
+
   return (
     <div>
       <div className={classes.drawerHeader} />
       <h2>Region Page</h2>
       <h4>{region.name}</h4>
       <ul>
-        {region.locations.map(loc => <li key={loc.id}><Link href={`/locations/${loc.id}`} onClick={e => handlePath(`/locations/${loc.id}`, e)}>{loc.name}</Link></li>)}
+        {region.locations.map(loc => <LocationListItem key={loc.id} locId={loc.id}/>)}
       </ul>
       <br/>
       <br/>
       <Link href="/regions" onClick={e => handlePath("/regions",e)}>Back to Regions</Link>
-      
     </div>
   )
 }

@@ -63,7 +63,6 @@ export default function SignIn() {
     let user = { username: username,
                  password: pw };
     e.preventDefault();
-    console.log(user)
     dispatch(login(user));
     history.push('/');
   }

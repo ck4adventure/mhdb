@@ -32,6 +32,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function NameCard(props) {
+  // props = image, name, path
   const classes = useStyles();
   let history = useHistory();
 
@@ -43,11 +44,11 @@ export default function NameCard(props) {
   return (
     <Card className={classes.croot} elevation={0} >
       <CardContent className={classes.content}>
-         <CardMedia        
+         {props.image && <CardMedia        
             className={classes.media}
-            image={imagePath(props.ipath)}
+            image={`${process.env.REACT_APP_API_URL}${props.image}`}
             title={props.name}
-        />
+        />}
       </CardContent>
       <CardActions>
         <Link href={props.path} className={classes.name} onClick={e => handlePath(props.path, e)} underline="none">

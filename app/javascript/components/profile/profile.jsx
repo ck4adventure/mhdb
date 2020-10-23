@@ -40,7 +40,6 @@ export default function Profile() {
   }
 
   const ipath = imagePath('./'+`${session.title.toLowerCase()}`)
-  console.log(ipath)
 
   if (!Boolean(session)) {
     return <h1>Loading...</h1>
