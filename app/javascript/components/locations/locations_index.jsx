@@ -59,6 +59,7 @@ export default function LocationsIndex () {
   const user = Boolean(useSelector(state => state.session.id));
   const classes = useStyles();
   let history = useHistory();
+  console.log(process.env.REACT_APP_API_URL)
 
   const handlePath = (path, e) => {
     e.preventDefault();
