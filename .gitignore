@@ -35,3 +35,6 @@
 yarn-debug.log*
 .yarn-integrity
 .env
+
+# hide templating, doesn't need to go up to prod
+/app/javascript/components/templating

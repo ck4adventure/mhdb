@@ -29,7 +29,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function Profile() {
+export default function ProfileShow () {
   const classes = useStyles();
   const session = useSelector(state => state.session)
   let history = useHistory();
