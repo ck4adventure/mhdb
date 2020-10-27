@@ -12,7 +12,6 @@
 #  index_regions_on_name  (name) UNIQUE
 #
 class Region < ApplicationRecord
-  include ImageConcern
   validates :name, presence: true, uniqueness: true
 
   has_many :locations
