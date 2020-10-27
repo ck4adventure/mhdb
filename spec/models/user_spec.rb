@@ -21,7 +21,7 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do  
   describe 'model properties' do
-    context 'it has a required name and email' do
+    context 'it has a required username, email, session_token, and pw_hash' do
       let(:user) { build(:user) }
       it 'is valid when given valid information' do
         expect(user.valid?).to be true
@@ -61,7 +61,14 @@ RSpec.describe User, type: :model do
     end
 
     describe '#reset_session_token' do
-      it 'creates a new session token, saves it to user, and returns it'
+      let(:user) { build(:user) }
+      it 'creates a new session token, saves it to user, and returns it' do
+        oldsess = user.session_token
+        user.reset_session_token!
+        expect(oldsess).to_not eq(user.session_token)
+      end
+
+
     end
 
     describe '#ensure_default_rank' do

@@ -26,6 +26,7 @@ RSpec.describe Region, type: :model do
       subject { build(:region) }
       it { should validate_presence_of(:name) }
       it { should validate_uniqueness_of(:name) }
+      it { should have_db_index(:name) }
     end
 
     describe 'association shouldas' do
