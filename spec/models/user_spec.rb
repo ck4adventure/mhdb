@@ -47,8 +47,26 @@ RSpec.describe User, type: :model do
   end
 
   describe 'model methods' do
+    describe '::find_by_credentials' do
+      it 'returns a user if given valid username and password'
+      it 'returns nil if no user found'
+      it 'returns nil if user found but password invalid'
+    end
+    describe '::generate_session_token' do
+      it 'returns a 16 char random url safe string'
+    end
+
+    describe '#is_password?' do
+      it 'returns true if a valid password is given'
+      it 'returns false if the correct password not given'
+    end
+    describe '#password=' do
+      it 'validates the passwords properties'
+      it 'sets the password hash using the password given'
+    end
+
     describe '#ensure_session_token' do
-      let(:user) { User.new(username: "Larry", email: "test@test.com", rank_id: 1) }
+      let(:user) { build(:user) }
       it 'retrieves a session_token if one already exists' do
         new_token = "12345678910"
         user.session_token = new_token
