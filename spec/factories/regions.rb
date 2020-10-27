@@ -13,6 +13,6 @@
 #
 FactoryBot.define do
   factory :region do
-    name { Faker::Games::Witcher.location }
+    name { Faker::Address.city }
   end
 end
