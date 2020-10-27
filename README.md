@@ -1,29 +1,32 @@
-# README
-## What is it?
+## README
+### What is it?
 Mousehunt is a game on facebook which is kinda as simple as it sounds. You, the hunter have a trap that you arm and every 15 mins you get the chance to 'hunt' and see what you catch. One of the main features of the game is the rich graphical content and continual release of new areas and items to collect. One of the challenges of the game is learning what is available in each area and then collecting the necessary items. The app also presents a challenge of not having a well developed UI to sort items already owned in a meaningful manner.
 
 Visit the app at <a href="https://mousehuntcollector.herokuapp.com">https://mousehuntcollector.herokuapp.com</a>
 
 Main user story: As a mousehunt player, I want an app to track my weapons and special items so that I can know what I have yet to get and how to get it.
 
-## Upcoming features in planning
+### Upcoming features in planning
+- User can track weapons, bases and collectibles as personal inventory
 - Item ExchangeGains and ExchangeCosts to handle the many ways of obtainings items in the game, such as purchasing, crafting, brewing.
 - Purchase Locations and Drop Locations
-- User can track weapons, bases and collectibles as personal inventory
 - Item acquisition detail page
 - Formally split UI into CMS of game info and User App that only displays it all
 - Containerize it for practice
+ - Add Jest testing
 
 
-## Upcoming next few days
-- Wire hooks in and create basic pages for game items
-- Finishing up Feature: Basic Items
-  - Add some details on list views, make sure things capitalized and spaced
-  - Add tables and Forms
-  - Add Jest testing
-- Once POC stable with Items, catalog current features and rewrite the cucumber files and request specs accordingly before it gets too big
+## Week of Oct 26
+- Rewrite RSpec coverage for the API now that I know what it should respond with
+- Start wiring in front-end testing with Jest
+- 
 
 ## Updates
+  - Monday Oct 26th - Finishing up POC!
+   - coming soon, more vigorous planning using githubs issues/projects
+  - Thurs Oct 22nd - hooking up AWS, dotenv for creds control, only signed in users can update
+  - Thurs Oct 15: Switched over to ActiveRecord for CMS functionality on item data entry
+  - Mon Oct 12: Ranks and Locations have Images
   - Tues Oct 6: Have now refactored to Material-UI for an easier UI/UX creation
     - React Hooks, incl Redux Hooks to preserve Store functionality
     - using themes and materialUI syntax and options
