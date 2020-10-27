@@ -68,6 +68,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
     flexGrow: 1,
+
   },
   appBar: {
     transition: theme.transitions.create(['margin', 'width'], {
@@ -89,6 +90,9 @@ const useStyles = makeStyles((theme) => ({
   sessionLink: {
     marginLeft: 4,
     marginRight: 4,
+  },
+  greeting: {
+    margin: theme.spacing(1),
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -196,6 +200,7 @@ export default function App() {
   }
   const handlePath = (path, event) => {
     event.preventDefault();
+    handleClose();
     history.push(path);
   }
 
@@ -274,8 +279,8 @@ export default function App() {
                 onClick={handleMenu}
                 color="inherit"
               >
-                <Typography>
-                  Welcome, {username}
+                <Typography className={classes.greeting}>
+                  {username}
                 </Typography>
                 <AccountCircle />
               </IconButton>
