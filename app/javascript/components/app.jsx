@@ -1,6 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
+import {
+  Route,
+  Switch,
+} from 'react-router-dom';
+import { useHistory } from "react-router-dom";
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box';
 import Drawer from '@material-ui/core/Drawer';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import AppBar from '@material-ui/core/AppBar';
@@ -15,9 +23,7 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import { CardMedia } from '@material-ui/core';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
+import { CardMedia, Link } from '@material-ui/core';
 
 import Traps from '../images/traps.png';
 import Travel from '../images/travel.png';
@@ -27,13 +33,33 @@ import Collectibles from '../images/collectibles.png';
 import Recruit from '../images/recruit.gif';
 
 import AccountCircle from '@material-ui/icons/AccountCircle';
-import Switch from '@material-ui/core/Switch';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormGroup from '@material-ui/core/FormGroup';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 
 import Main from './main_page/main';
+import SignIn from './session/sign_in';
+import SignUp from './session/sign_up';
+import ProfileShow from './profile/profile_show';
+import RanksIndex from './ranks/ranks_index';
+import RankShow from './ranks/rank_show';
+import RegionsIndex from './regions/regions_index';
+import RegionShow from './regions/region_show';
+import LocationsIndex from './locations/locations_index';
+import LocationShow from './locations/location_show';
+
+import { signup, login, logout } from '../actions/session_actions';
+import { fetchAllWeapons } from '../actions/weapons_actions';
+import { fetchAllBases } from '../actions/bases_actions';
+import { fetchRanks } from '../actions/ranks_actions';
+import { fetchAllRegions } from '../actions/regions_actions';
+import { fetchAllLocations } from '../actions/locations_actions';
+
+import { AuthRoute, ProtectedRoute } from '../util/route_util';
+
+
+
 
 
 const drawerWidth = 240;
@@ -42,6 +68,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
     flexGrow: 1,
+
   },
   appBar: {
     transition: theme.transitions.create(['margin', 'width'], {
@@ -56,6 +83,16 @@ const useStyles = makeStyles((theme) => ({
       easing: theme.transitions.easing.easeOut,
       duration: theme.transitions.duration.enteringScreen,
     }),
+  },
+  session_box: {
+    display: 'flex',
+  },
+  sessionLink: {
+    marginLeft: 4,
+    marginRight: 4,
+  },
+  greeting: {
+    margin: theme.spacing(1),
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -111,10 +148,25 @@ export default function App() {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
-  const [auth, setAuth] = React.useState(true);
+  const auth = useSelector(state => state.session.id);
+  const username = useSelector(state => state.session.username);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const menuOpen = Boolean(anchorEl);
 
+  let history = useHistory();
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchAllWeapons());
+    dispatch(fetchAllBases());
+    dispatch(fetchRanks());
+    dispatch(fetchAllRegions());
+    dispatch(fetchAllLocations());
+  }, []);
+
+
+  // mine
   const handleChange = (event) => {
     setAuth(event.target.checked);
   };
@@ -127,6 +179,14 @@ export default function App() {
     setAnchorEl(null);
   };
 
+  const handleLogout = () => {
+    // close window
+    setAnchorEl(null);
+    // dispatch logout
+    dispatch(logout());
+    history.push('/');
+  };
+
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -134,9 +194,28 @@ export default function App() {
   const handleDrawerClose = () => {
     setOpen(false);
   };
+  const handleHome = (event) => {
+    event.preventDefault();
+    history.push('/');
+  }
+  const handlePath = (path, event) => {
+    event.preventDefault();
+    handleClose();
+    history.push(path);
+  }
 
-  const list1Items = [{name: "Traps", img: Traps}, {name: "Locations", img: Travel }, {name: "Mice", img: Mice }].map((el, index) => (
-    <ListItem button key={el.name}>
+  const handleDrawerPath = (path, event) => {
+    event.preventDefault();
+    handleDrawerClose();
+    history.push(path);
+  }
+
+  const list1Items = [
+                      {name: "Ranks", img: Recruit, path: '/ranks', }, 
+                      {name: "Regions", img: Travel, path: '/regions', }, 
+                      {name: "Locations", img: Travel, path: '/locations', }, 
+                    ].map((el, index) => (
+    <ListItem button key={el.name} onClick={e => handleDrawerPath(el.path, e)}>
       <ListItemIcon>
       <CardMedia        
             className={classes.icon}
@@ -148,8 +227,13 @@ export default function App() {
     </ListItem>
   ));
 
-  const list2Items = [{name: "Crafting", img: Crafting}, {name: "Collectibles", img: Collectibles }, {name: "Ranks", img: Recruit }].map((el, index) => (
-    <ListItem button key={el.name}>
+  const list2Items = [
+                      {name: "Crafting", img: Crafting, path: '/',}, 
+                      {name: "Collectibles", img: Collectibles, path: '/', }, 
+                      {name: "Traps", img: Traps, path: '/',}, 
+                      {name: "Mice", img: Mice, path: '/', },
+                    ].map((el, index) => (
+    <ListItem button key={el.name} onClick={e => handleDrawerPath(el.path, e)}>
       <ListItemIcon>
       <CardMedia        
             className={classes.icon}
@@ -160,7 +244,6 @@ export default function App() {
       <ListItemText primary={el.name} />
     </ListItem>
   ));
-
 
   return (
     <div className={classes.root}>
@@ -182,7 +265,9 @@ export default function App() {
             <MenuIcon />
           </IconButton>
           <Typography className={classes.title} variant="h6" noWrap>
-            MouseHunt Collector
+            <Link href="/" onClick={handleHome} color="inherit" underline="none">
+              MouseHuntCollector
+            </Link>
           </Typography>
           {auth && (
             <div>
@@ -194,6 +279,9 @@ export default function App() {
                 onClick={handleMenu}
                 color="inherit"
               >
+                <Typography className={classes.greeting}>
+                  {username}
+                </Typography>
                 <AccountCircle />
               </IconButton>
               <Menu
@@ -211,10 +299,27 @@ export default function App() {
                 open={menuOpen}
                 onClose={handleClose}
               >
-                <MenuItem onClick={handleClose}>Profile</MenuItem>
-                <MenuItem onClick={handleClose}>Log Out</MenuItem>
+                <MenuItem onClick={e => handlePath("/profile", e)}>Profile</MenuItem>
+                <MenuItem onClick={handleLogout}>Log Out</MenuItem>
               </Menu>
             </div>
+          )}
+          { !auth && (
+            <Box component="div" className={classes.session_box}>
+              <Typography className={classes.sessionLink}>
+                <Link href="/login" onClick={e => handlePath('/login', e)} underline="none" color="inherit">
+                  Login  
+                </Link>
+                </Typography>
+                <Typography >
+                  or
+                </Typography>
+                <Typography className={classes.sessionLink}>
+                <Link href="/signup" onClick={e => handlePath('/signup', e)} underline="none" color="inherit">
+                  Sign Up
+                </Link>
+              </Typography>
+            </Box>
           )}
         </Toolbar>
       </AppBar>
@@ -249,7 +354,18 @@ export default function App() {
           [classes.contentShift]: open,
         })}
       >
-        <Main />
+        <Switch>
+          <AuthRoute path="/signup" component={SignUp} />
+          <AuthRoute path="/login" component={SignIn} />
+          <ProtectedRoute path="/profile" component={ProfileShow} />
+          <Route path="/ranks/:rankId" component={RankShow} />
+          <Route path="/ranks" component={RanksIndex} />
+          <Route path="/regions/:regionId" component={RegionShow} />
+          <Route path="/regions" component={RegionsIndex} />
+          <Route path="/locations/:locationId" component={LocationShow} />
+          <Route path="/locations" component={LocationsIndex} />
+          <Route path="/" component={Main} />
+        </Switch>
       </main>
     </div>
   );

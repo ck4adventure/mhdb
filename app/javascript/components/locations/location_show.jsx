@@ -10,9 +10,6 @@ import Link from '@material-ui/core/Link';
 
 import EditLocationModal from './edit_location_modal';
 
-const images = require.context('../../images', true)
-const imagePath = (name) => images(name, true);
-
 const useStyles = makeStyles((theme) => ({
   drawerHeader: {
     display: 'flex',

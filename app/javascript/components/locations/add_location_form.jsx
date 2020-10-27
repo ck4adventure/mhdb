@@ -15,11 +15,7 @@ import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 
 import Button from '@material-ui/core/Button';
-import ImageIcon from '@material-ui/icons/Image';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
-
-const images = require.context('../../images', true)
-const imagePath = (name) => images(name, true);
 
 const useStyles = makeStyles((theme) => ({
   root: {

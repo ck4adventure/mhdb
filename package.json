@@ -26,6 +26,7 @@
     "webpack-dev-server": "^3.11.0"
   },
   "scripts": {
-    "dev": "REACT_APP_API_URL=http://localhost:3000 ./bin/webpack-dev-server"
+    "dev": "REACT_APP_API_URL=http://localhost:3000 ./bin/webpack-dev-server",
+    "build": "REACT_APP_API_URL=http://localhost:3000 ./bin/webpack"
   }
 }

@@ -6,7 +6,6 @@ json.rank do
   if @location.rank.image.attached?
     json.image url_for(@location.rank.image)
   end
-  json.ipath @location.rank.image_path
 end
 json.region do
   json.id @location.region.id

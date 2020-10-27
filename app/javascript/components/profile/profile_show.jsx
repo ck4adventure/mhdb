@@ -3,9 +3,6 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux'
 
-const images = require.context('../../images', true)
-const imagePath = (name) => images(name, true)
-
 import { makeStyles } from '@material-ui/core/styles';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
@@ -29,19 +26,19 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function Profile() {
+export default function ProfileShow () {
   const classes = useStyles();
-  const session = useSelector(state => state.session)
+  const session = useSelector(state => state.session);
   let history = useHistory();
+
+  const profileRank = useSelector(state => state.ranks[session.rank_id]);
 
   function handlePath(path, event) {
     event.preventDefault();
     history.push(path);
   }
 
-  const ipath = imagePath('./'+`${session.title.toLowerCase()}`)
-
-  if (!Boolean(session)) {
+  if (!Boolean(session) || !Boolean(profileRank)) {
     return <h1>Loading...</h1>
   }
   return (
@@ -49,15 +46,15 @@ export default function Profile() {
       <h2>{session.username}</h2>
       <div className={classes.info_container}>
         <Typography className={classes.icon_link} >
-          Your current Rank is 
+          Rank:
         </Typography>
-        <Link className={classes.icon_link} href={`/ranks/${session.rank_id}`} onClick={e => handlePath(`/ranks/${session.rank_id}`, e)}>      
+        <Link className={classes.icon_link} href={`/ranks/${profileRank.id}`} onClick={e => handlePath(`/ranks/${profileRank.id}`, e)}>      
           <CardMedia        
             className={classes.media}
-            image={ipath}
-            title={session.title.toLowerCase()}
+            image={`${process.env.REACT_APP_API_URL}${profileRank.image}`}
+            title={profileRank.title}
           /> 
-          {session.title} 
+          {profileRank.title} 
         </Link>
       </div>
     </div>
