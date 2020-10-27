@@ -39,7 +39,7 @@ export default function RegionsTableRow (props) {
 
   const region = useSelector(state => state.regions[regId]);
   const locsArr2 = useSelector(state => state.regions[regId].locations)
-  console.log(locsArr2)
+
   
   let locsArr = [];
   
