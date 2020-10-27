@@ -10,7 +10,6 @@ json.array! @locations do |loc|
     if loc.rank.image.attached?
       json.image url_for(loc.rank.image)
     end
-    json.ipath loc.rank.image_path
   end
   json.region do
     json.id loc.region.id
