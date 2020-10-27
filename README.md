@@ -6,24 +6,22 @@ Visit the app at <a href="https://mousehuntcollector.herokuapp.com">https://mous
 
 Main user story: As a mousehunt player, I want an app to track my weapons and special items so that I can know what I have yet to get and how to get it.
 
-### Upcoming features in planning
-- User can track weapons, bases and collectibles as personal inventory
-- Item ExchangeGains and ExchangeCosts to handle the many ways of obtainings items in the game, such as purchasing, crafting, brewing.
-- Purchase Locations and Drop Locations
-- Item acquisition detail page
-- Formally split UI into CMS of game info and User App that only displays it all
-- Containerize it for practice
- - Add Jest testing
-
-
 ## Week of Oct 26
 - Rewrite RSpec coverage for the API now that I know what it should respond with
 - Start wiring in front-end testing with Jest
-- 
+- Feature: User Profile Locations
+  - What locations can they hunt at?
+  - What are the top location they can hunt at?
+- Feature: Items (incl: weapons, cheese, gold, crafting items, collectibles)
+  - Decide how to group and index subcategories
+  - Items show page, create and edit
+- Feature: User Inventory
+  - As a hunter, I want to be able to track which weapons I own
+  - As a hunter I want to be able to sort the weapons table by power, name, etc
 
 ## Updates
   - Monday Oct 26th - Finishing up POC!
-   - coming soon, more vigorous planning using githubs issues/projects
+    - coming soon, more vigorous planning using githubs issues/projects
   - Thurs Oct 22nd - hooking up AWS, dotenv for creds control, only signed in users can update
   - Thurs Oct 15: Switched over to ActiveRecord for CMS functionality on item data entry
   - Mon Oct 12: Ranks and Locations have Images
@@ -35,7 +33,6 @@ Main user story: As a mousehunt player, I want an app to track my weapons and sp
     - Category moved to Item
     - React is up an running on '/app, Rails Views available as default and at '/main'
     - React/Redux/Thunks/Router
-
   - Sat, Sept 12, changed items add into a quickadd form only for each category, can put stats in on edit.
   - Friday's reset: 
     - Ended up creating a table for category instead of enum, rewired specs, controllers, views. 
@@ -50,11 +47,19 @@ Main user story: As a mousehunt player, I want an app to track my weapons and sp
     - FactoryBot rules! 
     - Also, there are now Regions too just to make pretty tables.
   - Tues progress: 
-   - User's have ranks, added Locations. 
-   - Basic RSpecs for red/green/refactor later. 
+    - User's have ranks, added Locations. 
+    - Basic RSpecs for red/green/refactor later. 
   - Monday's work: Add ranks and some basic styling
   - Sep 6, Sunday's setup: I have an app, it has a user. Feature work in Cucumber, testing in RSpec.
   
+### Upcoming features in planning
+- User can track weapons, bases and collectibles as personal inventory
+- Item ExchangeGains and ExchangeCosts to handle the many ways of obtainings items in the game, such as purchasing, crafting, brewing.
+- Purchase Locations and Drop Locations
+- Item acquisition detail page
+- Formally split UI into CMS of game info and User App that only displays it all
+- Containerize it for practice
+ - Add Jest testing
 
 
 ## Getting Started
