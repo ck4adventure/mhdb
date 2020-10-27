@@ -14,5 +14,8 @@
 FactoryBot.define do
   factory :rank do
     title { Faker::Games::Witcher.monster }
+    after(:create) do |rank|
+      rank.image.attach(io: File.open(Rails.root.join('spec', 'factories', 'images', 'viceroy.gif')), filename: 'viceroy.gif', content_type: 'image/gif')
+    end
   end
 end
