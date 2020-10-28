@@ -4,8 +4,8 @@ RSpec.describe "Api::Locations", type: :request do
   # namespace :api, resources :locations, except: [:destroy], end
   
   # Initialize test data
-  let!(:locations) { create_list(:location, 3) }
-  let(:location_id) { locations.first.id }
+  let!(:locations) { create_list(:location, 2) }
+  let!(:location_id) { locations.first.id }
 
   # Index: Test suite for GET /api/locations
   describe 'GET /api/locations when sent as application/json' do
@@ -23,7 +23,7 @@ RSpec.describe "Api::Locations", type: :request do
       expect(JSON.parse(response.body).is_a?(Array)).to be true
     end
     it 'returns the same number locations as created' do
-      expect(JSON.parse(response.body).size).to eq(3)
+      expect(JSON.parse(response.body).size).to eq(2)
     end
     it 'returns a status code 200' do
       expect(response).to have_http_status(:ok)
