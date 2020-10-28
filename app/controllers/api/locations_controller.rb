@@ -1,21 +1,21 @@
 class Api::LocationsController < ApplicationController
   def index
     @locations = Location.all
-    render 'api/locations/index'
+    render 'api/locations/index', status: :ok
   end
 
   def show
     @location = Location.find(params[:id])
-    render 'api/locations/show'
+    render 'api/locations/show', status: :ok
   end
 
   def create
     # image save happens here automatically through activerecord!
     @location = Location.new(location_params)
     if @location.save
-      render 'api/locations/show'
+      render 'api/locations/show', status: :created
     else
-      render json: ["Unable to save location"], status: 400
+      render json: ["Unable to save location"], status: 422
     end
   end
 
@@ -23,8 +23,8 @@ class Api::LocationsController < ApplicationController
     # auto handling of images, frontend only sending data if it gets a new image 
     # todo:  better typechecking, and error handling
     @location = Location.find(params[:id])
-    if @location.update!(location_params)
-      render 'api/locations/show'
+    if @location.update(location_params)
+      render 'api/locations/show', status: 200
     else
       render json: ["Unable to update location"], status: 400
     end

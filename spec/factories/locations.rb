@@ -18,7 +18,7 @@
 FactoryBot.define do
   FactoryBot.use_parent_strategy = false
   factory :location do
-    name { Faker::Movies::Hobbit.location }
+    name { Faker::Address.city }
     rank
     region
     after(:create) do |loc|
