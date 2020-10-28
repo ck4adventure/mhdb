@@ -17,10 +17,4 @@ class Rank < ApplicationRecord
 
   has_many :users
   has_many :locations
-  
-  def image_path
-    './' + self.title.delete("'").split(" ").join('_').downcase
-  end
-
-  
 end

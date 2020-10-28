@@ -43,6 +43,7 @@ RSpec.describe Location, type: :model do
       it { should belong_to(:rank) }
       it { should have_many(:mouse_locations) }
       it { should have_many(:mice).through(:mouse_locations) }
+      it { should have_one_attached(:image) }
     end
   end 
 end

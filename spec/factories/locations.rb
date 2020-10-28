@@ -18,9 +18,12 @@
 FactoryBot.define do
   FactoryBot.use_parent_strategy = false
   factory :location do
-    name { Faker::Movies::Hobbit.location }
+    name { Faker::Address.city }
     rank
     region
+    after(:create) do |loc|
+      loc.image.attach(io: File.open(Rails.root.join('spec', 'factories', 'images', 'windmill.jpg')), filename: 'viceroy.jpg', content_type: 'image/jpg')
+    end
   end
 
 end

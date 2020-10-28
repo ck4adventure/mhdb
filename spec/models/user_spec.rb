@@ -21,7 +21,7 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do  
   describe 'model properties' do
-    context 'it has a required name and email' do
+    context 'it has a required username, email, session_token, and pw_hash' do
       let(:user) { build(:user) }
       it 'is valid when given valid information' do
         expect(user.valid?).to be true
@@ -47,8 +47,26 @@ RSpec.describe User, type: :model do
   end
 
   describe 'model methods' do
+    describe '::find_by_credentials' do
+      it 'returns a user if given valid username and password'
+      it 'returns nil if no user found'
+      it 'returns nil if user found but password invalid'
+    end
+    describe '::generate_session_token' do
+      it 'returns a 16 char random url safe string'
+    end
+
+    describe '#is_password?' do
+      it 'returns true if a valid password is given'
+      it 'returns false if the correct password not given'
+    end
+    describe '#password=' do
+      it 'validates the passwords properties'
+      it 'sets the password hash using the password given'
+    end
+
     describe '#ensure_session_token' do
-      let(:user) { User.new(username: "Larry", email: "test@test.com", rank_id: 1) }
+      let(:user) { build(:user) }
       it 'retrieves a session_token if one already exists' do
         new_token = "12345678910"
         user.session_token = new_token
@@ -61,7 +79,14 @@ RSpec.describe User, type: :model do
     end
 
     describe '#reset_session_token' do
-      it 'creates a new session token, saves it to user, and returns it'
+      let(:user) { build(:user) }
+      it 'creates a new session token, saves it to user, and returns it' do
+        oldsess = user.session_token
+        user.reset_session_token!
+        expect(oldsess).to_not eq(user.session_token)
+      end
+
+
     end
 
     describe '#ensure_default_rank' do
