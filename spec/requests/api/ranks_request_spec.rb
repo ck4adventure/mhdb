@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe "Api::Ranks", type: :request do
+  # namespace :api, resources :ranks, only: [:index], end
+
   # Initialize test data
   let!(:ranks) { create_list(:rank, 4) }
   let(:rank_id) { Rank.first.id }
@@ -14,7 +16,7 @@ RSpec.describe "Api::Ranks", type: :request do
       }
       get "/api/ranks", :headers => headers
     end
-    it 'returns all the ranks as json' do
+    it 'returns the response as json' do
       expect(response.content_type).to eq("application/json; charset=utf-8")
     end
     it 'returns the same number ranks as created' do
