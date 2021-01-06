@@ -1,4 +1,6 @@
-# Just a few mice to get started
+
+indig_id = Group.find_by!(name: "Indigenous Mice").id
+
 mice = [
   { name: "Black Widow Mouse", points: 480, gold: 10, },
   { name: "Brown Mouse", points: 115, gold: 150, },
@@ -23,11 +25,13 @@ mice = [
   { name: "Scruffy Mouse", points: 250, gold: 400, },
   { name: "Speedy Mouse", points: 950, gold: 900, },
   { name: "Spotted Mouse", points: 175, gold: 175, },
-  { name: "Scruffy Mouse", points: 250, gold: 400, },
-  { name: "Scruffy Mouse", points: 250, gold: 400, },
-  
-  
-  { name: "White", points: 70, gold: 100, },
+  { name: "Spud Mouse", points: 300, gold: 500, },
+  { name: "Steel Mouse", points: 270, gold: 500, },
+  { name: "Tiny Mouse", points: 200, gold: 450, },
+  { name: "Trampoline Mouse", points: 420, gold: 420, },
+  { name: "Wave Racer Mouse", points: 800, gold: 550, },
+  { name: "White Mouse", points: 70, gold: 100, },
+  { name: "Winter Games Mouse", points: 315, gold: 300, },
 ]
 
 mice.each do |mm|
