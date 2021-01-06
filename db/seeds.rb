@@ -6,6 +6,9 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+# Groups are fairly static, only way to ensure unique mice on add
+
+
 # Ranks are pretty Static
 titles = [
   "Novice",

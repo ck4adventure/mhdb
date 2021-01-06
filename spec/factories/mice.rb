@@ -18,5 +18,6 @@ FactoryBot.define do
     name { Faker::Movies::Hobbit.character }
     gold { Faker::Number.between(from: 10, to: 50000) }
     points { Faker::Number.between(from: 0, to: 10) }
+    group_id { Faker::Number.between(from: 1, to: Group.all.count )}
   end
 end

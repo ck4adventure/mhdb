@@ -36,6 +36,13 @@ ActiveRecord::Schema.define(version: 2020_10_22_012544) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
+  create_table "groups", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["name"], name: "index_groups_on_name", unique: true
+  end
+
   create_table "items", force: :cascade do |t|
     t.string "name", null: false
     t.integer "itype", default: 8, null: false
