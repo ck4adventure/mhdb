@@ -67,6 +67,7 @@ RSpec.configure do |config|
   # Factory Bot
   config.include FactoryBot::Syntax::Methods
 
+  # databse cleaner setup according to gem docs
   config.before(:suite) do
     DatabaseCleaner.strategy = :transaction
     DatabaseCleaner.clean_with(:truncation)
