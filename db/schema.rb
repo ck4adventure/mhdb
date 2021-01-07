@@ -75,8 +75,10 @@ ActiveRecord::Schema.define(version: 2020_10_22_012544) do
     t.string "name", null: false
     t.integer "points", null: false
     t.integer "gold", null: false
+    t.integer "group_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["group_id"], name: "index_mice_on_group_id"
     t.index ["name"], name: "index_mice_on_name", unique: true
   end
 

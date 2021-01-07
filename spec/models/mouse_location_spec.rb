@@ -17,22 +17,22 @@
 require 'rails_helper'
 
 RSpec.describe MouseLocation, type: :model do
-  describe 'model properties and validations' do
-    describe 'there is a mouse id and a location id required' do
-      let(:mouseloc) { build(:mouse_location) }
-      it 'is valid when valid info is given' do
-        expect(mouseloc.valid?).to be true
-      end
-    end
 
-    describe 'model shouldas' do
-      subject { create(:mouse_location) }
-      it { should validate_presence_of(:location_id) }
-      it { should validate_presence_of(:mouse_id) }
-      it { should validate_uniqueness_of(:mouse_id)
-            .scoped_to(:location_id)
-            .with_message("Mouse already saved to this location") }
-    end
+  describe 'model properties and validations' do
+    subject { build(:mouse_location) }
+    it { should have_db_column(:location_id) }
+    it { should have_db_column(:mouse_id) }
+    it { should have_db_index(:location_id) }
+    it { should have_db_index(:mouse_id) }
+  end
+  
+  describe 'model shouldas' do
+    subject { build(:mouse_location) }
+    it { should validate_presence_of(:location_id) }
+    it { should validate_presence_of(:mouse_id) }
+    it { should validate_uniqueness_of(:mouse_id)
+          .scoped_to(:location_id)
+          .with_message("Mouse already saved to this location") }
   end
 
   describe 'association shouldas' do

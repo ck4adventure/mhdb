@@ -7,7 +7,84 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 # Groups are fairly static, only way to ensure unique mice on add
+mh_groups = [
+ "Indigenous Mice",
+ "Dock Dwellers",
+ "Mountain Mice",
+ "Forest Guild",
+ "Lab Experiments",
+ "The Shadow Clan",
+ "Digby Dirt Dwellers",
+ "Followers of Furoma",
+ "The Forgotten Mice",
+ "Aquatic Order",
+ "The Elub Tribe",
+ "The Nerg Tribe",
+ "The Derr Tribe",
+ "The Dreaded Horde",
+ "Draconic Brood",
+ "Balack's Banished",
+ "Gauntlet Gladiators",
+ "Seasonal Soldiers",
+ "Wizard's Pieces",
+ "Zurreal's Breed",
+ "Icewing's Invasion",
+ "Wild Bunch",
+ "Train Robbers",
+ "Meteorite Miners",
+ "The Marching Flame",
+ "Muridae Market Mice",
+ "Living Garden Mice",
+ "Lost City Mice",
+ "Sand Dunes Mice",
+ "Queso Canyoneers",
+ "Deep Sea Dwellers",
+ "Fungal Fiends",
+ "Citizens of Zokor",
+ "Moussu Picchu Inhabitants",
+ "Floating Islanders",
+ "Rift Walkers",
+ "Rift Stalkers",
+ "The Polluted",
+ "Event Mice",
+]
 
+mh_groups.each do |group|
+  Group.find_or_create_by!(name: group)
+end
+
+indig_id = Group.find_by!(name: "Indigenous Mice").id
+# Just a few mice to get started
+indig_mice = [
+  {
+    name: "White Mouse",
+    points: 70,
+    gold: 100,
+    group_id: indig_id,
+  },
+  {
+    name: "Grey Mouse",
+    points: 90,
+    gold: 125,
+    group_id: indig_id,
+  },
+  {
+    name: "Brown Mouse",
+    points: 115,
+    gold: 150,
+    group_id: indig_id,
+  },
+  {
+    name: "Lightning Rod Mouse",
+    points: 175,
+    gold: 100,
+    group_id: indig_id,
+  },
+]
+
+indig_mice.each do |mm|
+  m = Mouse.find_or_create_by!(mm)
+end
 
 # Ranks are pretty Static
 titles = [
@@ -164,35 +241,7 @@ wwoods_locations.each do |loc|
 end
 
 
-# Just a few mice to get started
-meadow_mice = [
-  {
-    name: "White",
-    points: 70,
-    gold: 100,
-  },
-  {
-    name: "Grey",
-    points: 90,
-    gold: 125,
-  },
-  {
-    name: "Brown",
-    points: 115,
-    gold: 150,
-  },
-  {
-    name: "Lightning Rod",
-    points: 175,
-    gold: 100,
-  },
-]
 
-meadow_mice.each do |mm|
-  m = Mouse.find_or_create_by!(mm)
-  l = MouseLocation.new(location_id: 1, mouse_id: m.id)
-  l.save! if l.valid?
-end
 
 unless User.find_by(email: "admin")
   me = User.new(username: "Huntress", email: "admin", password: "password", rank_id: Rank.last.id)
