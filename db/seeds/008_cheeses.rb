@@ -14,11 +14,11 @@ cheeses = [
   },
   {
     name: "Brie",
-    itype: "bait"
+    itype: "bait",
   },
   {
     name: "Gouda",
-    itype: "bait"
+    itype: "bait",
   },
     {
     name: "Marble String",
@@ -26,12 +26,16 @@ cheeses = [
   },
   {
     name: "Swiss String",
-    itype: "bait"
+    itype: "bait",
   },
   {
     name: "Brie String",
     itype: "bait"
   },
+  {
+    name: "SUPER|brie+",
+    itype: "bait",
+  }
 
 ]
 
