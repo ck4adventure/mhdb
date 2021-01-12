@@ -64,6 +64,12 @@ ActiveRecord::Schema.define(version: 2020_10_22_012544) do
     t.string "name", null: false
     t.integer "rank_id", null: false
     t.integer "region_id", null: false
+    t.boolean "trapsmith", default: false, null: false
+    t.boolean "cheese_shoppe", default: false, null: false
+    t.boolean "general_store", default: false, null: false
+    t.boolean "charm_shoppe", default: false, null: false
+    t.boolean "cartographer", default: false, null: false
+    t.boolean "kings_cart", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["name"], name: "index_locations_on_name", unique: true

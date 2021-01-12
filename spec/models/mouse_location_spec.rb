@@ -18,6 +18,7 @@ require 'rails_helper'
 
 RSpec.describe MouseLocation, type: :model do
 
+
   describe 'model properties and validations' do
     subject { build(:mouse_location) }
     it { should have_db_column(:location_id) }
