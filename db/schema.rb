@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_13_081219) do
+ActiveRecord::Schema.define(version: 2021_01_13_083316) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,13 +43,22 @@ ActiveRecord::Schema.define(version: 2021_01_13_081219) do
     t.index ["name"], name: "index_groups_on_name", unique: true
   end
 
-  create_table "item_exchanges", force: :cascade do |t|
-    t.integer "item_gained", null: false
-    t.integer "qty", default: 1
-    t.integer "method", default: 1
+  create_table "item_exchange_locations", force: :cascade do |t|
+    t.integer "item_exchange_id", null: false
+    t.integer "location_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["item_gained"], name: "index_item_exchanges_on_item_gained"
+    t.index ["item_exchange_id"], name: "index_item_exchange_locations_on_item_exchange_id"
+    t.index ["location_id"], name: "index_item_exchange_locations_on_location_id"
+  end
+
+  create_table "item_exchanges", force: :cascade do |t|
+    t.integer "item_id", null: false
+    t.integer "qty", default: 1, null: false
+    t.integer "method", default: 1, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["item_id"], name: "index_item_exchanges_on_item_id"
     t.index ["method"], name: "index_item_exchanges_on_method"
   end
 

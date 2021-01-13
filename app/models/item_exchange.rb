@@ -2,17 +2,17 @@
 #
 # Table name: item_exchanges
 #
-#  id          :bigint           not null, primary key
-#  item_gained :integer          not null
-#  method      :integer          default("purchase")
-#  qty         :integer          default(1)
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
+#  id         :bigint           not null, primary key
+#  method     :integer          default("purchase"), not null
+#  qty        :integer          default(1), not null
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  item_id    :integer          not null
 #
 # Indexes
 #
-#  index_item_exchanges_on_item_gained  (item_gained)
-#  index_item_exchanges_on_method       (method)
+#  index_item_exchanges_on_item_id  (item_id)
+#  index_item_exchanges_on_method   (method)
 #
 class ItemExchange < ApplicationRecord
   enum method: {
@@ -22,11 +22,9 @@ class ItemExchange < ApplicationRecord
     smash: 4,
     refund: 5,
   }
-  validates :item_gained, :qty, :method, presence: true
+  validates :item_id, :qty, :method, presence: true
   validates :qty, numericality: { only_integer: true, greater_than_or_equal_to: 1 }
 
-  belongs_to :item,
-    foreign_key: :item_gained,
-    class_name: :Item
+  belongs_to :item
 
 end
