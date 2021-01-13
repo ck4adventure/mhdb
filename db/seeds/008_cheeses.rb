@@ -40,5 +40,5 @@ cheeses = [
 ]
 
 cheeses.each do |ch|
-  bait = Item.find_or_create_by(ch)
+  Item.find_or_create_by(ch)
 end
