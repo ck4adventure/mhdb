@@ -33,7 +33,7 @@ meadow_mice.each do |name|
 end
 
 # Traps
-meadow_traps = [
+first_traps = [
   {
     name: "500 Pound Spiked Crusher",
     itype: "weapon",
@@ -93,6 +93,13 @@ meadow_traps = [
   },
 ]
 
-meadow_traps.each do |item|
+first_traps.each do |item|
   w = Item.find_or_create_by(item)
 end
+
+# Ensure Mouse Locations Set
+# Create/Find Item
+# Add Item Exchange
+# Add Item Exchange Location
+# Add Exchange Costs
+# Add Item to LootLocations
