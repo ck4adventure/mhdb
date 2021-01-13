@@ -5,16 +5,26 @@ valour_locations = [
     name: "King's Arms",
     rank_id: 3,
     region_id: valour_id,
+    charm_shoppe: true,
+    general_store: true,
+    trapsmith: true,
   },
   {
     name: "Tournament Hall",
     rank_id: 3,
     region_id: valour_id,
+    charm_shoppe: true,
+    cheese_shoppe: true,
+    general_store: true,
+    trapsmith: true,
   },
   {
     name: "King's Gauntlet",
     rank_id: 9,
     region_id: valour_id,
+    cartographer: true,
+    cheese_shoppe: true,
+    trapsmith: true,
   },
 ]
 

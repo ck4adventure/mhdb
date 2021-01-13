@@ -14,6 +14,10 @@ namespace :data do
     Dir[File.join(Rails.root, 'db', 'seeds/regions', '*.rb')].sort.each do |seed|
       load seed
     end
+
+    Dir[File.join(Rails.root, 'db', 'seeds/locations', '*.rb')].sort.each do |seed|
+      load seed
+    end
   end
 
 end

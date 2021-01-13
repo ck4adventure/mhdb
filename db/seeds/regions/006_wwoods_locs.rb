@@ -11,6 +11,10 @@ wwoods_locations = [
     name: "Great Gnarled Tree",
     rank_id: 6,
     region_id: wwoods_id,
+    cartographer: true,
+    cheese_shoppe: true,
+    general_store: true,
+    trapsmith: true,
   },
   {
     name: "Lagoon",
