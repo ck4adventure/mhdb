@@ -54,7 +54,7 @@ import { fetchAllBases } from "../actions/bases_actions";
 import { fetchRanks } from "../actions/ranks_actions";
 import { fetchAllRegions } from "../actions/regions_actions";
 import { fetchAllLocations } from "../actions/locations_actions";
-import { fetchAllGroups } from "../actions/groups_actions";
+import { fetchGroups } from "../actions/groups_actions";
 
 import { AuthRoute, ProtectedRoute } from "../util/route_util";
 
@@ -158,7 +158,7 @@ export default function App() {
     dispatch(fetchRanks());
     dispatch(fetchAllRegions());
     dispatch(fetchAllLocations());
-    dispatch(fetchAllGroups());
+    dispatch(fetchGroups());
   }, []);
 
   // mine

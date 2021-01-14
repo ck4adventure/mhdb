@@ -44,14 +44,13 @@ export default function GroupsIndex() {
     e.preventDefault();
     history.push(path);
   };
-
-  const rows = Object.keys(groups).map((id) =>
-    createData(groups[id].title, id, `/groups/${id}`, groups[id].image)
-  );
-
-  if (rows.length == 0) {
+  if (!Boolean(groups)) {
     return <h1>Loading</h1>;
   }
+
+  const rows = Object.keys(groups).map((id) =>
+    createData(groups[id].name, id, `/groups/${id}`)
+  );
 
   return (
     <div>
