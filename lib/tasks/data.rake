@@ -7,15 +7,15 @@ namespace :data do
       load seed
     end
     # Code to get to a subfolder below `seeds`
-    Dir[File.join(Rails.root, 'db', 'seeds/groups', '*.rb')].sort.each do |seed|
+    Dir[File.join(Rails.root, 'db', 'seeds/regionlocations', '*.rb')].sort.each do |seed|
       load seed
     end
 
-    Dir[File.join(Rails.root, 'db', 'seeds/regions', '*.rb')].sort.each do |seed|
+    Dir[File.join(Rails.root, 'db', 'seeds/mice', '*.rb')].sort.each do |seed|
       load seed
     end
 
-    Dir[File.join(Rails.root, 'db', 'seeds/locations', '*.rb')].sort.each do |seed|
+    Dir[File.join(Rails.root, 'db', 'seeds/mouselocations', '*.rb')].sort.each do |seed|
       load seed
     end
   end

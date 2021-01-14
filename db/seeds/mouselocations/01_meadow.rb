@@ -1,45 +1,40 @@
 # Add mice to location
 # Add items that mice drop
-# Add items that location sells
-# Add items that can be created by smashing above adds
-# Add items that can be crafted from all of the above
 
-# Ensure Mouse Locations Set
-# Create/Find Item
-# Add Item Exchange
-# Add Item Exchange Location
-# Add Exchange Costs
-# Add Item to LootLocations
-
-# indigenous meadow mice only
+# TODO: Bionic (lab group),   { name: "Diamond", items: ["Marble", "Satchel of Gold (500)",] },
+#{ name: "Gold", items: ["Marble", "Satchel of Gold (500)",] },  { name: "Granite", items: ["Marble", "Satchel of Gold (500)",] },
+#   { name: "Mole", items: ["Marble", "Satchel of Gold (500)",] },
 meadow_mice = [
-  "Brown",
-  "Cowardly",
-  "Diamond",
-  "Dwarf",
-  "Field",
-  "Flying",
-  "Gold",
-  "Granite",
-  "Grey",
-  "Lightning Rod",
-  "Mole",
-  "Spotted",
-  "Steel",
-  "Tiny",
-  "White",
+  { name: "Brown", items: ["Marble", "Satchel of Gold (500)",] },
+  { name: "Cowardly", items: ["Marble", "Satchel of Gold (500)",] },
+  { name: "Dwarf", items: ["Marble", "Satchel of Gold (500)",] },
+  { name: "Field", items: ["Marble", "Satchel of Gold (500)",] },
+  { name: "Flying", items: ["Marble", "Satchel of Gold (500)",] },
+  { name: "Grey", items: ["Marble", "Satchel of Gold (500)",] },
+  { name: "Lightning Rod", items: ["Marble", "Satchel of Gold (500)",] },
+  { name: "Spotted", items: ["Marble", "Satchel of Gold (500)",] },
+  { name: "Steel", items: ["Marble", "Satchel of Gold (500)",] },
+  { name: "Tiny", items: ["Marble", "Satchel of Gold (500)",] },
+  { name: "White", items: ["Marble", "Satchel of Gold (500)",] },
 ]
 
-loc_id = Location.find_by!(name: "Meadow").id
+meadow = Location.find_by!(name: "Meadow")
 
-meadow_mice.each do |name|
-  m = Mouse.find_by!(name: name)
-  unless m.mouse_locations.pluck("id").include?(loc_id) 
-    ml = MouseLocation.create!(location_id: loc_id, mouse_id: m.id)
+meadow_mice.each do |mouse|
+  m = Mouse.find_by!(name: mouse[:name])
+  puts mouse[:name]
+  unless m.locations.include?(meadow) 
+    ml = MouseLocation.find_or_create_by!(location_id: meadow.id, mouse_id: m.id)
+    mouse[:items].each do |loot|
+      # add loot to location
+
+    end
   end
 end
 
-
+# items dropped in the Meadow
+# Satchel of Gold
+# Marble Cheese
 
 
 

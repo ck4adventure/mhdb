@@ -37,5 +37,5 @@ mice = [
 ]
 
 mice.each do |mm|
-  m = Mouse.find_or_create_by!(mm)
+  Mouse.find_or_create_by!(mm)
 end

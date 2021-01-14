@@ -1,5 +1,4 @@
-# basic items that first exist in Gnawnia
-
+# Items master list for Gnawnia Add
 # gold, crafting items, purchasable items
 
 

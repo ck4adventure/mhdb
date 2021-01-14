@@ -11,37 +11,34 @@
 # Add Exchange Costs
 # Add Item to LootLocations
 
-# TODO Bionic Mouse (lab group)
-# TODO Zombie (shadow clan)
+# TODO Bionic Mouse (lab group)   "Silvertail",
+# TODO Zombie (shadow clan),   "Diamond",   "Gold",   "Granite",
 
 # indigenous meadow mice only
 town_mice = [
   "Brown",
   "Cowardly",
-  "Diamond",
   "Dwarf",
   "Field",
   "Flying",
-  "Gold",
-  "Granite",
   "Grey",
   "Longtail",
   "Magic",
   "Master Burglar",
   "Nibbler",
   "Pugilist",
-  "Silvertail",
   "Speedy",
   "Steel",
   "White",
 ]
 
-loc_id = Location.find_by!(name: "Town of Gnawnia").id
+town = Location.find_by!(name: "Town of Gnawnia")
 
 town_mice.each do |name|
   m = Mouse.find_by!(name: name)
-  unless m.mouse_locations.pluck("id").include?(loc_id) 
-    ml = MouseLocation.create!(location_id: loc_id, mouse_id: m.id)
+  puts name
+  unless m.locations.include?(town) 
+    ml = MouseLocation.find_or_create_by!(location_id: town.id, mouse_id: m.id)
   end
 end
 

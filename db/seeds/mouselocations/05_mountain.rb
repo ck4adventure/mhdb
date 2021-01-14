@@ -1,16 +1,3 @@
-# Add mice to location
-# Add items that mice drop
-# Add items that location sells
-# Add items that can be created by smashing above adds
-# Add items that can be crafted from all of the above
-
-# Ensure Mouse Locations Set
-# Create/Find Item
-# Add Item Exchange
-# Add Item Exchange Location
-# Add Exchange Costs
-# Add Item to LootLocations
-
 # TODO: Abominable Snow, Bionic, Craggy Ore, Frosty Snow
 # Mountain, Ninja, Slope Swimmer, Zombie
 
