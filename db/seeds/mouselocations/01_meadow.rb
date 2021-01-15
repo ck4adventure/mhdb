@@ -19,8 +19,9 @@ meadow_mice = [
 ]
 
 meadow = Location.find_by!(name: "Meadow")
-
+  puts "Meadow Mice Locations"
 meadow_mice.each do |mouse|
+
   m = Mouse.find_by!(name: mouse[:name])
   puts mouse[:name]
   unless m.locations.include?(meadow) 

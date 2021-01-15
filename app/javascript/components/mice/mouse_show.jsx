@@ -21,11 +21,12 @@ const useStyles = makeStyles((theme) => ({
   },
   titleContainer: {
     display: "flex",
+    flexDirection: "column",
     alignItems: "center",
   },
   media: {
-    height: 38,
-    width: 38,
+    height: 451,
+    width: 301,
     borderRadius: 3,
   },
   title: {
@@ -62,16 +63,16 @@ export default function MouseShow(props) {
     <div>
       <div className={classes.drawerHeader} />
       <Container className={classes.titleContainer}>
-        {/* {mouse.image && (
+        <Typography variant="h4" className={classes.title}>
+          {mouse.name} Mouse
+        </Typography>
+        {mouse.image && (
           <CardMedia
             className={classes.media}
-            image={`${process.env.REACT_APP_API_URL}${location.image}`}
-            title={location.name}
+            image={`${process.env.REACT_APP_API_URL}${mouse.image}`}
+            title={mouse.name}
           />
-        )} */}
-        <Typography variant="h4" className={classes.title}>
-          {mouse.name}
-        </Typography>
+        )}
       </Container>
       <p>
         The {mouse.name} is part of the{" "}
