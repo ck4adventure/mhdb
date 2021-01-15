@@ -5,9 +5,15 @@
 #   "Bionic",
 # indigenous mice only
 harbour_mice = [
+  "Barmy Gunner",
+  "Bilged Boatswain",
+  "Bionic",
   "Black Widow",
   "Brown",
   "Burglar",
+  "Cabin Boy",
+  "Corrupt Commodore",
+  "Dashing Buccaneer",
   "Diamond",
   "Dwarf",
   "Fog",
@@ -15,6 +21,7 @@ harbour_mice = [
   "Granite",
   "Grey",
   "Magic",
+  "Pirate",
   "Pugilist",
   "Scruffy",
   "Silvertail",

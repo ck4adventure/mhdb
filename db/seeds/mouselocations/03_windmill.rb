@@ -1,9 +1,6 @@
 
+# windmill
 
-# TODO Bionic Mouse (lab group)
-# TODO Zombie (shadow clan)
-#   "Mole", digby dirt
-# indigenous meadow mice only
 windmill_mice = [
   "Brown",
   "Captain Croissant",
@@ -15,6 +12,7 @@ windmill_mice = [
   "Gold",
   "Grey",
   "Longtail",
+  "Mole",
   "Pugilist",
   "Scruffy",
   "Silvertail",

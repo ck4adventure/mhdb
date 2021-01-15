@@ -1,24 +1,24 @@
 
-
-# TODO Bionic Mouse (lab group)   "Silvertail",
-# TODO Zombie (shadow clan),   "Diamond",   "Gold",   "Granite",
-
-# indigenous meadow mice only
 town_mice = [
+  "Bionic",
   "Brown",
   "Cowardly",
+  "Diamond",
   "Dwarf",
-  "Field",
   "Flying",
+  "Gold",
+  "Granite",
   "Grey",
   "Longtail",
   "Magic",
   "Master Burglar",
   "Nibbler",
   "Pugilist",
+  "Silvertail",
   "Speedy",
   "Steel",
   "White",
+  "Zombie",
 ]
 
 town = Location.find_by!(name: "Town of Gnawnia")

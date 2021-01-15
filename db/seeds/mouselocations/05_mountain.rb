@@ -1,22 +1,30 @@
-# TODO: Abominable Snow, Bionic, Craggy Ore, Frosty Snow
+# TODO: 
 # Mountain, Ninja, Slope Swimmer, Zombie
 
 # indigenous meadow mice only
 mountain_mice = [
+  "Abominable Snow", 
+  "Bionic",
   "Black Widow",
   "Brown",
   "Burglar",
+  "Craggy Ore",
   "Diamond",
   "Dwarf",
   "Fog",
+  "Frosty Snow",
   "Frozen",
   "Gold",
   "Granite",
   "Grey",
+  "Mountain",
+  "Ninja",
   "Pebble",
   "Silvertail",
+  "Slope Swimmer",
   "Steel",
   "White",
+  "Zombie",
 ]
 
 mountain = Location.find_by!(name: "Mountain")
