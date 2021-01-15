@@ -8,12 +8,14 @@ import ranksReducer from "./ranks_reducer";
 import regionsReducer from "./regions_reducer";
 import locationsReducer from "./locations_reducer";
 import groupsReducer from "./groups_reducer";
+import miceReducer from "./mice_reducer";
 
 const rootReducer = combineReducers({
   session: sessionReducer,
   users: usersReducer,
   ranks: ranksReducer,
   groups: groupsReducer,
+  mice: miceReducer,
   regions: regionsReducer,
   locations: locationsReducer,
   items: itemsReducer,

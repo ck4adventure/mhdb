@@ -1,11 +1,13 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 
 import { makeStyles } from "@material-ui/core/styles";
 import Link from "@material-ui/core/Link";
 
-import LocationListItem from "./location_list_item";
+import LocationListItem from "./mouse_list_item";
+
+import { fetchGroup } from "../../actions/groups_actions";
 
 const useStyles = makeStyles((theme) => ({
   drawerHeader: {
@@ -23,11 +25,19 @@ export default function GroupShow(props) {
   const groupId = props.match.params.groupId;
   const group = useSelector((state) => state.groups[groupId]);
 
-  if (!Boolean(group.name)) {
+  let history = useHistory();
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchGroup(groupId));
+  }, []);
+
+  console.log(group);
+
+  if (!Boolean(group.mice)) {
     return <h1>Loading...</h1>;
   }
-
-  let history = useHistory();
 
   function handlePath(path, event) {
     event.preventDefault();
@@ -39,11 +49,14 @@ export default function GroupShow(props) {
       <div className={classes.drawerHeader} />
       <h2>Group Page</h2>
       <h4>{group.name}</h4>
-      {/* <ul>
-        {group.locations.map((loc) => (
-          <LocationListItem key={loc.id} locId={loc.id} />
-        ))}
-      </ul> */}
+      <ul>
+        {group.mice &&
+          group.mice.map((m) => (
+            <li key={m.id} mouseid={m.id}>
+              {m.name}
+            </li>
+          ))}
+      </ul>
       <br />
       <br />
       <Link href="/groups" onClick={(e) => handlePath("/groups", e)}>
