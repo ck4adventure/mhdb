@@ -5,7 +5,7 @@ import { useHistory } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import Link from "@material-ui/core/Link";
 
-import LocationListItem from "./mouse_list_item";
+import MouseListItem from "./mouse_list_item";
 
 import { fetchGroup } from "../../actions/groups_actions";
 
@@ -51,11 +51,7 @@ export default function GroupShow(props) {
       <h4>{group.name}</h4>
       <ul>
         {group.mice &&
-          group.mice.map((m) => (
-            <li key={m.id} mouseid={m.id}>
-              {m.name}
-            </li>
-          ))}
+          group.mice.map((m) => <MouseListItem key={m.id} mouse={m} />)}
       </ul>
       <br />
       <br />

@@ -4,7 +4,7 @@
 //     url: "api/mice",
 //   });
 
-export const fetchMouse = (mouseId) =>
+export const fetchAMouse = (mouseId) =>
   $.ajax({
     type: "GET",
     url: `api/mice/${mouseId}`,

@@ -23,6 +23,6 @@ export const receiveMouse = (mouse) => ({
 //   );
 
 export const fetchMouse = (mouseId) => (dispatch) =>
-  MiceApiUtil.fetchMouse(mouseId).then((mouse) =>
+  MiceApiUtil.fetchAMouse(mouseId).then((mouse) =>
     dispatch(receiveMouse(mouse))
   );

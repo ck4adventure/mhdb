@@ -107,6 +107,7 @@ Rails.application.routes.draw do
     resources :ranks, only: [:index]
     resources :regions, only: [:index]
     resources :groups, only: [:index, :show]
+    resources :mice, only: [:show]
     resources :locations, except: [:destroy]
   end
 

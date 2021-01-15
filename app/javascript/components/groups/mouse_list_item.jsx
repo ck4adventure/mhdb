@@ -25,7 +25,7 @@ function createData(mouseId, mouseName) {
 }
 
 export default function Mouse_List_Item(props) {
-  const { mouseId } = props;
+  const { mouse } = props;
 
   const classes = useStyles();
   let history = useHistory();
@@ -35,9 +35,8 @@ export default function Mouse_List_Item(props) {
     history.push(path);
   }
 
-  const mouse = useSelector((state) => state.mice[mouseId]);
-  if (!Boolean(mouse)) {
-    return <p>Loading...</p>;
+  if (!Boolean(mouse.name)) {
+    return <p>error...</p>;
   }
 
   return (

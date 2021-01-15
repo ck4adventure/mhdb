@@ -6,6 +6,7 @@ const miceReducer = (state = {}, action) => {
   switch (action.type) {
     case RECEIVE_MOUSE:
       let mouse = { [action.mouse.id]: action.mouse };
+      console.log(mouse);
       return Object.assign({}, state, mouse);
     case RECEIVE_MICE:
       action.mice.forEach((mouse) => (nextState[mouse.id] = mouse));

@@ -47,6 +47,7 @@ import LocationsIndex from "./locations/locations_index";
 import LocationShow from "./locations/location_show";
 import GroupShow from "./groups/groups_show";
 import GroupsIndex from "./groups/groups_index";
+import MouseShow from "./mice/mouse_show";
 
 import { signup, login, logout } from "../actions/session_actions";
 import { fetchAllWeapons } from "../actions/weapons_actions";
@@ -373,6 +374,7 @@ export default function App() {
           <Route path="/regions" component={RegionsIndex} />
           <Route path="/locations/:locationId" component={LocationShow} />
           <Route path="/locations" component={LocationsIndex} />
+          <Route path="/mice/:mouseId" component={MouseShow} />
           <Route path="/" component={Main} />
         </Switch>
       </main>
