@@ -1,4 +1,4 @@
-export const RECEIVE_MICES = "RECEIVE_MICES";
+export const RECEIVE_MICE = "RECEIVE_MICE";
 export const RECEIVE_MOUSE = "RECEIVE_MOUSE";
 
 import * as MiceApiUtil from "../util/mice_api";
