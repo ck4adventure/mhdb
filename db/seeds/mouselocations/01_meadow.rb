@@ -1,34 +1,42 @@
 # Add mice to location
 # Add items that mice drop
 
-# TODO: Bionic (lab group),   { name: "Diamond", items: ["Marble", "Satchel of Gold (500)",] },
-#{ name: "Gold", items: ["Marble", "Satchel of Gold (500)",] },  { name: "Granite", items: ["Marble", "Satchel of Gold (500)",] },
-#   { name: "Mole", items: ["Marble", "Satchel of Gold (500)",] },
+# 3 items needed here
+satchel = Item.find_by!(name: "Satchel of Gold (500)")
+marble = Item.find_by!(name: "Marble")
+relic = Item.find_by!(name: "Ancient Relic")
+
 meadow_mice = [
-  { name: "Brown", items: ["Marble", "Satchel of Gold (500)",] },
-  { name: "Cowardly", items: ["Marble", "Satchel of Gold (500)",] },
-  { name: "Dwarf", items: ["Marble", "Satchel of Gold (500)",] },
-  { name: "Field", items: ["Marble", "Satchel of Gold (500)",] },
-  { name: "Flying", items: ["Marble", "Satchel of Gold (500)",] },
-  { name: "Grey", items: ["Marble", "Satchel of Gold (500)",] },
-  { name: "Lightning Rod", items: ["Marble", "Satchel of Gold (500)",] },
-  { name: "Spotted", items: ["Marble", "Satchel of Gold (500)",] },
-  { name: "Steel", items: ["Marble", "Satchel of Gold (500)",] },
-  { name: "Tiny", items: ["Marble", "Satchel of Gold (500)",] },
-  { name: "White", items: ["Marble", "Satchel of Gold (500)",] },
+  { name: "Bionic", items: [satchel,] },
+  { name: "Brown", items: [marble,] },
+  { name: "Cowardly", items: [marble, satchel,] },
+  { name: "Diamond", items: [satchel,] },
+  { name: "Dwarf", items: [] },
+  { name: "Field", items: [marble, satchel,] },
+  { name: "Flying", items: [] },
+  { name: "Gold", items: [marble,] },
+  { name: "Granite", items: [marble, satchel,] },
+  { name: "Grey", items: [marble,] },
+  { name: "Lightning Rod", items: [marble,] },
+  { name: "Mole", items: [marble, relic,] },
+  { name: "Spotted", items: [marble, satchel,] },
+  { name: "Steel", items: [marble, satchel,] },
+  { name: "Tiny", items: [] },
+  { name: "White", items: [marble,] },
 ]
 
 meadow = Location.find_by!(name: "Meadow")
-
+  puts "Meadow Mice Locations"
 meadow_mice.each do |mouse|
+
   m = Mouse.find_by!(name: mouse[:name])
   puts mouse[:name]
   unless m.locations.include?(meadow) 
-    ml = MouseLocation.find_or_create_by!(location_id: meadow.id, mouse_id: m.id)
-    mouse[:items].each do |loot|
-      # add loot to location
+    MouseLocation.find_or_create_by!(location_id: meadow.id, mouse_id: m.id)
+    # mouse[:items].each do |loot|
+    #   # add loot to location
 
-    end
+    # end
   end
 end
 

@@ -91,6 +91,7 @@
 #                  rails_direct_uploads POST   /rails/active_storage/direct_uploads(.:format)                                           active_storage/direct_uploads#create
 
 Rails.application.routes.draw do
+  get 'mice/show'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root 'static_pages#root'
 
@@ -105,6 +106,8 @@ Rails.application.routes.draw do
     resource :session, only: [:create, :destroy]
     resources :ranks, only: [:index]
     resources :regions, only: [:index]
+    resources :groups, only: [:index, :show]
+    resources :mice, only: [:show]
     resources :locations, except: [:destroy]
   end
 

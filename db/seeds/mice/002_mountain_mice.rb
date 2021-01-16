@@ -19,5 +19,11 @@ mice = [
 ]
 
 mice.each do |mm|
-  Mouse.find_or_create_by!(mm)
+  m = Mouse.find_or_create_by!(mm)
+  path = m.name.delete("'").split(" ").join('_').downcase + '.jpg'
+  m.image.attach(
+    io: File.open("./public/seeds_images/mice/#{path}"),
+    filename: path,
+    content_type: 'application/jpg',
+  )
 end

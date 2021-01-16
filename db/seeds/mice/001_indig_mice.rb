@@ -4,7 +4,7 @@
 indig_id = Group.find_by!(name: "Indigenous Mice").id
 
 mice = [
-  { name: "Black Widow Mouse", points: 480, gold: 10, group_id: indig_id,},
+  { name: "Black Widow", points: 480, gold: 10, group_id: indig_id,},
   { name: "Brown", points: 115, gold: 150, group_id: indig_id,},
   { name: "Burglar", points: 1250, gold: 1250, group_id: indig_id,},
   { name: "Captain Croissant", points: 1000, gold: 1000, group_id: indig_id,},
@@ -37,5 +37,11 @@ mice = [
 ]
 
 mice.each do |mm|
-  Mouse.find_or_create_by!(mm)
+  m = Mouse.find_or_create_by!(mm)
+  path = m.name.delete("'").split(" ").join('_').downcase + '.jpg'
+  m.image.attach(
+    io: File.open("./public/seeds_images/mice/#{path}"),
+    filename: path,
+    content_type: 'application/jpg',
+  )
 end

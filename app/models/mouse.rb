@@ -16,6 +16,7 @@
 #  index_mice_on_name      (name) UNIQUE
 #
 class Mouse < ApplicationRecord
+  has_one_attached :image
   validates :name, :group_id, presence: true
   validates :name, uniqueness: true
   validates :gold, numericality: { only_integer: true, greater_than_or_equal_to: 10 }
