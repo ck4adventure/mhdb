@@ -14,3 +14,11 @@ end
 if @location.image.attached?
   json.image url_for(@location.image)
 end
+if @location.mice.length > 0
+  json.mice @location.mice do |mouse|
+    json.id mouse.id
+    json.name mouse.name
+    json.points mouse.points
+    json.gold mouse.gold
+  end
+end

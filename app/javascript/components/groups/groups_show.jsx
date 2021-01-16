@@ -33,8 +33,6 @@ export default function GroupShow(props) {
     dispatch(fetchGroup(groupId));
   }, []);
 
-  console.log(group);
-
   if (!Boolean(group.mice)) {
     return <h1>Loading...</h1>;
   }

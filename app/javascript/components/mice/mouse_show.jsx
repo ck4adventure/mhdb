@@ -75,7 +75,7 @@ export default function MouseShow(props) {
         )}
       </Container>
       <p>
-        The {mouse.name} is part of the{" "}
+        The {mouse.name} mouse is part of the{" "}
         <Link
           href={`/groups/${mouse.groupId}`}
           onClick={(e) => handlePath(`/groups/${mouse.groupId}`, e)}
