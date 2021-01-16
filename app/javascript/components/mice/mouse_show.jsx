@@ -7,6 +7,16 @@ import Container from "@material-ui/core/Container";
 import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
 import Link from "@material-ui/core/Link";
+import Paper from "@material-ui/core/Paper";
+
+import Table from "@material-ui/core/Table";
+import TableBody from "@material-ui/core/TableBody";
+import TableCell from "@material-ui/core/TableCell";
+import TableContainer from "@material-ui/core/TableContainer";
+import TableHead from "@material-ui/core/TableHead";
+import TableRow from "@material-ui/core/TableRow";
+
+import NameCard from "../cards/name_card";
 
 import { fetchMouse } from "../../actions/mice_actions";
 
@@ -43,7 +53,6 @@ export default function MouseShow(props) {
   let history = useHistory();
 
   const dispatch = useDispatch();
-  console.log(mouseId);
 
   useEffect(() => {
     dispatch(fetchMouse(mouseId));
@@ -52,7 +61,6 @@ export default function MouseShow(props) {
   if (!Boolean(mouse)) {
     return <h1>Loading...</h1>;
   }
-  console.log(mouse);
 
   function handlePath(path, event) {
     event.preventDefault();
@@ -87,10 +95,39 @@ export default function MouseShow(props) {
       <p>
         It is worth {mouse.points} points and {mouse.gold} gold.
       </p>
-      <br />
+      <h4>Locations</h4>
+      <TableContainer component={Paper}>
+        <Table className={classes.table} aria-label="simple table">
+          <TableHead>
+            <TableRow>
+              <TableCell>Name</TableCell>
+              <TableCell>Loot</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {mouse.locations &&
+              mouse.locations.map((loc) => (
+                <TableRow key={loc.name}>
+                  <TableCell component="th" scope="row">
+                    <NameCard
+                      name={loc.name}
+                      image={loc.image}
+                      path={`/locations/${loc.id}`}
+                    />
+                  </TableCell>
+                  <TableCell>.</TableCell>
+                </TableRow>
+              ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
       <br />
       <Link href="/groups" onClick={(e) => handlePath("/groups", e)}>
         Back to Groups
+      </Link>
+      <br />
+      <Link href="/locations" onClick={(e) => handlePath("/locations", e)}>
+        Go to Locations
       </Link>
     </div>
   );

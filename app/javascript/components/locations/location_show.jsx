@@ -118,7 +118,7 @@ export default function LocationShow(props) {
           <TableBody>
             {location.mice &&
               location.mice.map((mouse) => (
-                <TableRow key={mouse.name}>
+                <TableRow key={`loc-mouse-${mouse.name}`}>
                   <TableCell component="th" scope="row">
                     <Link
                       href={`/mice/${mouse.id}`}
