@@ -3,6 +3,11 @@ namespace :data do
   task seed: :environment do
     # Taken from article, should run all files in 'seeds' folder in alphanumeric order
     # Leave the sort in else you can't control the order of the files
+
+    Dir[File.join(Rails.root, 'db', 'seeds/setup', '*.rb')].sort.each do |seed|
+      load seed
+    end
+
     Dir[File.join(Rails.root, 'db', 'seeds', '*.rb')].sort.each do |seed|
       load seed
     end

@@ -1,4 +1,4 @@
-# Regions are seldom added
+# Regions are DONE
 mh_regions = [
  "Gnawnia",
  "Valour",
