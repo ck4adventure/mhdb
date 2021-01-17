@@ -209,7 +209,7 @@ export default function App() {
     { name: "Ranks", img: Recruit, path: "/ranks" },
     { name: "Regions", img: Travel, path: "/regions" },
     { name: "Locations", img: Travel, path: "/locations" },
-    { name: "Groups", img: Travel, path: "/groups" },
+    { name: "Groups", img: Mice, path: "/groups" },
   ].map((el, index) => (
     <ListItem
       button
