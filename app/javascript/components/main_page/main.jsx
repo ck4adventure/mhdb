@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import clsx from "clsx";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
@@ -19,6 +19,7 @@ import Mice from "../../images/mice.png";
 import Special from "../../images/special.png";
 
 import { toArray } from "../../reducers/selectors";
+import { fetchMainStats } from "../../actions/stats_actions";
 
 const useStyles = makeStyles((theme) => ({
   stats_container: {
@@ -80,9 +81,12 @@ const cardsForList = plist.map((el) => (
 export default function Main() {
   const classes = useStyles();
 
-  const ranks = useSelector((state) =>
-    state.ranks ? toArray(state.ranks) : []
-  );
+  const stats = useSelector((state) => (state.stats ? state.stats : {}));
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchMainStats());
+  }, []);
 
   return (
     <div>
@@ -103,7 +107,7 @@ export default function Main() {
               name={"ranks"}
               key={"ranks"}
               img={Recruit}
-              count={ranks.length}
+              count={stats.rankCount}
             />
           </Container>
         </Paper>
@@ -122,7 +126,7 @@ export default function Main() {
               name={"regions"}
               key={"regions"}
               img={Travel}
-              count={"42"}
+              count={stats.regionCount}
             />
           </Container>
         </Paper>
@@ -138,10 +142,10 @@ export default function Main() {
           <Divider />
           <Container className={classes.cards_container}>
             <SimpleCard
-              name={"regions"}
-              key={"regions"}
+              name={"locations"}
+              key={"locations"}
               img={Travel}
-              count={"173"}
+              count={stats.locationCount}
             />
           </Container>
         </Paper>
@@ -160,7 +164,26 @@ export default function Main() {
               name={"groups"}
               key={"groups"}
               img={Mice}
-              count={"27"}
+              count={stats.groupCount}
+            />
+          </Container>
+        </Paper>
+
+        <Paper elevation={8} className={classes.single_box}>
+          <Typography
+            variant="h6"
+            component="div"
+            className={classes.box_title}
+          >
+            Mice
+          </Typography>
+          <Divider />
+          <Container className={classes.cards_container}>
+            <SimpleCard
+              name={"mice"}
+              key={"mice"}
+              img={Mice}
+              count={stats.miceCount}
             />
           </Container>
         </Paper>
@@ -175,7 +198,12 @@ export default function Main() {
           </Typography>
           <Divider />
           <Container className={classes.cards_container}>
-            <SimpleCard name={"bait"} key={"bait"} img={Cheese} count={"16"} />
+            <SimpleCard
+              name={"bait"}
+              key={"bait"}
+              img={Cheese}
+              count={stats.baitCount}
+            />
           </Container>
         </Paper>
 
@@ -193,7 +221,7 @@ export default function Main() {
               name={"weapons"}
               key={"weapons"}
               img={Traps}
-              count={"1000"}
+              count={stats.weaponsCount}
             />
           </Container>
         </Paper>
@@ -208,7 +236,12 @@ export default function Main() {
           </Typography>
           <Divider />
           <Container className={classes.cards_container}>
-            <SimpleCard name={"bases"} key={"bases"} img={Traps} count={"44"} />
+            <SimpleCard
+              name={"bases"}
+              key={"bases"}
+              img={Traps}
+              count={stats.basesCount}
+            />
           </Container>
         </Paper>
 
@@ -226,7 +259,7 @@ export default function Main() {
               name={"loot"}
               key={"loot"}
               img={Special}
-              count={"600"}
+              count={stats.itemsCount}
             />
           </Container>
         </Paper>

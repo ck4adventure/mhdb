@@ -9,9 +9,11 @@ import regionsReducer from "./regions_reducer";
 import locationsReducer from "./locations_reducer";
 import groupsReducer from "./groups_reducer";
 import miceReducer from "./mice_reducer";
+import statsReducer from "./stats_reducer";
 
 const rootReducer = combineReducers({
   session: sessionReducer,
+  stats: statsReducer,
   users: usersReducer,
   ranks: ranksReducer,
   groups: groupsReducer,
