@@ -101,6 +101,7 @@ Rails.application.routes.draw do
   namespace :api do
     get 'items/weapons', to: 'items#weapons'
     get 'items/bases', to: 'items#bases'
+    get 'stats', to: 'stats#main'
     resources :items, only: [:create, :update, :destroy]
     resources :users, only: [:show, :create, :update, :destroy]
     resource :session, only: [:create, :destroy]

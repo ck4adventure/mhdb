@@ -12,10 +12,11 @@ const images = require.context("../../images", true);
 const imagePath = (name) => images(name, true);
 
 import Traps from "../../images/traps.png";
-import Collectibles from "../../images/collectibles.png";
+import Cheese from "../../images/cheese.png";
 import Travel from "../../images/travel.png";
 import Recruit from "../../images/recruit.gif";
 import Mice from "../../images/mice.png";
+import Special from "../../images/special.png";
 
 import { toArray } from "../../reducers/selectors";
 
@@ -55,7 +56,7 @@ const useStyles = makeStyles((theme) => ({
   cards_container: {
     display: "flex",
     flexWrap: "wrap",
-    justifyContent: "center",
+    justifyContent: "left",
   },
 }));
 
@@ -86,22 +87,8 @@ export default function Main() {
   return (
     <div>
       <div className={classes.drawerHeader} />
-      <Container className={classes.stats_container}>
-        <Paper elevation={8} className={classes.weapons_box}>
-          <Typography
-            variant="h6"
-            component="div"
-            className={classes.box_title}
-          >
-            Weapons
-          </Typography>
-          <Divider />
-          <Container className={classes.cards_container}>
-            {cardsForList}
-          </Container>
-        </Paper>
-      </Container>
-      <Container className={classes.stats_container}>
+
+      <Container className={classes.cards_container}>
         <Paper elevation={8} className={classes.single_box}>
           <Typography
             variant="h6"
@@ -127,11 +114,16 @@ export default function Main() {
             component="div"
             className={classes.box_title}
           >
-            Groups
+            Regions
           </Typography>
           <Divider />
           <Container className={classes.cards_container}>
-            <SimpleCard name={"groups"} key={"groups"} img={Mice} />
+            <SimpleCard
+              name={"regions"}
+              key={"regions"}
+              img={Travel}
+              count={"42"}
+            />
           </Container>
         </Paper>
 
@@ -145,7 +137,97 @@ export default function Main() {
           </Typography>
           <Divider />
           <Container className={classes.cards_container}>
-            <SimpleCard name={"locations"} key={"locations"} img={Travel} />
+            <SimpleCard
+              name={"regions"}
+              key={"regions"}
+              img={Travel}
+              count={"173"}
+            />
+          </Container>
+        </Paper>
+
+        <Paper elevation={8} className={classes.single_box}>
+          <Typography
+            variant="h6"
+            component="div"
+            className={classes.box_title}
+          >
+            Groups
+          </Typography>
+          <Divider />
+          <Container className={classes.cards_container}>
+            <SimpleCard
+              name={"groups"}
+              key={"groups"}
+              img={Mice}
+              count={"27"}
+            />
+          </Container>
+        </Paper>
+
+        <Paper elevation={8} className={classes.single_box}>
+          <Typography
+            variant="h6"
+            component="div"
+            className={classes.box_title}
+          >
+            Bait
+          </Typography>
+          <Divider />
+          <Container className={classes.cards_container}>
+            <SimpleCard name={"bait"} key={"bait"} img={Cheese} count={"16"} />
+          </Container>
+        </Paper>
+
+        <Paper elevation={8} className={classes.single_box}>
+          <Typography
+            variant="h6"
+            component="div"
+            className={classes.box_title}
+          >
+            Weapons
+          </Typography>
+          <Divider />
+          <Container className={classes.cards_container}>
+            <SimpleCard
+              name={"weapons"}
+              key={"weapons"}
+              img={Traps}
+              count={"1000"}
+            />
+          </Container>
+        </Paper>
+
+        <Paper elevation={8} className={classes.single_box}>
+          <Typography
+            variant="h6"
+            component="div"
+            className={classes.box_title}
+          >
+            Bases
+          </Typography>
+          <Divider />
+          <Container className={classes.cards_container}>
+            <SimpleCard name={"bases"} key={"bases"} img={Traps} count={"44"} />
+          </Container>
+        </Paper>
+
+        <Paper elevation={8} className={classes.single_box}>
+          <Typography
+            variant="h6"
+            component="div"
+            className={classes.box_title}
+          >
+            Lootable Items
+          </Typography>
+          <Divider />
+          <Container className={classes.cards_container}>
+            <SimpleCard
+              name={"loot"}
+              key={"loot"}
+              img={Special}
+              count={"600"}
+            />
           </Container>
         </Paper>
       </Container>

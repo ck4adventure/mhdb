@@ -1,0 +1,9 @@
+json.rankCount @rankCount
+json.regionCount @regionCount
+json.locationCount @locationCount
+json.groupCount @groupCount 
+json.miceCount @miceCount
+json.basesCount @basesCount
+json.weaponsCount @weaponCount
+json.baitCount @baitCount
+json.itemsCount @itemsCount
