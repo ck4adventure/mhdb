@@ -22,10 +22,9 @@ town_mice = [
 ]
 
 town = Location.find_by!(name: "Town of Gnawnia")
-  puts "Town of Gnawnia Mice Locations"
+puts "Town of Gnawnia Mice Locations"
 town_mice.each do |name|
-
-  puts name
+  # puts name
   m = Mouse.find_by!(name: name)
   unless m.locations.include?(town) 
     MouseLocation.find_or_create_by!(location_id: town.id, mouse_id: m.id)

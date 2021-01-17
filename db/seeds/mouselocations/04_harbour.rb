@@ -34,7 +34,7 @@ harbour = Location.find_by!(name: "Harbour")
   puts "harbour mice locations"
 harbour_mice.each do |name|
 
-  puts name
+  # puts name
   m = Mouse.find_by!(name: name)
   unless m.locations.include?(harbour) 
     MouseLocation.create!(location_id: harbour.id, mouse_id: m.id)

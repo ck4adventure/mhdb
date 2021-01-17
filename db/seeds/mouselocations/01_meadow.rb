@@ -30,7 +30,7 @@ meadow = Location.find_by!(name: "Meadow")
 meadow_mice.each do |mouse|
 
   m = Mouse.find_by!(name: mouse[:name])
-  puts mouse[:name]
+  # puts mouse[:name]
   unless m.locations.include?(meadow) 
     MouseLocation.find_or_create_by!(location_id: meadow.id, mouse_id: m.id)
     # mouse[:items].each do |loot|
