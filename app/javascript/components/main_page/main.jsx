@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 import clsx from "clsx";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
@@ -7,6 +8,7 @@ import Typography from "@material-ui/core/Typography";
 import Divider from "@material-ui/core/Divider";
 import Container from "@material-ui/core/Container";
 import SimpleCard from "../cards/simple_card";
+import CardActionArea from "@material-ui/core/CardActionArea";
 
 const images = require.context("../../images", true);
 const imagePath = (name) => images(name, true);
@@ -88,161 +90,184 @@ export default function Main() {
     dispatch(fetchMainStats());
   }, []);
 
+  let history = useHistory();
+
+  const handlePath = (path, event) => {
+    event.preventDefault();
+    history.push(path);
+  };
+
   return (
     <div>
       <div className={classes.drawerHeader} />
 
       <Container className={classes.cards_container}>
         <Paper elevation={8} className={classes.single_box}>
-          <Typography
-            variant="h6"
-            component="div"
-            className={classes.box_title}
-          >
-            Ranks
-          </Typography>
-          <Divider />
-          <Container className={classes.cards_container}>
-            <SimpleCard
-              name={"ranks"}
-              key={"ranks"}
-              img={Recruit}
-              count={stats.rankCount}
-            />
-          </Container>
+          <CardActionArea onClick={(e) => handlePath("/ranks", e)}>
+            <Typography
+              variant="h6"
+              component="div"
+              className={classes.box_title}
+            >
+              Ranks
+            </Typography>
+            <Divider />
+            <Container className={classes.cards_container}>
+              <SimpleCard
+                name={"ranks"}
+                key={"ranks"}
+                img={Recruit}
+                count={stats.rankCount}
+              />
+            </Container>
+          </CardActionArea>
         </Paper>
 
         <Paper elevation={8} className={classes.single_box}>
-          <Typography
-            variant="h6"
-            component="div"
-            className={classes.box_title}
-          >
-            Regions
-          </Typography>
-          <Divider />
-          <Container className={classes.cards_container}>
-            <SimpleCard
-              name={"regions"}
-              key={"regions"}
-              img={Travel}
-              count={stats.regionCount}
-            />
-          </Container>
+          <CardActionArea onClick={(e) => handlePath("/regions", e)}>
+            <Typography
+              variant="h6"
+              component="div"
+              className={classes.box_title}
+            >
+              Regions
+            </Typography>
+            <Divider />
+            <Container className={classes.cards_container}>
+              <SimpleCard
+                name={"regions"}
+                key={"regions"}
+                img={Travel}
+                count={stats.regionCount}
+              />
+            </Container>
+          </CardActionArea>
         </Paper>
 
         <Paper elevation={8} className={classes.single_box}>
-          <Typography
-            variant="h6"
-            component="div"
-            className={classes.box_title}
-          >
-            Locations
-          </Typography>
-          <Divider />
-          <Container className={classes.cards_container}>
-            <SimpleCard
-              name={"locations"}
-              key={"locations"}
-              img={Travel}
-              count={stats.locationCount}
-            />
-          </Container>
+          <CardActionArea onClick={(e) => handlePath("/locations", e)}>
+            <Typography
+              variant="h6"
+              component="div"
+              className={classes.box_title}
+            >
+              Locations
+            </Typography>
+            <Divider />
+            <Container className={classes.cards_container}>
+              <SimpleCard
+                name={"locations"}
+                key={"locations"}
+                img={Travel}
+                count={stats.locationCount}
+              />
+            </Container>
+          </CardActionArea>
         </Paper>
 
         <Paper elevation={8} className={classes.single_box}>
-          <Typography
-            variant="h6"
-            component="div"
-            className={classes.box_title}
-          >
-            Groups
-          </Typography>
-          <Divider />
-          <Container className={classes.cards_container}>
-            <SimpleCard
-              name={"groups"}
-              key={"groups"}
-              img={Mice}
-              count={stats.groupCount}
-            />
-          </Container>
+          <CardActionArea onClick={(e) => handlePath("/groups", e)}>
+            <Typography
+              variant="h6"
+              component="div"
+              className={classes.box_title}
+            >
+              Groups
+            </Typography>
+            <Divider />
+            <Container className={classes.cards_container}>
+              <SimpleCard
+                name={"groups"}
+                key={"groups"}
+                img={Mice}
+                count={stats.groupCount}
+              />
+            </Container>
+          </CardActionArea>
         </Paper>
 
         <Paper elevation={8} className={classes.single_box}>
-          <Typography
-            variant="h6"
-            component="div"
-            className={classes.box_title}
-          >
-            Mice
-          </Typography>
-          <Divider />
-          <Container className={classes.cards_container}>
-            <SimpleCard
-              name={"mice"}
-              key={"mice"}
-              img={Mice}
-              count={stats.miceCount}
-            />
-          </Container>
+          <CardActionArea>
+            <Typography
+              variant="h6"
+              component="div"
+              className={classes.box_title}
+            >
+              Mice
+            </Typography>
+            <Divider />
+            <Container className={classes.cards_container}>
+              <SimpleCard
+                name={"mice"}
+                key={"mice"}
+                img={Mice}
+                count={stats.miceCount}
+              />
+            </Container>
+          </CardActionArea>
         </Paper>
 
         <Paper elevation={8} className={classes.single_box}>
-          <Typography
-            variant="h6"
-            component="div"
-            className={classes.box_title}
-          >
-            Bait
-          </Typography>
-          <Divider />
-          <Container className={classes.cards_container}>
-            <SimpleCard
-              name={"bait"}
-              key={"bait"}
-              img={Cheese}
-              count={stats.baitCount}
-            />
-          </Container>
+          <CardActionArea>
+            <Typography
+              variant="h6"
+              component="div"
+              className={classes.box_title}
+            >
+              Bait
+            </Typography>
+            <Divider />
+            <Container className={classes.cards_container}>
+              <SimpleCard
+                name={"bait"}
+                key={"bait"}
+                img={Cheese}
+                count={stats.baitCount}
+              />
+            </Container>
+          </CardActionArea>
         </Paper>
 
         <Paper elevation={8} className={classes.single_box}>
-          <Typography
-            variant="h6"
-            component="div"
-            className={classes.box_title}
-          >
-            Weapons
-          </Typography>
-          <Divider />
-          <Container className={classes.cards_container}>
-            <SimpleCard
-              name={"weapons"}
-              key={"weapons"}
-              img={Traps}
-              count={stats.weaponsCount}
-            />
-          </Container>
+          <CardActionArea>
+            <Typography
+              variant="h6"
+              component="div"
+              className={classes.box_title}
+            >
+              Weapons
+            </Typography>
+            <Divider />
+            <Container className={classes.cards_container}>
+              <SimpleCard
+                name={"weapons"}
+                key={"weapons"}
+                img={Traps}
+                count={stats.weaponsCount}
+              />
+            </Container>
+          </CardActionArea>
         </Paper>
 
         <Paper elevation={8} className={classes.single_box}>
-          <Typography
-            variant="h6"
-            component="div"
-            className={classes.box_title}
-          >
-            Bases
-          </Typography>
-          <Divider />
-          <Container className={classes.cards_container}>
-            <SimpleCard
-              name={"bases"}
-              key={"bases"}
-              img={Traps}
-              count={stats.basesCount}
-            />
-          </Container>
+          <CardActionArea>
+            <Typography
+              variant="h6"
+              component="div"
+              className={classes.box_title}
+            >
+              Bases
+            </Typography>
+            <Divider />
+            <Container className={classes.cards_container}>
+              <SimpleCard
+                name={"bases"}
+                key={"bases"}
+                img={Traps}
+                count={stats.basesCount}
+              />
+            </Container>
+          </CardActionArea>
         </Paper>
 
         <Paper elevation={8} className={classes.single_box}>

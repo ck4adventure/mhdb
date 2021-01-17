@@ -53,7 +53,7 @@ import { signup, login, logout } from "../actions/session_actions";
 import { fetchAllWeapons } from "../actions/weapons_actions";
 import { fetchAllBases } from "../actions/bases_actions";
 import { fetchRanks } from "../actions/ranks_actions";
-import { fetchAllRegions } from "../actions/regions_actions";
+
 import { fetchAllLocations } from "../actions/locations_actions";
 import { fetchAllGroups } from "../actions/groups_actions";
 
@@ -157,7 +157,6 @@ export default function App() {
     dispatch(fetchAllWeapons());
     dispatch(fetchAllBases());
     dispatch(fetchRanks());
-    dispatch(fetchAllRegions());
     dispatch(fetchAllLocations());
     dispatch(fetchAllGroups());
   }, []);

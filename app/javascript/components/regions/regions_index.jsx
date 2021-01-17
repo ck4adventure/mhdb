@@ -1,6 +1,5 @@
-import React from "react";
-import { useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -13,6 +12,8 @@ import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 
 import RegionsTableRow from "./regions_table_row";
+
+import { fetchAllRegions } from "../../actions/regions_actions";
 
 const useStyles = makeStyles((theme) => ({
   drawerHeader: {
@@ -45,6 +46,11 @@ function createData(regionName, regionId, regionLinkPath, regionLocations) {
 export default function RegionsPage() {
   const regions = useSelector((state) => Object.keys(state.regions));
   const classes = useStyles();
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchAllRegions());
+  }, []);
 
   if (Object.keys(regions).length < 1) {
     return <h1>Loading</h1>;
