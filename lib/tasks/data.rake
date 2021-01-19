@@ -44,44 +44,59 @@ namespace :data do
     path = File.join(Rails.root, 'db', 'data', 'test.html')
     puts path
     doc = Nokogiri::HTML(IO.read(path))
-    # p = File.join(Rails.root, 'db', 'data', 'data.rb')
-    # a = []
-
-    dirs = doc.css('div.mouseListView div.mouseListView-categoryDirectory')
-    nodes = dirs.pop.css('div.mouseListView-categoryContainer a')
-
-    # nodes = doc.css('div.mouseListView-categoryContainer a')
+    p = File.join(Rails.root, 'db', 'data', 'mouse_data.rb')
 
 
-    nodes.each do |node|
-      cat = node.attr('data-category')
-      title =  node.attr('title')
-      puts title
-      g = Group.find_by!(name: title)
-      g.update(mh_code: cat)
-    end
-
-
-
-    # IO.write(p, a.to_s, mode: "a" )
 
     # Gets Mouse Name, Thumbnail, Group
-    # nodes = doc.xpath("//select/option")
-    # nodes.each do |node|
-    #   # each should be an option
-    #   # first option blank
-    #   mouse = node.attr("data-type")
-    #   group = node.attr("data-category")
-    #   thumb = node.attr("data-thumb")
-    #   name = node.content.to_s.strip
-    #   h = { category: group, mh_name: mouse, name: name, thumb: thumb }
-    #   a.push(h)
+    # need lg image link, gold and points
+    nodes = doc.xpath("//select/option")
+    nodes.each do |node|
+      # each should be an option
+      # first option blank
+      mouse = node.attr("data-type")
+      group = node.attr("data-category")
+      thumb = node.attr("data-thumb")
+      mh_title = node.content.to_s.strip.split(" ")
+  
+      h = { category: group, mh_name: mouse, name: name, thumb: thumb }
+      a.push(h)
     # end
 
     # puts a.length
     # puts a.last
 
 
+  end
+
+  # Task data:groups will write a file that has the group name and code
+  task groups: :environment do
+    # This will grab the html data
+    path = File.join(Rails.root, 'db', 'data', 'test.html')
+    puts path
+    doc = Nokogiri::HTML(IO.read(path))
+
+    # Create a new file, and an array to hold the data to pass in
+    p = File.join(Rails.root, 'db', 'data', 'group_data.rb')
+    a = []
+
+
+    # This will scrape the html file for all the group names and add the mh_code to groups
+    # Group items have a name and a mh_code
+    dirs = doc.css('div.mouseListView div.mouseListView-categoryDirectory')
+    nodes = dirs.pop.css('div.mouseListView-categoryContainer a')
+    nodes.each do |node|
+      mh_code = node.attr('data-category')
+      name =  node.attr('title')
+      puts name
+      h = { mh_code: mh_code, name: name }
+      a.push(h)
+    end
+
+
+    # File write code to append data
+    # Write a new one each time we run this
+    IO.write(p, a.to_s, mode: "w" )
   end
 
 end
