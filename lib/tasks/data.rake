@@ -36,4 +36,51 @@ namespace :data do
     end
   end
 
+  task parse: :environment do
+    # access the file and parse it into a doc
+    # query the doc for certain class names or patterns
+    # try to get it to print out just the info we need
+    # then get it to put that info to an entire file
+    path = File.join(Rails.root, 'db', 'data', 'test.html')
+    puts path
+    doc = Nokogiri::HTML(IO.read(path))
+    p = File.join(Rails.root, 'db', 'data', 'data.json')
+    a = []
+
+    # dirs = doc.css('div.mouseListView div.mouseListView-categoryDirectory')
+    # nodes = dirs.pop.css('div.mouseListView-categoryContainer a')
+
+    # # nodes = doc.css('div.mouseListView-categoryContainer a')
+    # p = File.join(Rails.root, 'db', 'data', 'data.json')
+    # a = []
+    # nodes.each do |node|
+    #   cat = node.attr('data-category')
+    #   title =  node.attr('title')
+    #   h = { category: cat,  title: title }
+    #   a.push(h)
+    # end
+
+    # puts a
+
+    # IO.write(p, a.to_s, mode: "a" )
+
+    # Gets Mouse Name, Thumbnail, Group
+    nodes = doc.xpath("//select/option")
+    nodes.each do |node|
+      # each should be an option
+      # first option blank
+      mouse = node.attr("data-type")
+      group = node.attr("data-category")
+      thumb = node.attr("data-thumb")
+      name = node.content.to_s.strip
+      h = { category: group, mh_name: mouse, name: name, thumb: thumb }
+      a.push(h)
+    end
+
+    puts a.length
+    puts a.last
+
+
+  end
+
 end
