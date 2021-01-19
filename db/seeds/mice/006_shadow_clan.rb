@@ -1,7 +1,7 @@
 # Group: Indigenous Mice
 # Mice can have many locations, but are unique to their groups
 
-sh_id = Group.find_by!(name: "The Shadow Clan").id
+sh_id = Group.find_by!(name: "Shadow Clan").id
 
 mice = [
   { name: "Bat", points: 3000, gold: 3000, group_id: sh_id,},

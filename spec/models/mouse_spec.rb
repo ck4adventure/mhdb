@@ -4,6 +4,7 @@
 #
 #  id         :bigint           not null, primary key
 #  gold       :integer          not null
+#  mh_code    :string
 #  name       :string           not null
 #  points     :integer          not null
 #  created_at :datetime         not null
@@ -24,6 +25,7 @@ RSpec.describe Mouse, type: :model do
       it { should have_db_index(:name) }
       it { should have_db_column(:group_id) }
       it { should have_db_index(:group_id) }
+      it { should have_db_column(:mh_code) }
     end
     
     describe 'model shouldas' do
@@ -33,6 +35,7 @@ RSpec.describe Mouse, type: :model do
       it { should validate_uniqueness_of(:name) }
       it { should validate_numericality_of(:gold).is_greater_than_or_equal_to(10) }
       it { should validate_numericality_of(:points).is_greater_than_or_equal_to(0) }
+      it { should validate_uniqueness_of(:mh_code) }
     end
 
     describe 'association shouldas' do

@@ -4,7 +4,7 @@ mh_groups = [
  "Mountain Mice",
  "Forest Guild",
  "Lab Experiments",
- "The Shadow Clan",
+ "Shadow Clan",
  "Digby Dirt Dwellers",
  "Followers of Furoma",
  "The Forgotten Mice",

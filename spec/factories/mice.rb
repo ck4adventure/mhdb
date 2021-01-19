@@ -4,6 +4,7 @@
 #
 #  id         :bigint           not null, primary key
 #  gold       :integer          not null
+#  mh_code    :string
 #  name       :string           not null
 #  points     :integer          not null
 #  created_at :datetime         not null

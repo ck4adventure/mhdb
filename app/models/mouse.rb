@@ -4,6 +4,7 @@
 #
 #  id         :bigint           not null, primary key
 #  gold       :integer          not null
+#  mh_code    :string
 #  name       :string           not null
 #  points     :integer          not null
 #  created_at :datetime         not null
@@ -21,6 +22,7 @@ class Mouse < ApplicationRecord
   validates :name, uniqueness: true
   validates :gold, numericality: { only_integer: true, greater_than_or_equal_to: 10 }
   validates :points, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
+  validates :mh_code, uniqueness: true
 
   belongs_to :group
   has_many :mouse_locations
