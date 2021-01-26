@@ -4,6 +4,7 @@ RSpec.describe "Api::Locations", type: :request do
   # namespace :api, resources :locations, except: [:destroy], end
   
   # Initialize test data
+  Location.destroy_all
   let!(:locations) { create_list(:location, 2) }
   let!(:location_id) { locations.first.id }
 

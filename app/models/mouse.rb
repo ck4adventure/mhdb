@@ -20,9 +20,9 @@ class Mouse < ApplicationRecord
   has_one_attached :image
   validates :name, :group_id, presence: true
   validates :name, uniqueness: true
-  validates :gold, numericality: { only_integer: true, greater_than_or_equal_to: 10 }
-  validates :points, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
-  validates :mh_code, uniqueness: true
+  validates :gold, numericality: { only_integer: true, greater_than_or_equal_to: 10, allow_nil: true, }
+  validates :points, numericality: { only_integer: true, greater_than_or_equal_to: 0, allow_nil: true, }
+  validates :mh_code, uniqueness: true, allow_nil: true
 
   belongs_to :group
   has_many :mouse_locations

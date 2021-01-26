@@ -33,9 +33,9 @@ RSpec.describe Mouse, type: :model do
       it { should validate_presence_of(:name) }
       it { should validate_presence_of(:group_id) }
       it { should validate_uniqueness_of(:name) }
-      it { should validate_numericality_of(:gold).is_greater_than_or_equal_to(10) }
-      it { should validate_numericality_of(:points).is_greater_than_or_equal_to(0) }
-      it { should validate_uniqueness_of(:mh_code) }
+      it { should validate_numericality_of(:gold).is_greater_than_or_equal_to(10).allow_nil }
+      it { should validate_numericality_of(:points).is_greater_than_or_equal_to(0).allow_nil }
+      it { should validate_uniqueness_of(:mh_code).allow_nil }
     end
 
     describe 'association shouldas' do

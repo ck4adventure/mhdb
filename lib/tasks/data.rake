@@ -70,7 +70,7 @@ namespace :data do
   end
 
   # Task data:groups will write a file that has the group name and code
-  task groups: :environment do
+  task get_groups: :environment do
     # This will grab the html data
     path = File.join(Rails.root, 'db', 'data', 'test.html')
     puts path
