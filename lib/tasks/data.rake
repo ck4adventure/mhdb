@@ -36,7 +36,7 @@ namespace :data do
     end
   end
 
-  task parse: :environment do
+  task get_mice: :environment do
     # access the file and parse it into a doc
     # query the doc for certain class names or patterns
     # try to get it to print out just the info we need
@@ -44,7 +44,8 @@ namespace :data do
     path = File.join(Rails.root, 'db', 'data', 'test.html')
     puts path
     doc = Nokogiri::HTML(IO.read(path))
-    p = File.join(Rails.root, 'db', 'data', 'mouse_data.rb')
+    p = File.join(Rails.root, 'db', 'data', 'thumbs_data.rb')
+    a = []
 
 
 
@@ -57,14 +58,20 @@ namespace :data do
       mouse = node.attr("data-type")
       group = node.attr("data-category")
       thumb = node.attr("data-thumb")
-      mh_title = node.content.to_s.strip.split(" ")
+      title = node.content.to_s.strip
   
-      h = { category: group, mh_name: mouse, name: name, thumb: thumb }
+      h = { category: group, mh_name: mouse, name: title, thumb: thumb }
       a.push(h)
-    # end
+    end
 
-    # puts a.length
-    # puts a.last
+
+    ## delete empty first result
+    a.shift
+    ## should be Abominable
+    puts a.first
+    # File write code to append data
+    # Write a new one each time we run this
+    IO.write(p, a.to_s, mode: "w" )
 
 
   end
@@ -98,5 +105,14 @@ namespace :data do
     # Write a new one each time we run this
     IO.write(p, a.to_s, mode: "w" )
   end
+
+  task get_thumbnail: :environment do
+    # This will grab the html data
+
+    doc = Nokogiri::HTML(URI.open("https://www.mousehuntgame.com/images/mice/thumb/44e6507370b3548fa01e919caff84945.gif?cv=247")
+
+    # Create a new file, and an array to hold the data to pass in
+    p = File.join(Rails.root, 'db', 'data', 'thumbnail.rb')
+    a = []
 
 end

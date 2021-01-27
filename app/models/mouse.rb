@@ -18,6 +18,7 @@
 #
 class Mouse < ApplicationRecord
   has_one_attached :image
+  has_one_attached :thumbnail
   validates :name, :group_id, presence: true
   validates :name, uniqueness: true
   validates :gold, numericality: { only_integer: true, greater_than_or_equal_to: 10, allow_nil: true, }
